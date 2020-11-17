@@ -44,7 +44,7 @@ def scrape(start)
       Actor.create!({fullname: actor})
     end
 
-    Movie.create!({director: dir, title: name, synopsis: description})
+    Movie.create!({director: dir, title: name, synopsis: description, duration: duration})
     # name
     # duration
     # director
