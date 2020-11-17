@@ -4,7 +4,7 @@ class CreateEvent < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.datetime :date_time, null: false
       t.text :description
-      t.string :code, null: false
+      t.string :code
     end
   end
 end
