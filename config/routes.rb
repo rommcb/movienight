@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # get 'event_subscriptions/create'
   # get 'reviews/create'
   # get 'preferences/edit'
@@ -13,6 +14,8 @@ Rails.application.routes.draw do
   # get 'events/edit'
   # get 'events/update'
   # get 'events/destroy'
+
+
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
