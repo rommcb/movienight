@@ -9,6 +9,17 @@
 require "open-uri"
 require "nokogiri"
 
+
+user_1 = User.create!({username: "Frederic",email:'fred@fred.fred', password:'123123'})
+user_2 = User.create!({username: "Pierre", email:'pierre@pierre.pierre', password:'123123'})
+user_3 = User.create!({username: "Romain", email:'romain.borremans@gmail.com', password:'123123'})
+user_4 = User.create!({username: "Joseph", email:'joseph@joseph.joseph', password:'123123'})
+user_5 = User.create!({username: "Bob", email:'bob@bob.bob', password:'123123'})
+
+
+
+
+
 def scrape(start)
   if start > 901
     return 0
@@ -44,16 +55,12 @@ def scrape(start)
     else
       dir = dir[0]
     end
-
     mov = Movie.where(title: name)
     if mov.length == 0
-      pp "here"
-      pp dir
       mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration})
     else
       mov = mov[0]
     end
-    pp mov
     genres.each do |genre|
       if Genre.where(name: genre).length == 0
         gen = Genre.create!({name: genre})
@@ -79,5 +86,5 @@ def scrape(start)
   scrape(start + 100)
 end
 
-scrape(1)
+# scrape(1)
 
