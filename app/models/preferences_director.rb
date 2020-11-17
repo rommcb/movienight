@@ -1,2 +1,4 @@
-class Preferences_director < ApplicationRecord
+class PreferencesDirector < ApplicationRecord
+  belongs_to :user
+  has_one :director
 end
