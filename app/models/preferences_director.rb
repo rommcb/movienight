@@ -1,0 +1,2 @@
+class Preferences_director < ApplicationRecord
+end
