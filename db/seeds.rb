@@ -14,7 +14,7 @@ def scrape(start)
     return 0
   end
 
-  url = "https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=10&start=#{start}&ref_=adv_nxt"
+  url = "https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=100&start=#{start}&ref_=adv_nxt"
   html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
   arr = []
@@ -36,15 +36,39 @@ def scrape(start)
       cast.push(item.text)
     end
 
-    dir = Director.create!({fullname: director})
-    genres.each do |genre|
-      Genre.create!({name: genre})
-    end
-    cast.each do |actor|
-      Actor.create!({fullname: actor})
+
+    dir = Director.where(fullname: director)
+
+    if dir.length == 0
+      dir = Director.create!({fullname: director})
+    else
+      dir = dir[0]
     end
 
-    Movie.create!({director: dir, title: name, synopsis: description, duration: duration})
+    mov = Movie.where(title: name)
+    if mov.length == 0
+      pp "here"
+      pp dir
+      mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration})
+    else
+      mov = mov[0]
+    end
+    pp mov
+    genres.each do |genre|
+      if Genre.where(name: genre).length == 0
+        gen = Genre.create!({name: genre})
+        GenresAttribution.create!({movie_id: mov.id, genre_id: gen.id})
+      end
+      GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
+    end
+
+    cast.each do |actor|
+      if Actor.where(fullname: actor).length == 0
+        act =Actor.create!({fullname: actor})
+        Casting.create!({movie_id: mov.id, actor_id: act.id})
+      end
+      Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
+    end
     # name
     # duration
     # director
@@ -54,4 +78,6 @@ def scrape(start)
   end
   scrape(start + 100)
 end
+
+scrape(1)
 
