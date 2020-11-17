@@ -35,12 +35,23 @@ def scrape(start)
     element.search('p')[2].children.search("a")[1..].each do |item|
       cast.push(item.text)
     end
-    pp director
+
+    dir = Director.create!({fullname: director})
+    genres.each do |genre|
+      Genre.create!({name: genre})
+    end
+    cast.each do |actor|
+      Actor.create!({fullname: actor})
+    end
+
+    Movie.create!({director: dir, title: name, synopsis: description})
     # name
     # duration
     # director
+    # description
     # genres
     # cast
   end
   scrape(start + 100)
 end
+
