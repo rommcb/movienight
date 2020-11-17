@@ -4,6 +4,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.references :director
       t.string :title, null: false
       t.text :synopsis, null: false
+      t.integer :duration, null: false
     end
   end
 end
