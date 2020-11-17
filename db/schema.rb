@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
     t.string "name", null: false
     t.datetime "date_time", null: false
     t.text "description"
+    t.string "code", null: false
   end
 
   create_table "genres", force: :cascade do |t|
