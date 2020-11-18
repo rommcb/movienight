@@ -7,9 +7,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event_id = Event.find(params[:id])
+    @event_id = Event.find(params[:id]).id
     @movie = Movie.find(_get_next(@event_id))
-     @owner = @event.users
+    @owner = @event.users
 
   end
 
