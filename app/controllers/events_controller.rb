@@ -4,11 +4,17 @@ class EventsController < ApplicationController
   def index
     @events = current_user.events
     @code_event = Event.new
+    @error_message = ""
+    pp "+++++++++++++++++++++++++++++++++"
+    if params[:format] == "Error"
+      @error_message = "Wrong code"
+    end
+    pp "-----------------------------------"
   end
 
   def show
-    @event_id = Event.find(params[:id]).id
-    @movie = Movie.find(_get_next(@event_id))
+    @event_id = params[:id]
+    @movie = Movie.find(_get_next(Event.find(@event_id)))
     @owner = @event.users
 
   end

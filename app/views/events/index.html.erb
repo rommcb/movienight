@@ -7,6 +7,7 @@
           <%= simple_form_for @code_event, {url: event_subscriptions_path} do |f| %>
             <%= f.input :code %>
             <%= f.button :submit, 'join event', class: 'btn btn-primary'%>
+            <p><%= @error_message%></p>
           <% end %>
   </div>
   <% @events.each do |event|%>
