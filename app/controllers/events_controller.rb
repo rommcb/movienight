@@ -7,6 +7,7 @@ class EventsController < ApplicationController
     # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
 
     pp Movie.find(_get_next(Event.find(1)))
+    @code_event = Event.new
   end
 
   def show
