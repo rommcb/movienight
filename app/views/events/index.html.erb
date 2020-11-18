@@ -15,6 +15,7 @@
       <h2><%= event.name %></h2>
       <p>
       <%= link_to "See details", event_path(event) %>
+      <%= link_to "| Start swiping", swipe_path(event.id) %>
       <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
         | <%= link_to "Edit", edit_event_path(event) %>
       <% end %>
