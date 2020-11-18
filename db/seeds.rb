@@ -8,6 +8,7 @@
 
 require "open-uri"
 require "nokogiri"
+require "date"
 
 
 user_1 = User.create!({username: "Frederic",email:'fred@fred.fred', password:'123123'})
@@ -15,9 +16,6 @@ user_2 = User.create!({username: "Pierre", email:'pierre@pierre.pierre', passwor
 user_3 = User.create!({username: "Romain", email:'romain.borremans@gmail.com', password:'123123'})
 user_4 = User.create!({username: "Joseph", email:'joseph@joseph.joseph', password:'123123'})
 user_5 = User.create!({username: "Bob", email:'bob@bob.bob', password:'123123'})
-
-
-
 
 
 def scrape(start)
@@ -86,5 +84,24 @@ def scrape(start)
   scrape(start + 100)
 end
 
-# scrape(1)
+scrape(1)
 
+event_1 = Event.create!({name:"first", date_start: DateTime.now, date_end: Date.new(2020,12,12)})
+
+EventSubscription.create!({owner: true, user_id:1, event_id:1})
+EventSubscription.create!({owner: false, user_id:2, event_id:1})
+EventSubscription.create!({owner: false, user_id:3, event_id:1})
+EventSubscription.create!({owner: false, user_id:4, event_id:1})
+
+EventMovie.create!({movie_id:1, event_id:1, score:1})
+EventMovie.create!({movie_id:2, event_id:1, score:1})
+EventMovie.create!({movie_id:3, event_id:1, score:1})
+EventMovie.create!({movie_id:4, event_id:1, score:1})
+EventMovie.create!({movie_id:5, event_id:1, score:0})
+EventMovie.create!({movie_id:6, event_id:1, score:0})
+EventMovie.create!({movie_id:7, event_id:1, score:0})
+
+Review.create!({user_id:1, event_movie_id:1})
+Review.create!({user_id:1, event_movie_id:2})
+Review.create!({user_id:2, event_movie_id:3})
+Review.create!({user_id:3, event_movie_id:4})
