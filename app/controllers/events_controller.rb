@@ -8,6 +8,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    @owner = @event.users
   end
 
   def new
@@ -16,7 +17,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.date_end = DateTime.now
+    @event.date_start = DateTime.now
     if @event.save
       @event.code = "123123"
       @event.save

@@ -2,12 +2,28 @@
 <p>Find me in app/views/events/index.html.erb</p>
 
 <div class="cards">
+  <div class="card">
+          <%= link_to "Create a new event", new_event_path, class: 'btn btn-primary' %>
+  </div>
   <% @events.each do |event|%>
     <div class="card">
       <h2><%= event.name %></h2>
+      <p>
+      <%= link_to "See details", event_path(event) %>
+      <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+        | <%= link_to "Edit", edit_event_path(event) %>
+      <% end %>
+      </p>
       <p><%= event.description %></p>
-      <p><%= event.date_end %></p>
-      <p style="color: red;">How can I display the members? :(</p>
+      <p>When? <%= event.date_end %></p>
+      <h3>Members:</h3>
+      <ul>
+        <%event.users.each do |user| %>
+          <li>
+            <%= user.username %>
+          </li>
+        <%end%>
+      </ul>
     </div>
   <% end %>
 </div>
