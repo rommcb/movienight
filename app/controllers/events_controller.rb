@@ -4,6 +4,7 @@ class EventsController < ApplicationController
   def index
     # _get_next(Event.find(1))
     @events = current_user.events
+
     # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
 
 
@@ -12,6 +13,8 @@ class EventsController < ApplicationController
   def show
     @event_id = Event.find(params[:id])
     @movie = Movie.find(_get_next(@event_id))
+     @owner = @event.users
+
   end
 
   def new
@@ -20,7 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.date_end = DateTime.now
+    @event.date_start = DateTime.now
     if @event.save
       @event.code = "123123"
       @event.save
