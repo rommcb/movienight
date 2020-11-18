@@ -1,4 +1,26 @@
-<h1>Events#edit</h1>
-<p>Find me in app/views/events/edit.html.erb</p>
+<h1>Edit your event: <%= @event.name %></h1>
 
-<%= render 'events/form', event: @event %>
+<%= simple_form_for @event do |f| %>
+  <%= f.input :name %>
+  <%= f.input :description %>
+  <%= f.input :date_end %>
+
+  <h3>Members</h3>
+  <ul>
+    <% @event.users.each do |user| %>
+        <li>
+        <%= user.username %> 
+          <% if user.id == current_user.id %>
+            (owner)
+          <% else %>
+            <%= link_to "fire!", event_subscription_path(user), method: 'delete' %>
+          <% end %>
+        </li>
+    <%end%>
+  </ul>
+
+
+  <%= f.button :submit, class: 'btn btn-primary' %>
+<% end %>
+
+<p> <%= link_to "delete event", event_path, method: 'delete', data: {confirm: 'Are you sure?'} %></p>

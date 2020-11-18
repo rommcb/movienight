@@ -1,6 +1,21 @@
 <%= simple_form_for @event do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :date_time %>
+  <%= f.input :date_end %>
+
+  <ul>
+    <% @event.users.each do |user| %>
+        <li>
+        <%= user.username %> 
+          <% if user.id == current_user.id %>
+            (owner)
+          <% else %>
+            <%= link_to "fire!", event_subscription_path(user), method: 'delete' %>
+          <% end %>
+        </li>
+    <%end%>
+  </ul>
+
+
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
