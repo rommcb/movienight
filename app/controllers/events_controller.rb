@@ -2,15 +2,25 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    # _get_next(Event.find(1))
     @events = current_user.events
+
+
     # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
 
+
+
+    if @events.count > 0
+    _get_next(Event.find(1))
     pp Movie.find(_get_next(Event.find(1)))
     @code_event = Event.new
+    end
   end
 
   def show
+    @event_id = Event.find(params[:id])
+    @movie = Movie.find(_get_next(@event_id))
+     @owner = @event.users
+
   end
 
   def new
@@ -19,7 +29,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    @event.date_end = DateTime.now
+    @event.date_start = DateTime.now
     if @event.save
       @event.code = "123123"
       @event.save
@@ -142,7 +152,7 @@ class EventsController < ApplicationController
     else
       sql = "#{sql_header}#{str_directors}\n AND
       NOT EXISTS(
-      SELECT * FROM reviews r 
+      SELECT * FROM reviews r
       JOIN event_movies v ON v.id = r.event_movie_id
       WHERE
       v.movie_id = m.id AND v.event_id = #{event.id}
@@ -150,8 +160,8 @@ class EventsController < ApplicationController
       GROUP BY m.id
       LIMIT #{n}"
     end
-      
-    
+
+
     movie_array = []
     query_array = ActiveRecord::Base.connection.execute(sql)
     query_array.each do |item|
@@ -168,10 +178,10 @@ class EventsController < ApplicationController
   end
 
   def _no_pref(n, event)
-    "SELECT m.id FROM movies m 
+    "SELECT m.id FROM movies m
     WHERE
     NOT EXISTS(
-      SELECT * FROM reviews r 
+      SELECT * FROM reviews r
       JOIN event_movies v ON v.id = r.event_movie_id
       WHERE
       v.movie_id = m.id AND v.event_id = #{event.id}
@@ -188,7 +198,7 @@ class EventsController < ApplicationController
     # x_values = EventMovie.joins(:reviews).where("score > 0 AND user_id = #{current_user.id} AND event_id = #{event.id}")
     arr1 = _find_movie_like(event)
     x = arr1.length
-   
+
     n = EventSubscription.where(event_id: event.id).length
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event)
@@ -200,10 +210,10 @@ class EventsController < ApplicationController
 
   def _number_of_randoms(x, t, total_t, n, b = 1, a = 1)
     x.to_f
-  
+
     val1 = x*t*b/total_t
     val2 = ((30.0-n)*a)/30.0
-  
+
     val3 = val1 * val2
     return val3.ceil
   end
