@@ -48,9 +48,10 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
 
   create_table "events", force: :cascade do |t|
     t.string "name", null: false
-    t.datetime "date_time", null: false
+    t.datetime "date_end", null: false
+    t.datetime "date_start", null: false
     t.text "description"
-    t.string "code", null: false
+    t.string "code"
   end
 
   create_table "genres", force: :cascade do |t|
