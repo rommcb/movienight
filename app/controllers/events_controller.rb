@@ -50,6 +50,7 @@ class EventsController < ApplicationController
 
   def event_params
     params.require(:event).permit(:name, :description, :date_time)
+  end
 
   def find_movie_like
     # what we want is  an array of movies wih score > 0
