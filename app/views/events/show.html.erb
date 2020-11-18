@@ -1,3 +1,19 @@
+
+<h1>Events#show</h1>
+<p>Find me in app/views/events/show.html.erb</p>
+
+<%= simple_form_for @movie, {url: event_movie_path(@event_id)} do |f| %>
+  <%= f.submit "I like", name: "like" %>
+  <%= f.submit "Dislike", name: "dislike" %>
+<% end %>
+
+
+
+
+
+
+
+
 <h1>Welcome to "<strong><%= @event.name %></strong>"</h1>
 
 <% if current_user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
@@ -35,3 +51,4 @@
 </ul>
 
 <%= link_to "Back to My Events", events_path %>
+
