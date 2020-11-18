@@ -75,8 +75,8 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
 
   create_table "preferences_actors", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "genre_id", null: false
-    t.index ["genre_id"], name: "index_preferences_actors_on_genre_id"
+    t.bigint "actor_id", null: false
+    t.index ["actor_id"], name: "index_preferences_actors_on_actor_id"
     t.index ["user_id"], name: "index_preferences_actors_on_user_id"
   end
 
