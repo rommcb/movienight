@@ -1,11 +1,9 @@
 Rails.application.routes.draw do
-  get 'event_movies/edit'
-  get 'event_movies/update'
   root to: 'pages#home'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
   devise_for :users
 
-  resources :events do
+  resources :events do 
     resources :show_winner, only: [:index]
   end
 
@@ -13,6 +11,5 @@ Rails.application.routes.draw do
   resources :preferences, only: [:edit, :update]
   resources :reviews, only: [:create]
   resources :movies, only: [:index, :show]
-  # resources :event_movies, only: [:edit, :update]
 
 end
