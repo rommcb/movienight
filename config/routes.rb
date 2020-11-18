@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     resources :show_winner, only: [:index]
   end
 
-  resources :event_subscriptions, only: [:create]
+  resources :event_subscriptions, only: [:create, :destroy]
   resources :preferences, only: [:edit, :update]
   resources :reviews, only: [:create]
   resources :movies, only: [:index, :show]
