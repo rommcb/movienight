@@ -1,4 +1,4 @@
 class GenresAttribution < ApplicationRecord
   belongs_to :movie
-  has_one :genre
+  belongs_to :genre
 end
