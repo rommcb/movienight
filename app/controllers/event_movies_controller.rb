@@ -19,7 +19,7 @@ class EventMoviesController < ApplicationController
     end
     review = Review.new(event_movie_id: event_movie.id, user_id:current_user.id)
     review.save!
-    redirect_to("/events/swipe/1")
+    redirect_to(swipe_path(event_movie.event_id))
   end
 
 end
