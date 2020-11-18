@@ -3,17 +3,7 @@ class EventsController < ApplicationController
 
   def index
     @events = current_user.events
-
-
-    # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
-
-
-
-    if @events.count > 0
-    _get_next(Event.find(1))
-    pp Movie.find(_get_next(Event.find(1)))
     @code_event = Event.new
-    end
   end
 
   def show

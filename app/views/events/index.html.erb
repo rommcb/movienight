@@ -4,6 +4,10 @@
 <div class="cards">
   <div class="card">
           <%= link_to "Create a new event", new_event_path, class: 'btn btn-primary' %>
+          <%= simple_form_for @code_event, {url: event_subscriptions_path} do |f| %>
+            <%= f.input :code %>
+            <%= f.button :submit, 'join event', class: 'btn btn-primary'%>
+          <% end %>
   </div>
   <% @events.each do |event|%>
     <div class="card">
@@ -28,7 +32,3 @@
   <% end %>
 </div>
 
-<%= simple_form_for @code_event, {url: event_subscriptions_path} do |f| %>
-  <%= f.input :code %>
-  <%= f.button :submit, 'join event'%>
-<% end %>
