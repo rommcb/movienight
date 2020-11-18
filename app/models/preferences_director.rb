@@ -1,4 +1,4 @@
 class PreferencesDirector < ApplicationRecord
   belongs_to :user
-  has_one :director
+  belongs_to :director
 end

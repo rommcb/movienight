@@ -1,4 +1,4 @@
 class Casting < ApplicationRecord
   belongs_to :movie
-  has_one :actor
+  belongs_to :actor
 end

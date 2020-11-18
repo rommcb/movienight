@@ -3,7 +3,8 @@ class EventsController < ApplicationController
 
   def index
     _get_next(Event.find(1))
-    @events = Event.all #we need to select only the events belonging the user
+    @events = current_user.events
+    # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
   end
 
   def show
@@ -15,6 +16,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.date_end = DateTime.now
     if @event.save
       @event.code = "123123"
       @event.save
@@ -49,7 +51,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :date_time)
+    params.require(:event).permit(:name, :description, :date_end)
   end
 
   def find_movie_like
