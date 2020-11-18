@@ -19,7 +19,7 @@ user_5 = User.create!({username: "Bob", email:'bob@bob.bob', password:'123123'})
 
 
 def scrape(start)
-  if start > 21
+  if start > 901
     return 0
   end
 
