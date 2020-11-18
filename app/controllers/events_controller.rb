@@ -64,7 +64,6 @@ class EventsController < ApplicationController
       @event_movie = EventMovie.new(movie_id: movie.id, event_id:event.id, score:0)
       @event_movie.save!
     end
-
   end
 
   private
