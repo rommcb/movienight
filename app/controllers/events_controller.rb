@@ -2,11 +2,17 @@ class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   def index
-    # _get_next(Event.find(1))
     @events = current_user.events
+
 
     # Event.joins(:event_subscriptions).where("user_id = #{current_user.id}")
 
+
+
+    if @events.count > 0
+    _get_next(Event.find(1))
+    pp Movie.find(_get_next(Event.find(1)))
+    end
 
   end
 
