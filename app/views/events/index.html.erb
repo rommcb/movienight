@@ -27,3 +27,8 @@
     </div>
   <% end %>
 </div>
+
+<%= simple_form_for @code_event, {url: event_subscriptions_path} do |f| %>
+  <%= f.input :code %>
+  <%= f.button :submit, 'join event'%>
+<% end %>

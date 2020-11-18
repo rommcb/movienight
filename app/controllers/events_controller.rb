@@ -12,8 +12,8 @@ class EventsController < ApplicationController
     if @events.count > 0
     _get_next(Event.find(1))
     pp Movie.find(_get_next(Event.find(1)))
+    @code_event = Event.new
     end
-
   end
 
   def show
