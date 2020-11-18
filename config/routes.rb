@@ -13,6 +13,8 @@ Rails.application.routes.draw do
   resources :reviews, only: [:create]
   resources :movies, only: [:index, :show]
   resources :event_movies, only: [:edit, :update]
-  'post'
+
+  get 'events/swipe/:id', to: 'events#swipe'
+  post 'events/swipe/:id', to: 'events#swipe'
 
 end
