@@ -1,5 +1,5 @@
 class EventMovie < ApplicationRecord
   belongs_to :event
-  has_one :movie
+  belongs_to :movie
   has_many :reviews
 end
