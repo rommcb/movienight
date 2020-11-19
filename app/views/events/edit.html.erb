@@ -1,5 +1,7 @@
-<h1>Edit your event: <%= @event.name %></h1>
 
+<div class="banner">
+  <div class="form-wrapper">
+<h2>Edit your event</h2>
 <%= simple_form_for @event do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
@@ -24,3 +26,6 @@
 <% end %>
 
 <p> <%= link_to "delete event", event_path, method: 'delete', data: {confirm: 'Are you sure?'} %></p>
+<%= link_to "X", event_path(@event), class: 'links' %>
+</div>
+</div>

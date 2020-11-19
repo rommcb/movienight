@@ -9,7 +9,7 @@
         <div>
           <p> - OR -</p>
         </div>
-          <%= simple_form_for @code_event, html: { url: event_subscriptions_path, class: "form-inline"} do |f| %>
+          <%= simple_form_for @code_event, html: { url: event_subscriptions_path , class: "form-inline"} do |f| %>
             <div class="form-group centered">
               <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
               <%= f.button :submit, 'join', class: 'btn btn-primary'%>
@@ -31,17 +31,11 @@
           <%end%>
         </div>
 
-        <!--<ul class="list-inline">
-          <%event.users.each do |user| %>
-            <li class="list-inline-item avatar-letter" title="<%= user.username %>">
-            <%= user.username[0] %>
-            </li>
-          <%end%>
-        </ul>-->
+
       </div>
       
       <% if event.closed == true %>
-        <%= link_to "| View result", result_path(event.id), class: 'btn btn-primary btn-bottom' %>
+        <%= link_to "View result", result_path(event.id), class: 'btn btn-primary btn-bottom' %>
       <% else %>
         <%= link_to "Start swiping", swipe_path(event.id), class: 'btn btn-primary btn-bottom' %>
       <%end%>
