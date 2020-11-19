@@ -33,16 +33,16 @@ document.addEventListener('turbolinks:load', () => {
   // initSelect2();
   const genre = document.getElementById("genre_pref")
   if(genre != null){
-    genre.addEventListener('keyup', (e) => { predict('genre',e) }, false);
+    genre.addEventListener('keyup', () => { predict('genre', genre) }, false);
   }
 
   const actor = document.getElementById("actor_pref")
   if(actor != null){
-    actor.addEventListener('keyup', (e) => { predict('actor', e) }, false);
+    actor.addEventListener('keyup', () => { predict('actor', actor) }, false);
   }
 
   const director = document.getElementById("director_pref")
   if(director != null){
-    director.addEventListener('keyup', (e) => { predict('director', e) }, false);
+    director.addEventListener('keyup', () => { predict('director', director) }, false);
   }
 });

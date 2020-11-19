@@ -40,9 +40,16 @@
         </ul>-->
       </div>
       
+      <% if event.closed == true %>
+        <%= link_to "| View result", result_path(event.id), class: 'btn btn-primary btn-bottom' %>
+      <% else %>
+        <%= link_to "Start swiping", swipe_path(event.id), class: 'btn btn-primary btn-bottom' %>
+      <%end%>
 
-      <%= link_to "Start swiping", swipe_path(event.id), class: 'btn btn-primary btn-bottom' %>
- 
+       <!-- <% if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id %>
+          <%= link_to "| End this event early", stop_path(event.id), method: :post %>
+        <% end %> -->
+
     </div>
   <% end %>
 </div>

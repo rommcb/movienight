@@ -1,0 +1,33 @@
+<h1>Hey</h1>
+
+<form action="/preferences/save" method='POST'>
+  <input name="authenticity_token" type="hidden" value=<%= @token %> />
+
+  <div id="container">
+    <label for="actor_pref"> Input actors</label>
+    <input list="actors" name="actor_pref" id="actor_pref">
+    <datalist id="actors">
+    </datalist>
+  </div>
+
+  <div id="container">
+    <label for="genre_pref">Input gernes</label>
+    <input list="genres" name="genre_pref" id="genre_pref">
+    <datalist id="genres">
+    </datalist>
+  </div>
+
+  <div id="container">
+    <label for="director_pref">Input director</label>
+    <input list="directors" name="director_pref" id="director_pref">
+    <datalist id="directors">
+    </datalist>
+  </div>
+  <div id="container">
+    <label for="duration">Max_time</label>
+    <input type="text" name="duration" id="duration">
+    
+  </div>
+
+  <input type="submit">
+</form>

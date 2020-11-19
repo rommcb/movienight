@@ -5,17 +5,15 @@ class EventsController < ApplicationController
     @events = current_user.events
     @code_event = Event.new
     @error_message = ""
-    pp "+++++++++++++++++++++++++++++++++"
+    session[:_csrf_token]
     if params[:format] == "Error"
       @error_message = "Wrong code"
     end
-    pp "-----------------------------------"
   end
 
   def show
     @event_id = params[:id]
     @owner = @event.users
-
   end
 
   def new
@@ -26,7 +24,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.date_start = DateTime.now
     if @event.save
-      @event.code = "123123"
+      @event.code = "#{@event.id}123"
       @event.save
       subscription = EventSubscription.new(owner: true, user_id: current_user.id, event_id: @event.id )
       subscription.save
@@ -43,6 +41,22 @@ class EventsController < ApplicationController
     @event.update(event_params)
 
     redirect_to event_path(@event)
+  end
+
+  def stop
+    event = Event.find(params[:id])
+    if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id
+      event.closed = true
+      event.save!
+      redirect_to(result_path(event.id))
+    end
+  end
+
+  def result
+    event = Event.find(params[:id])
+    event_movies = EventMovie.where("event_id = #{event.id} AND score > 0").order(:score)
+
+    @movie = Movie.find(event_movies.first.movie.id)
   end
 
   def destroy

@@ -5,6 +5,7 @@ class CreateMovies < ActiveRecord::Migration[6.0]
       t.string :title, null: false
       t.text :synopsis, null: false
       t.integer :duration, null: false
+      t.string :cover
     end
   end
 end
