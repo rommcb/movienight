@@ -1,5 +1,42 @@
 // Specific CSS for your home-page
 
-h1 {
+.action_home h1 {
   margin: 30px 0 10px 0;
+  font-size: 3rem;
+  margin-bottom: 30px;
 }
+
+.banner {
+  height: 75vh;
+  color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  p {
+    opacity: 0.7;
+  }
+}
+
+body.action_home , body.sessions_body, body.registrations_body {
+  background-color: black;
+}
+
+.action_home .btn-lg {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+.action_home .btn {
+border-radius: 24px;
+}
+
+.action_home .btn-secondary {
+  background-color: transparent;
+  border: 1px solid white;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid white;
+  }
+}
+
