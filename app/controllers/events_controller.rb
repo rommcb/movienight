@@ -5,11 +5,10 @@ class EventsController < ApplicationController
     @events = current_user.events
     @code_event = Event.new
     @error_message = ""
-    pp "+++++++++++++++++++++++++++++++++"
+    session[:_csrf_token]
     if params[:format] == "Error"
       @error_message = "Wrong code"
     end
-    pp "-----------------------------------"
   end
 
   def show

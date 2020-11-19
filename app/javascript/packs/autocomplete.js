@@ -1,3 +1,9 @@
+let selection = {
+  'actor': [],
+  'genre': [],
+  'director': []
+}
+
 function genre(string, ul){
   fetch(`http://localhost:3000/api/genre/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul)})
 }
@@ -11,39 +17,22 @@ function director(string, ul){
 }
 
 function create(array, ul) {
-  for (let index = 0; index < array.length; index += 1) {
-    array.forEach((item) => {
-      ul.insertAdjacentHTML("beforeend", `<li>${item}</li>`);
-    });
-  }
+  array.forEach((item) => {
+    ul.insertAdjacentHTML("beforeend", `<option value="${item}">`);
+  });
 }
 
-function predict(val, e) {
+export function predict(val, e) {
   const text = e.value;
-  if(text.length > 3){
-    const ul = document.getElementById(`results_${val}`);
+  if(text.length >= 3){
+    const ul = document.getElementById(`${val}s`);
     ul.innerHTML = "";
-    if(val === 0){
+    if(val === 'genre'){
       genre(text, ul)
-    } else if (val === 1){
+    } else if (val === 'actor'){
       actor(text, ul)
     } else {
       director(text, ul)
     }
   }
 }
-
-// genre = document.getElementById("genre_pref")
-// if(genre != null){
-//   genre.addEventListener('keyup', (e) => { predict('genre',e) }, false);
-// }
-
-// actor = document.getElementById("actor_pref")
-// if(actor != null){
-//   actor.addEventListener('keyup', (e) => { predict('actor', e) }, false);
-// }
-
-// director = document.getElementById("director_pref")
-// if(director != null){
-//   director.addEventListener('keyup', (e) => { predict('director', e) }, false);
-// }

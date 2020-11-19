@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :event_movies, only: [:edit, :update]
 
   get 'events/swipe/:id', to: 'events#swipe', as: :swipe
+  get 'preferences/make', to: "preferences#make"
+  post 'preferences/save', to: "preferences#save"
 
   get 'api/genre/:string', to: 'pages#genre'
   get 'api/actor/:string', to: 'pages#actor'
