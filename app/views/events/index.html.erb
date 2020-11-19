@@ -9,7 +9,7 @@
         <div>
           <p> - OR -</p>
         </div>
-          <%= simple_form_for @code_event, html: { url: event_subscriptions_path, class: "form-inline"} do |f| %>
+          <%= simple_form_for @code_event, { url: event_subscriptions_path, class: "form-inline"} do |f| %>
             <div class="form-group centered">
               <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
               <%= f.button :submit, 'join', class: 'btn btn-primary'%>
