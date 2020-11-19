@@ -1,6 +1,7 @@
 <h1>Events#swipe</h1>
 <p>Find me in app/views/events/swipe.html.erb</p>
-<p><%= @event_movie.movie.title %></p>
+<p id="movie_name"><%= @event_movie.movie.title %></p>
+<img src=<%= @event_movie.movie.cover %> alt="cover" id="img_swipe">
 <%= simple_form_for @event_movie, {url: event_movie_path(@event_movie.id)} do |f| %>
   <%= f.hidden_field :id %>
   <%= f.submit "I like", name: "like" %>

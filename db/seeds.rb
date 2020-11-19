@@ -27,7 +27,9 @@ def scrape(start)
   html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
   arr = []
-  html_doc.search(".lister-item-content").each do |element|
+  html_doc.search(".mode-advanced").each do |element_1|
+    immage = element_1.search(".float-left").search("img").first.attributes["loadlate"].value
+    element = element_1.search(".lister-item-content")
     name = element.search(".lister-item-header").at("a").text
     duration = element.search(".text-muted").search(".runtime").text.delete_suffix!(' min').to_i
     genres = []
@@ -55,7 +57,7 @@ def scrape(start)
     end
     mov = Movie.where(title: name)
     if mov.length == 0
-      mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration})
+      mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration, cover:immage})
     else
       mov = mov[0]
     end
