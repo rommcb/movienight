@@ -22,7 +22,10 @@
 }
 
 body {
-  background-color: white;
+  background-color: black;
+  h1 {
+  color: white;
+  }
 }
 
 body.action_home , body.sessions_body, body.registrations_body {

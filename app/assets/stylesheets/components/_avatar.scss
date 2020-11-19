@@ -1,16 +1,31 @@
 .avatar {
   width: 40px;
-  border-radius: 50%;
+  border-radius: 20px;
 }
+
+.avatar-letter {
+  width: 34px;
+  border-radius: 20px;
+  height: 34px;
+  text-align:center;
+  padding-top: 4px;
+  background-color: #bebebe ;
+  font-size: 1.2em;
+  font-weight: 500;
+  margin-right: 0 !important;
+}
+
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;
 }
 .avatar-bordered {
   width: 40px;
-  border-radius: 50%;
+  border-radius: 20px;
   box-shadow: 0 1px 2px rgba(0,0,0,0.2);
   border: white 1px solid;
+
 }
 .avatar-square {
   width: 40px;
