@@ -5,13 +5,6 @@ class EventMoviesController < ApplicationController
   end
 
   def update
-    # @movie = EventMovie.find(params[:id])
-    #   if params[:commit] == "like"
-    #   @movie.score += 1
-    #   else
-    #   @movie.score -= 1
-    #   end
-    # @movie.save
     event_movie = EventMovie.find(params[:event_movie][:id])
     if params[:like] != nil
       event_movie.score += 1

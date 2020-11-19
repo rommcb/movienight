@@ -26,9 +26,23 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-// import { initSelect2 } from '../components/init_select2';
+import { predict } from './autocomplete';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
+  const genre = document.getElementById("genre_pref")
+  if(genre != null){
+    genre.addEventListener('keyup', (e) => { predict('genre',e) }, false);
+  }
+
+  const actor = document.getElementById("actor_pref")
+  if(actor != null){
+    actor.addEventListener('keyup', (e) => { predict('actor', e) }, false);
+  }
+
+  const director = document.getElementById("director_pref")
+  if(director != null){
+    director.addEventListener('keyup', (e) => { predict('director', e) }, false);
+  }
 });
