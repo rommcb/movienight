@@ -21,7 +21,7 @@ class EventSubscriptionsController < ApplicationController
   def destroy
     @event = Event.find(@subscription.event_id)
     @subscription.destroy
-    redirect_to edit_event_path(@event)
+    redirect_to events_path
   end
 
   private
