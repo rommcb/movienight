@@ -1,22 +1,18 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="banner">
+  <div class="banner-content">
+    
+    <h1>Find the perfect movie to watch<br>at your Movie Night</h1>
+
+      <%=link_to "Sign In", new_user_session_path, class: 'btn btn-secondary btn-lg'%><br>
+      <%=link_to "Sign Up", new_user_registration_path, class: 'btn btn-primary btn-lg'%>
 
 
-<ul>
-  <li><%=link_to "--My events-- HOME/DASHBOARD", events_path%></li>
-  <li><%=link_to "Event new", new_event_path%></li>
-  <li><%=link_to "Event Edit", edit_event_path(:id)%></li>
+      
+  
 
-  <li><%=link_to "Movies", movies_path%></li>
-  <li><%=link_to "movie", movie_path(:id)%></li>
+  </div>
+</div>
 
-  <li><%=link_to "event subscription", event_subscriptions_path%></li>
-
-  <li><%=link_to "reviews", reviews_path%></li>
-
-  <li><%=link_to "edit preference", edit_preference_path(:id)%></li>
-  <li><%=link_to "preference", preference_path(:id)%></li>
-</ul>
 
 
 
