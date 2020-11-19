@@ -13,7 +13,7 @@
   linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
   url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
   padding: 20px;
-  padding-bottom:38px;
+  padding-bottom:20px;
   border-radius: 9px;
   margin: 20px 30px 20px 0;
   width: 230px;
@@ -80,9 +80,23 @@
 }
 
 .add-new .card-content{
+  display: flex;
   text-align: center;
+  flex-direction: column-reverse;
+  p {
+    color: rgba(0,0,0,0.5);
+    margin: 20px 0;
+  }
 }
 
-.top {
-  
+.card-content {
+    .form-control {
+      width: 136px !important;
+      border-radius: 4px 0 0 4px;
+      border: none;
+    }
+    .btn 
+    {
+      border-radius: 0 4px 4px 0;
+    }
 }

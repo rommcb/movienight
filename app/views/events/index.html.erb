@@ -3,11 +3,18 @@
 <div class="cards">
   <div class="card add-new">
       <div class="card-content">
+        <div>
           <%= link_to "Create a new event", new_event_path, class: 'btn btn-primary' %>
-          <%= simple_form_for @code_event, {url: event_subscriptions_path} do |f| %>
-            <%= f.input :code, placeholder: 'Enter your code', label: false  %>
-            <%= f.button :submit, 'join event', class: 'btn btn-primary'%>
-            <p><%= @error_message%></p>
+        </div>
+        <div>
+          <p> - OR -</p>
+        </div>
+          <%= simple_form_for @code_event, html: { url: event_subscriptions_path, class: "form-inline"} do |f| %>
+            <div class="form-group centered">
+              <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
+              <%= f.button :submit, 'join', class: 'btn btn-primary'%>
+              <p><%= @error_message%></p>
+            </div>
           <% end %>
       </div>
   </div>
