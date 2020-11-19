@@ -25,7 +25,7 @@ class EventsController < ApplicationController
     @event = Event.new(event_params)
     @event.date_start = DateTime.now
     if @event.save
-      @event.code = "123123"
+      @event.code = "#{@event.id}123"
       @event.save
       subscription = EventSubscription.new(owner: true, user_id: current_user.id, event_id: @event.id )
       subscription.save
