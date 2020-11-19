@@ -52,9 +52,6 @@ class EventsController < ApplicationController
   end
 
   def swipe
-    if params[:form] != nil
-     pp params.method
-    end
     event = Event.find(params[:id])
     movie = Movie.find(_get_next(event))
 
@@ -77,22 +74,6 @@ class EventsController < ApplicationController
   end
 
   def _find_movie_like(event)
-    # sql = "
-    # SELECT m.id FROM movies m
-    # JOIN event_movies e ON e.movie_id = m.id
-    # WHERE
-    #   e.score > 0
-    # AND
-    # NOT EXISTS(
-    #   SELECT * FROM reviews r
-    #   WHERE
-    #   r.event_movie_id = e.id AND
-    #   r.user_id = #{current_user.id}
-    #   e.movie_id = m.id AND 
-    #   e.event_id = #{event.id} AND
-      
-    # )
-    # GROUP BY m.id"
     sql = "select EM.id
 
     from   event_movies EM
@@ -118,13 +99,10 @@ class EventsController < ApplicationController
     pref_actors = current_user.actors
     pref_directors = current_user.preferences_directors
     pref_genres = current_user.genres
-
-    # pref_actors = [Actor.find(4), Actor.find(5), Actor.find(6)]
-    # pref_directors = [Director.find(2), Director.find(5)]
-    # pref_genres = [Genre.find(2), Genre.find(3)]
+    max_duration = current_user.max_duration_pref
 
     sql_header = "
-    SELECT m.id FROM movies m
+    SELECT m.id m.title FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
     WHERE\n"
@@ -191,7 +169,9 @@ class EventsController < ApplicationController
       WHERE
         v.movie_id = m.id AND v.event_id = #{event.id} AND r.user_id = #{current_user.id}
       )
+      AND m.duration < #{max_duration}
       GROUP BY m.id
+      ORDER BY random()
       LIMIT #{n}"
     end
 
@@ -220,7 +200,10 @@ class EventsController < ApplicationController
       WHERE
       v.movie_id = m.id AND v.event_id = #{event.id}
       )
+      AND
+      m.duration < #{current_user.max_duration_pref}
       GROUP BY m.id
+      ORDER BY random()
       LIMIT #{n}"
   end
 
