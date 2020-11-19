@@ -7,20 +7,82 @@
 .cards{
   display: flex;
 }
-.card{
+.card {
+  position: relative;
+  background-image: 
+  linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
+  url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
   padding: 20px;
-  margin: 20px 0 20px 0;
-  width: 250px;
-  height: 250px;
+  padding-bottom:38px;
+  border-radius: 9px;
+  margin: 20px 30px 20px 0;
+  width: 230px;
+  height: 260px;
   overflow: hidden;
-  margin-right: 20px;
   display: flex;
-
+  justify-content: center;
+  box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 8px;
+  border: none;
+  color: white;
+     h3 {
+       font-size: 1.5rem;
+     }
 }
 
 .add-new {
+  box-shadow: none;
   align-items: center;
   justify-content: center;
   background-color: rgb(230, 230, 230) !important;
+  background-image: none;
 }
 
+.links {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.edit {
+  letter-spacing: 2px;
+  color: white;
+  font-size: .9em;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+    color: white;
+  }
+}
+
+.view {
+  letter-spacing: 2px;
+  color: white;
+  font-size: 1em;
+  opacity: .8;
+  &:hover {
+    opacity: 1;
+    color: white;
+  }
+}
+
+.card .btn-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-radius: 0;
+}
+
+.date {
+  opacity: .6;
+  font-weight: lighter;
+  margin-bottom: 0;
+}
+
+.add-new .card-content{
+  text-align: center;
+}
+
+.top {
+  
+}
