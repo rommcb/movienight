@@ -4,9 +4,23 @@
 //   color: $gray;
 //   }
 // }
-
-.card {
+.cards{
+  display: flex;
+}
+.card{
   padding: 20px;
   margin: 20px 0 20px 0;
+  width: 250px;
+  height: 250px;
+  overflow: hidden;
+  margin-right: 20px;
+  display: flex;
+
+}
+
+.add-new {
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(230, 230, 230) !important;
 }
 
