@@ -16,9 +16,26 @@
       <h2><%= event.name %></h2>
       <p>
       <%= link_to "See details", event_path(event) %>
-      <%= link_to "| Start swiping", swipe_path(event.id) %>
-      <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-        | <%= link_to "Edit", edit_event_path(event) %>
+      
+      <% if event.closed == true %>
+        <%= link_to "| View result", result_path(event.id) %>
+
+        <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+          <%= link_to "| Edit", edit_event_path(event) %>
+        <% end %>
+
+      <% else %>
+
+        <%= link_to "| Start swiping", swipe_path(event.id) %>
+
+        <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+          <%= link_to "| Edit", edit_event_path(event) %>
+        <% end %>
+
+        <% if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id %>
+          <%= link_to "| End this event early", stop_path(event.id), method: :post %>
+          
+        <% end %>
       <% end %>
       </p>
       <p><%= event.date_end %></p>

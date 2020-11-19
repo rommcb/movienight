@@ -14,7 +14,6 @@ class EventsController < ApplicationController
   def show
     @event_id = params[:id]
     @owner = @event.users
-
   end
 
   def new
@@ -42,6 +41,22 @@ class EventsController < ApplicationController
     @event.update(event_params)
 
     redirect_to event_path(@event)
+  end
+
+  def stop
+    event = Event.find(params[:id])
+    if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id
+      event.closed = true
+      event.save!
+      redirect_to(result_path(event.id))
+    end
+  end
+
+  def result
+    event = Event.find(params[:id])
+    event_movies = EventMovie.where("event_id = #{event.id} AND score > 0").order(:score)
+
+    @movie = Movie.find(event_movies.first.movie.id)
   end
 
   def destroy

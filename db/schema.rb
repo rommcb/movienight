@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
     t.datetime "date_start", null: false
     t.text "description"
     t.string "code"
+    t.boolean "closed", default: false
   end
 
   create_table "genres", force: :cascade do |t|

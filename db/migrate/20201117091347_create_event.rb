@@ -6,6 +6,7 @@ class CreateEvent < ActiveRecord::Migration[6.0]
       t.datetime :date_start, null: false
       t.text :description
       t.string :code
+      t.boolean :closed, null: :false, default: false
     end
   end
 end
