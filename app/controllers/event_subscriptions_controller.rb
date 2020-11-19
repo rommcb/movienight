@@ -17,6 +17,7 @@ class EventSubscriptionsController < ApplicationController
       redirect_to("/events/#{event.id}") ## should redirect to the event that was subscribed to
     end
   end
+
   def destroy
     @event = Event.find(@subscription.event_id)
     @subscription.destroy

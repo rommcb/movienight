@@ -1,7 +1,11 @@
 <div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
   <%= link_to "/", class: "navbar-brand" do %>
     <span id="logo">Mooovie Night</span>
-    <% end %>
+  <% end %>
+
+  <% if @event && @event.name %>
+  <h1><%=@event.name.capitalize%></h1>
+  <%end%>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
@@ -10,10 +14,21 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
-      <% if user_signed_in? %>
+    <% if user_signed_in? %>
+      <% if @event && @event.name %>
         <!--<li class="nav-item active">
           <%= link_to "My Events", "/", class: "nav-link" %>
         </li>-->
+
+        <ul class="list-inline members">
+        <li class="list-inline-item">members: </li>
+          <%@event.users.each do |user| %>
+            <li class="list-inline-item avatar-letter" title="<%= user.username %>">
+              <%= user.username[0] %>
+            </li>
+          <%end%>
+        </ul>
+      <%end%>
         <li class="nav-item dropdown">
           <%= image_tag "https://media.istockphoto.com/photos/businessman-silhouette-as-avatar-or-default-profile-picture-picture-id476085198?k=6&m=476085198&s=612x612&w=0&h=5cDQxXHFzgyz8qYeBQu2gCZq1_TN0z40e_8ayzne0X0=", class: "avatar dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
