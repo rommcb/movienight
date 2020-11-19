@@ -16,4 +16,8 @@ Rails.application.routes.draw do
 
   get 'events/swipe/:id', to: 'events#swipe', as: :swipe
 
+  get 'api/genre/:string', to: 'pages#genre'
+  get 'api/actor/:string', to: 'pages#actor'
+  get 'api/director/:string', to: 'pages#director'
+
 end
