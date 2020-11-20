@@ -1,0 +1,21 @@
+.results {
+  background-color: grey;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  position:absolute;
+  width: 650px;
+  display: block;
+  overflow: hidden; overflow-y:scroll;
+}
+
+.li_results:hover {
+  background-color: lightgrey;
+}
+.pref {
+  position: relative;
+}
+
+.pref_text {
+  width: 650px;
+}

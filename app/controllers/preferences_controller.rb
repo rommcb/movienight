@@ -10,9 +10,9 @@ class PreferencesController < ApplicationController
   end
 
   def save
-    actors = params[:actor_pref].split(",")
-    genres = params[:genre_pref].split(",")
-    directors = params[:director_pref].split(",")
+    actors = params[:actor_list].split(",")[1..]
+    genres = params[:genre_list].split(",")[1..]
+    directors = params[:director_list].split(",")[1..]
     duration = params[:duration].to_i
 
     actors.each do |actor_name|
