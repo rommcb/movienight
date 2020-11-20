@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  # get '/user' => "", :as => :user_root
+  # get '/user' => "preferences#make", :as => :user_root
 
   devise_scope :user do 
     authenticated :user do
