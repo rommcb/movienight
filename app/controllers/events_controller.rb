@@ -1,5 +1,5 @@
 class EventsController < ApplicationController
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :swipe]
 
   def index
     @events = current_user.events
@@ -66,7 +66,6 @@ class EventsController < ApplicationController
   end
 
   def swipe
-    @event = Event.find(params[:id])
     @movie = Movie.find(_get_next(@event))
 
     @event_movie = EventMovie.where("movie_id = #{@movie.id} AND event_id = #{@event.id}").first
