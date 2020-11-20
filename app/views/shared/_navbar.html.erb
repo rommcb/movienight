@@ -30,19 +30,16 @@
             <script>
               document.querySelectorAll(".avatar-letter").forEach((avatar) => {
                 avatar.addEventListener("mouseover", (event) => {
-                  console.log(avatar.title);
-                  avatar.innerHTML = avatar.title
-                                      
-                  console.log(avatar.innerHTML);
+                  avatar.innerHTML = avatar.title;
+                  avatar.classList.add("fullname");
                 });
               });
 
               document.querySelectorAll(".avatar-letter").forEach((avatar) => {
                 avatar.addEventListener("mouseout", (event) => {
                   console.log(avatar.title);
-                  avatar.innerHTML = avatar.innerHTML
-                                      
-                  console.log(avatar.innerHTML);
+                  avatar.innerHTML = avatar.innerHTML.charAt(0);
+                  avatar.classList.remove("fullname");
                 });
               });
 
