@@ -10,7 +10,7 @@ class EventSubscriptionsController < ApplicationController
     if event == nil
       redirect_to(events_path("Error"))
     else
-      if EventSubscription.where("user_id=#{current_user.id} AND event_id=#{event.id}).length == 0
+      if EventSubscription.where("user_id=#{current_user.id} AND event_id=#{event.id}").length == 0
         event_sub = EventSubscription.new(owner: false, user_id: current_user.id, event_id: event.id)
         event_sub.save!
       end
