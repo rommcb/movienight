@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-
   # get '/user' => "", :as => :user_root
-
-  
-  
 
   devise_scope :user do 
     authenticated :user do

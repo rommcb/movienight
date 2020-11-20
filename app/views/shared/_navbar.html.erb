@@ -40,6 +40,26 @@
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
               <%= user.username[0] %>
             </li>
+
+            <script>
+              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
+                avatar.addEventListener("mouseover", (event) => {
+                  avatar.innerHTML = avatar.title;
+                  avatar.classList.add("fullname");
+                });
+              });
+
+              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
+                avatar.addEventListener("mouseout", (event) => {
+                  console.log(avatar.title);
+                  avatar.innerHTML = avatar.innerHTML.charAt(0);
+                  avatar.classList.remove("fullname");
+                });
+              });
+
+              
+            </script>
+
           <%end%>
         </ul>
       <%end%>
@@ -58,3 +78,5 @@
     </ul>
   </div>
 </div>
+
+
