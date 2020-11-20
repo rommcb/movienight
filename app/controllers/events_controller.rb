@@ -93,7 +93,7 @@ class EventsController < ApplicationController
     from   event_movies EM
     
     inner join movies M ON M.id=EM.movie_id
-    left join reviews R ON R.event_movie_id = EM.id AND user_id=#{current_user.id}
+    left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{current_user.id} 
     
     where EM.score > 0 and R.id is null"
 
@@ -119,6 +119,8 @@ class EventsController < ApplicationController
     SELECT m.id FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
+    left join event_movies EM ON EM.movie_id=m.id
+    left join reviews R ON R.event_movie_id = EM.id AND user_id=#{current_user.id}
     WHERE\n"
 
     str_genres = ""
@@ -177,13 +179,9 @@ class EventsController < ApplicationController
       sql = _no_pref(n, event)
     else
       sql = "#{sql_header}#{str_directors}\n AND
-      NOT EXISTS(
-      SELECT * FROM reviews r
-      JOIN event_movies v ON v.id = r.event_movie_id
-      WHERE
-        v.movie_id = m.id AND v.event_id = #{event.id} AND r.user_id = #{current_user.id}
-      )
-      AND m.duration < #{max_duration}
+      R.id is null
+      AND
+      m.duration < #{current_user.max_duration_pref}
       GROUP BY m.id
       ORDER BY random()
       LIMIT #{n}"
@@ -206,19 +204,16 @@ class EventsController < ApplicationController
   end
 
   def _no_pref(n, event)
-    "SELECT m.id FROM movies m
+    "SELECT m.id FROM movies M
+    left join event_movies EM ON EM.movie_id=M.id
+    left join reviews R ON R.event_movie_id = EM.id AND user_id=#{current_user.id}
     WHERE
-    NOT EXISTS(
-      SELECT * FROM reviews r
-      JOIN event_movies v ON v.id = r.event_movie_id
-      WHERE
-      v.movie_id = m.id AND v.event_id = #{event.id}
-      )
-      AND
-      m.duration < #{current_user.max_duration_pref}
-      GROUP BY m.id
-      ORDER BY random()
-      LIMIT #{n}"
+    R.id is null
+    AND
+    m.duration < #{current_user.max_duration_pref}
+    GROUP BY m.id
+    ORDER BY random()
+    LIMIT #{n}"
   end
 
   def _get_next(event)
