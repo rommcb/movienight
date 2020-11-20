@@ -1,33 +1,39 @@
 <h1>Hey</h1>
 
-<form action="/preferences/save" method='POST'>
+<form action="/preferences/save" method='POST' autocomplete="off">
   <input name="authenticity_token" type="hidden" value=<%= @token %> />
 
-  <div id="container">
-    <label for="actor_pref"> Input actors</label>
-    <input list="actors" name="actor_pref" id="actor_pref">
-    <datalist id="actors">
-    </datalist>
+  <div class="container">
+    <div id="locked_actor">
+    </div>
+    <input type="text" name="actor_pref" id="actor_pref" class="pref_text" placeholder="Actor fullname">
+    <ul id="results_actor" class="results">
+    </ul>
+    <input type="hidden" name="actor_list" id="actor_list">
   </div>
 
-  <div id="container">
-    <label for="genre_pref">Input gernes</label>
-    <input list="genres" name="genre_pref" id="genre_pref">
-    <datalist id="genres">
-    </datalist>
+  <div class="container">
+    <div id="locked_genre">
+    </div>
+    <input type="text" name="genre_pref" id="genre_pref" class="pref_text" placeholder="Genre name">
+    <ul id="results_genre" class="results">
+    </ul>
+    <input type="hidden" name="genre_list" id="genre_list">
   </div>
 
-  <div id="container">
-    <label for="director_pref">Input director</label>
-    <input list="directors" name="director_pref" id="director_pref">
-    <datalist id="directors">
-    </datalist>
+  <div class="container">
+    <div id="locked_director">
+    </div>
+    <input type="text" name="director_pref" id="director_pref" class="pref_text" placeholder="Genre name">
+    <ul id="results_director" class="results">
+    </ul>
+    <input type="hidden" name="director_list" id="director_list">
   </div>
-  <div id="container">
+
+   <div id="container">
     <label for="duration">Max_time</label>
     <input type="text" name="duration" id="duration">
-    
   </div>
 
-  <input type="submit">
+  <input type="submit"> 
 </form>

@@ -26,23 +26,23 @@ require("channels")
 import "bootstrap";
 
 // Internal imports, e.g:
-import { predict } from './autocomplete';
+import { events } from './autocomplete';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   // initSelect2();
   const genre = document.getElementById("genre_pref")
   if(genre != null){
-    genre.addEventListener('keyup', () => { predict('genre', genre) }, false);
+    events('genre', genre)
   }
 
   const actor = document.getElementById("actor_pref")
   if(actor != null){
-    actor.addEventListener('keyup', () => { predict('actor', actor) }, false);
+    events('actor', actor)
   }
 
   const director = document.getElementById("director_pref")
   if(director != null){
-    director.addEventListener('keyup', () => { predict('director', director) }, false);
+    events('director', director)
   }
 });
