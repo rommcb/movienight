@@ -7,6 +7,7 @@
   width: 650px;
   display: block;
   overflow: hidden; overflow-y:scroll;
+  z-index: 1000000;
 }
 
 .li_results:hover {
@@ -18,4 +19,37 @@
 
 .pref_text {
   width: 650px;
+}
+
+#locked_actor, #locked_genre, #locked_director {
+  width: 100%;
+}
+
+
+.item_card{
+  position: relative;
+  background-color: lightskyblue;
+  display: inline-block;
+  padding: 5px 20px 5px 5px;
+  font-size: 10px;
+  font-weight: bold;
+  white-space: nowrap;
+  color: black;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.txt {
+  display: inline;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.x {
+  display: inline;
+  color: red;
+  position:absolute;
+  right: 5px;
 }

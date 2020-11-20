@@ -12,16 +12,23 @@ function director(string, ul, val, value){
 
 function edit_values_divs(val,values){
   let arr = values.split(",")
+  arr.shift()
   let lock = document.getElementById(`locked_${val}`) 
   lock.innerHTML = ""
   arr.forEach((item) => {
-    lock.insertAdjacentHTML("beforeend",`<div id="lock_${item}">${item}</div>`)
+    lock.insertAdjacentHTML("beforeend",`<div class='item_card'> <div class='txt'>${item}</div><div class="x" id="x_${val}_${item}">X</div></div>`)
+    document.getElementById(`x_${val}_${item}`).addEventListener('click', () => {
+      edit_values(val, values, item ,null)
+    }, false)
   });
 }
 
 function edit_values(val, current_value, sub, add){
   if(sub == null){
-    document.getElementById(`${val}_list`).value = `${current_value},${add}`
+    let values = current_value.split(",")
+    if(!values.includes(add)){
+      document.getElementById(`${val}_list`).value = `${current_value},${add}` 
+    }
     edit_values_divs(val,document.getElementById(`${val}_list`).value)
   } else {
     let values = current_value.split(",")
@@ -80,6 +87,7 @@ function predict(val, e) {
 }
 
 export function events(val, obj){
+  edit_values_divs(val, document.getElementById(`${val}_list`).value)
   document.getElementById(`results_${val}`).onmouseover = function() {
     this.classList.add('active')
   };

@@ -116,7 +116,7 @@ class EventsController < ApplicationController
     max_duration = current_user.max_duration_pref
 
     sql_header = "
-    SELECT m.id m.title FROM movies m
+    SELECT m.id FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
     WHERE\n"
