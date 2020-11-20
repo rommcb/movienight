@@ -4,7 +4,21 @@
   <% end %>
 
   <% if @event && @event.name %>
-  <h1><%=@event.name.capitalize%></h1>
+<!--   <h1><%=@event.name.capitalize%></h1> -->
+  <h1><div class="dropdown">
+  <button class="dropbtn">Dropdown</button>
+  <div class="dropdown-content">
+    <% current_user.event_ids.each  do |event|  %>
+    <%= link_to Event.find(event).name, event_path(event)%>
+<% end %>
+  </div>
+</div>
+
+</h1>
+
+
+
+
   <%end%>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
