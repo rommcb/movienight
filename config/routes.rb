@@ -27,7 +27,7 @@ Rails.application.routes.draw do
   get 'events/swipe/:id', to: 'events#swipe', as: :swipe
   get 'preferences/make', to: "preferences#make"
   post 'preferences/save', to: "preferences#save"
-
+  
   post 'event/stop/:id', to: "events#stop", as: :stop
   get 'event/result/:id', to: "events#result", as: :result
 
