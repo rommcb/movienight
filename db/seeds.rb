@@ -19,11 +19,11 @@ user_5 = User.create!({username: "Bob", email:'bob@bob.bob', password:'123123'})
 
 
 def scrape(start)
-  if start > 901
+  if start > 10
     return 0
   end
 
-  url = "https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=100&start=#{start}&ref_=adv_nxt"
+  url = "https://www.imdb.com/search/title/?groups=top_1000&sort=user_rating,desc&count=10&start=#{start}&ref_=adv_nxt"
   html_file = open(url).read
   html_doc = Nokogiri::HTML(html_file)
   arr = []

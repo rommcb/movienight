@@ -102,7 +102,9 @@ class EventsController < ApplicationController
     liked_movies = []
 
     query_array.each do |item|
-      EventMovie.find(item['id']).score.times do
+      em = EventMovie.find(item['id'])
+      em.score.times do
+        movie_id = em.movie.id
         liked_movies.push(item['id'])
       end
     end
@@ -229,9 +231,7 @@ class EventsController < ApplicationController
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event)
     movie_arr = arr1 + arr2
-    pp arr1
-    pp '------------------------------------------------'
-    pp arr2
+
     return movie_arr.sample
     # arr = [] _find_movie_like()
     ## return a sample from that list
