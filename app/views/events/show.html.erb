@@ -2,7 +2,7 @@
 <div class="banner">
   <div class="form-wrapper">
 
-<h1><%= @event.name %></h1>
+<h1><%= @event.name.capitalize %></h1>
 
 <% if current_user.id != @event.event_subscriptions.where(owner: true)[0].user.id %>
   <h2>You have been invited by <strong><%= @event.event_subscriptions.where(owner: true)[0].user.username%></strong>
@@ -11,10 +11,10 @@
 
 <p><%= @event.description %></p>
 
-<h3>When?</h3> 
+<h3>When?</h3>
 <p><%= @event.date_end.day %>/<%= @event.date_end.month %>/<%= @event.date_end.year %> </p>
 
-<h3>Where?</h3> 
+<h3>Where?</h3>
 <% if current_user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
   <p>At your place.</p>
 <% else %>
@@ -28,7 +28,7 @@
 <ul>
 <% @event.users.each do |user| %>
     <li>
-    <%= user.username %> 
+    <%= user.username %>
     <% if user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
         (owner)
     <% elsif user.id == current_user.id %>
