@@ -6,7 +6,7 @@
   <% if @event && @event.name %>
 <!--   <h1><%=@event.name.capitalize%></h1> -->
   <h1><div class="dropdown btn btn-primary">
-  <button class="btn btn-primary">Dropdown</button>
+  <button class="btn btn-primary">My event(s)</button>
   <div class="dropdown-content btn btn-primary">
     <% current_user.event_ids.each  do |event|  %>
     <%= link_to Event.find(event).name, event_path(event)%>
@@ -57,7 +57,7 @@
                 });
               });
 
-              
+
             </script>
 
           <%end%>
