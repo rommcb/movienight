@@ -35,7 +35,7 @@
       </div>
       
       <% if event.closed == true %>
-        <%= link_to "View result", result_path(event.id), class: 'btn btn-primary btn-bottom' %>
+        <%= link_to "View result", result_path(event.id), class: 'btn btn-success btn-bottom' %>
       <% else %>
         <%= link_to "Start swiping", swipe_path(event.id), class: 'btn btn-primary btn-bottom' %>
       <%end%>

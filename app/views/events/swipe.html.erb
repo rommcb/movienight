@@ -8,7 +8,9 @@
   <%= f.submit "Dislike", name: "dislike", id: "donotlikebtn" %>
 <% end %>
 
-
+<% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+  <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
+<%end%>
 
 <script>
 
