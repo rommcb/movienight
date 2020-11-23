@@ -14,7 +14,9 @@
 
 <script>
 
-const myevent = document.getElementById("likebtn").addEventListener("click", function(item){
+  //For like click
+
+document.getElementById("likebtn").addEventListener("click", function(item){
   // item.preventDefault();
 const like_event = document.getElementById("movie_name");
 const like_event1= document.getElementById("img_swipe");
@@ -22,12 +24,32 @@ like_event.classList.add("slide-in-left");
 like_event1.classList.add("slide-in-left");
 });
 
-const myevent_dislike = document.getElementById("donotlikebtn").addEventListener("click", function(item){
+document.getElementById("donotlikebtn").addEventListener("click", function(item){
   // item.preventDefault();
 const like_event2 = document.getElementById("movie_name");
 const like_event3 = document.getElementById("img_swipe");
 like_event2.classList.add("slide-in-right");
 like_event3.classList.add("slide-in-right");
 });
+
+
+ //For the arrow
+   // (code == '38')window.alert("hello up")(code == '40')window.alert("hello down")
+
+ document.addEventListener('keyup', function(event) {
+  const code = event.keyCode
+// console.log(event);
+    if (code == '37') {
+        // Left
+      document.getElementById("likebtn").click();
+    }
+     else if (code == '39') {
+        // Right
+        document.getElementById("donotlikebtn").click();
+    }
+ })
 </script>
 <!--  console.log("like_btn") -->
+
+
+
