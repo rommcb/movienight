@@ -47,7 +47,8 @@ a:hover {
   box-shadow: none;
   align-items: center;
   justify-content: center;
-  background-color: rgb(230, 230, 230) !important;
+  background-color: transparent !important;
+  border: 1px solid rgba($color: white, $alpha: .5);
   background-image: none;
 }
 
@@ -87,6 +88,10 @@ a:hover {
   border-radius: 0;
 }
 
+.form-inline {
+  margin-bottom: 15px;
+}
+
 .date {
   opacity: .6;
   font-weight: lighter;
@@ -98,12 +103,11 @@ a:hover {
   text-align: center;
   flex-direction: column-reverse;
   p {
-    color: rgba(0,0,0,0.5);
-    margin: 20px 0;
+    color: rgba($color: white, $alpha: .5);
   }
 }
 
-.card-content {
+.card-content .form-inline {
     .form-control {
       width: 136px !important;
       border-radius: 4px 0 0 4px;
@@ -113,4 +117,9 @@ a:hover {
     {
       border-radius: 0 4px 4px 0;
     }
+}
+
+#errormessage {
+  color: #ff0000c4;
+  font-size: 13px;
 }

@@ -7,7 +7,7 @@ class EventsController < ApplicationController
     @error_message = ""
     session[:_csrf_token]
     if params[:format] == "Error"
-      @error_message = "Wrong code"
+      @error_message = "This code doesn't exist."
     end
   end
 
