@@ -114,3 +114,21 @@ export function events(val, obj){
   }, true);
   obj.addEventListener('keyup', () => { predict(val, obj) }, false);
 }
+
+
+export function act_event(react, event){
+  event.preventDefault()
+  let status = document.getElementById('closed')
+  let val = status.value
+  console.log(status.value);
+  if(val == 'true'){
+    react.className = 'btn btn-success'
+    react.innerHTML = "End event"
+    status.value = 'false'
+  } else {
+    react.className = 'btn btn-primary'
+    react.innerHTML = "Reactivate event"
+    status.value = 'true'
+  }
+  
+}

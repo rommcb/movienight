@@ -39,7 +39,7 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
-
+    @event.save!
     redirect_to event_path(@event)
   end
 
@@ -53,10 +53,14 @@ class EventsController < ApplicationController
   end
 
   def result
-    event = Event.find(params[:id])
-    event_movies = EventMovie.where("event_id = #{event.id} AND score > 0").order(:score)
+    @event = Event.find(params[:id])
+    event_movies = EventMovie.where("event_id = #{@event.id} AND score > 0").order(:score)
 
     @movie = Movie.find(event_movies.first.movie.id)
+  end
+
+  def restart
+    raise
   end
 
   def destroy
@@ -83,7 +87,7 @@ class EventsController < ApplicationController
   end
 
   def event_params
-    params.require(:event).permit(:name, :description, :date_end)
+    params.require(:event).permit(:name, :description, :date_end, :closed)
   end
 
   def _find_movie_like(event)
@@ -234,43 +238,8 @@ class EventsController < ApplicationController
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event)
     movie_arr = arr1 + arr2
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    
-    arr1.each do |id|
-      puts Movie.find(id).title
-    end
-    
-    pp "++++++++++++++++++++++++++++++++++++++++++++++"
-
-    arr2.each do |id|
-      puts Movie.find(id).title
-    end
-
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
-    pp "==================================================="
 
     return movie_arr.sample
-    # arr = [] _find_movie_like()
-    ## return a sample from that list
   end
 
   def _number_of_randoms(x, t, total_t, n, b = 1, a = 1)

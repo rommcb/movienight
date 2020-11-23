@@ -27,6 +27,7 @@ import "bootstrap";
 
 // Internal imports, e.g:
 import { events } from './autocomplete';
+import { act_event } from './autocomplete';
 
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
@@ -44,5 +45,10 @@ document.addEventListener('turbolinks:load', () => {
   const director = document.getElementById("director_pref")
   if(director != null){
     events('director', director)
+  }
+
+  const react = document.getElementById("reactivate")
+  if(react != null){
+    react.addEventListener('click', (e) => { act_event(react, e) }, false);
   }
 });

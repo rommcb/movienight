@@ -30,6 +30,7 @@ Rails.application.routes.draw do
   
   post 'event/stop/:id', to: "events#stop", as: :stop
   get 'event/result/:id', to: "events#result", as: :result
+  post 'event/restart/:id', to: "events#restart", as: :restart
 
   get 'api/genre/:string', to: 'pages#genre'
   get 'api/actor/:string', to: 'pages#actor'
