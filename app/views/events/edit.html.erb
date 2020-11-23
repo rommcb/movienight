@@ -2,10 +2,14 @@
 <div class="banner">
   <div class="form-wrapper">
 <h2>Edit your event</h2>
- 
-<%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
-
+<% if @event.closed == true %>
+    <button id="reactivate" class="btn btn-primary">Re-active event</button>
+  <% else %>
+      <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
+  <% end %>
 <%= simple_form_for @event do |f| %>
+
+  <%= f.hidden_field :closed , {id: :closed}%>
   <%= f.input :name %>
   <%= f.input :description %>
   <%= f.input :date_end %>
