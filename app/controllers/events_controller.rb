@@ -71,7 +71,6 @@ class EventsController < ApplicationController
 
   def swipe
     @movie = Movie.find(_get_next(@event))
-
     @event_movie = EventMovie.where("movie_id = #{@movie.id} AND event_id = #{@event.id}").first
   
     if @event_movie.nil?
@@ -95,7 +94,7 @@ class EventsController < ApplicationController
 
     from   event_movies EM
     
-    inner join movies M ON M.id=EM.movie_id
+    left join movies M ON M.id=EM.movie_id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{current_user.id} 
     
     where EM.score > 0 and R.id is null"
@@ -124,7 +123,7 @@ class EventsController < ApplicationController
     SELECT m.id FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
-    left join event_movies EM ON EM.movie_id=m.id
+    left join event_movies EM ON EM.movie_id=m.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{current_user.id}
     WHERE\n"
 
@@ -212,7 +211,7 @@ class EventsController < ApplicationController
 
   def _no_pref(n, event)
     "SELECT m.id FROM movies M
-    left join event_movies EM ON EM.movie_id=M.id
+    left join event_movies EM ON EM.movie_id=M.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{current_user.id}
     WHERE
     R.id is null
@@ -238,7 +237,25 @@ class EventsController < ApplicationController
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event)
     movie_arr = arr1 + arr2
-
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp arr1
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp arr2
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    if movie_arr.length == 0
+      return 1
+    end
     return movie_arr.sample
   end
 
