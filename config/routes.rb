@@ -36,5 +36,5 @@ Rails.application.routes.draw do
   get 'api/actor/:string', to: 'pages#actor'
   get 'api/director/:string', to: 'pages#director'
   get 'api/movie/:string', to: 'pages#movie'
-
+  get 'api/review/:string', to: 'pages#review'
 end
