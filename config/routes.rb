@@ -37,4 +37,6 @@ Rails.application.routes.draw do
   get 'api/director/:string', to: 'pages#director'
   get 'api/movie/:string', to: 'pages#movie'
   get 'api/review/:string', to: 'pages#review'
+
+  post 'events/:id/self_destroy', to: 'event_subscriptions#self_destroy', as: :self_destroy
 end

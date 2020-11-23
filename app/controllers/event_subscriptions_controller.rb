@@ -19,19 +19,27 @@ class EventSubscriptionsController < ApplicationController
   end
 
   def destroy
-    @event = Event.find(@subscription.event_id)
-    user_id = @subscription.user_id
-    sql = "
-      select R.id from reviews R
-      join event_movies EM on EM.id = R.event_movie_id 
-      where
-      R.user_id = #{user_id} and EM.event_id = #{@subscription.event_id} 
-    "
-    query_array = ActiveRecord::Base.connection.execute(sql)
-    query_array.each do |item|
-      Review.find(item['id']).destroy
-    end
+      @event = Event.find(@subscription.event_id)
+      user_id = @subscription.user_id
+      sql = "
+        select R.id from reviews R
+        join event_movies EM on EM.id = R.event_movie_id 
+        where
+        R.user_id = #{user_id} and EM.event_id = #{@subscription.event_id} 
+      "
+      query_array = ActiveRecord::Base.connection.execute(sql)
+      query_array.each do |item|
+        Review.find(item['id']).destroy
+      end
+    
     @subscription.destroy
+    redirect_to events_path
+  end
+
+  def self_destroy
+    @event = Event.find(params[:id])
+    @subscription = EventSubscription.where(user_id: current_user.id, event_id: @event.id)
+    @subscription.first.destroy
     redirect_to events_path
   end
 
