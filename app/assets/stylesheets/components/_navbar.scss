@@ -9,9 +9,13 @@
   flex-grow: 0;
 }
 
-.navbar-lewagon .navbar-brand img {
+.navbar-lewagon .navbar-brand { 
+  // padding-left: 20px;
+  img {
   width: 40px;
+  }
 }
+
 
 .members {
 border-right: 1px solid rgb(211, 211, 211);
