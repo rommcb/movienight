@@ -244,6 +244,9 @@ class PagesController < ApplicationController
     arr2 = _find_pref_movies(r, event, c_user)
     movie_arr = arr1 + arr2
 
+    if movie_arr.length == 0
+      return 1
+    end
     return movie_arr.sample
   end
 
