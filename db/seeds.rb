@@ -65,16 +65,19 @@ def scrape(start)
       if Genre.where(name: genre).length == 0
         gen = Genre.create!({name: genre})
         GenresAttribution.create!({movie_id: mov.id, genre_id: gen.id})
+      else
+        GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
       end
-      GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
+      
     end
 
     cast.each do |actor|
       if Actor.where(fullname: actor).length == 0
         act =Actor.create!({fullname: actor})
         Casting.create!({movie_id: mov.id, actor_id: act.id})
+      else
+        Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
       end
-      Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
     end
     # name
     # duration
@@ -88,8 +91,8 @@ end
 
 scrape(1)
 
-event_1 = Event.create!({name:"first", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123123"})
-event_3 = Event.create!({name:"second", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123124"})
+event_1 = Event.create!({name:"first", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123123", where:"In my house bitches!"})
+event_3 = Event.create!({name:"second", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123124", where:"In the garage!"})
 
 EventSubscription.create!({owner: true, user_id:1, event_id:1})
 EventSubscription.create!({owner: false, user_id:2, event_id:1})
@@ -106,16 +109,17 @@ EventMovie.create!({movie_id:4, event_id:1, score:1})
 EventMovie.create!({movie_id:5, event_id:1, score:0})
 EventMovie.create!({movie_id:6, event_id:1, score:0})
 EventMovie.create!({movie_id:7, event_id:1, score:0})
-EventMovie.create!({movie_id:5, event_id:2, score:0})
+
+EventMovie.create!({movie_id:2, event_id:2, score:0})
 EventMovie.create!({movie_id:6, event_id:2, score:0})
 EventMovie.create!({movie_id:7, event_id:2, score:0})
 
-Review.create!({user_id:2, event_movie_id:1})
+Review.create!({user_id:1, event_movie_id:1})
 Review.create!({user_id:2, event_movie_id:2})
 Review.create!({user_id:2, event_movie_id:3})
 
-Review.create!({user_id:2, event_movie_id:8})
-Review.create!({user_id:2, event_movie_id:9})
+Review.create!({user_id:1, event_movie_id:8})
+Review.create!({user_id:1, event_movie_id:9})
 Review.create!({user_id:2, event_movie_id:10})
 
 Review.create!({user_id:3, event_movie_id:4})
