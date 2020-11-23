@@ -1,35 +1,87 @@
-<h1>Happy swiping!</h1>
-<p>Swipe until movies get matched.</p>
-<p id="movie_name" ><%= @event_movie.movie.title %></p>
-<img src=<%= @event_movie.movie.cover %> alt="cover" id="img_swipe">
-<%= simple_form_for @event_movie, {url: event_movie_path(@event_movie.id)} do |f| %>
-  <%= f.hidden_field :id %>
-  <%= f.submit "I like", name: "like", id: "likebtn"  %>
-  <%= f.submit "Dislike", name: "dislike", id: "donotlikebtn" %>
-<% end %>
 
-<% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-  <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
-<%end%>
 
+
+
+
+  <div class="main_div">
+    <div class="title_div">
+      <h1>Happy swiping!</h1>
+      <p>Swipe until movies get matched.</p>
+    </div>
+    <div class="image_div">
+      <p id="movie_name" ><%= @event_movie.movie.title %></p>
+      <img src=<%= @event_movie.movie.cover %> alt="cover" id="img_swipe">
+    </div>
+    <div class="thumb_div">
+      <%= simple_form_for @event_movie, {url: event_movie_path(@event_movie.id)} do |f| %>
+        <%= f.hidden_field :id %>
+        <%= f.submit "I like", name: "like", id: "likebtn"  %>
+        <%= f.submit "Dislike", name: "dislike", id: "donotlikebtn" %>
+      <% end %>
+    </div>
+    <div class="description_div">
+      <div class="cards">
+
+      </div>
+      <div class="cards">
+
+      </div>
+    </div>
+  </div>
+
+
+<!-- description bar -->
+<div class="info-section">
+  <div class="column">
+    <h3>Main information</h3>
+    <ul class="list-inline">
+      <li>Actors</li>
+      <li>Director(s)</li>
+      <li>duration</li>
+      <li>synopsys</li>
+      <li>duration</li>
+
+    </ul>
+  </div>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Nice to have -->
+<!-- should it be there? -->
+<!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+    <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
+  <%end%> -->
 <script>
 
   //For like click
 
 document.getElementById("likebtn").addEventListener("click", function(item){
   // item.preventDefault();
-const like_event = document.getElementById("movie_name");
-const like_event1= document.getElementById("img_swipe");
-like_event.classList.add("slide-in-left");
-like_event1.classList.add("slide-in-left");
+  const like_event = document.getElementById("movie_name");
+  const like_event1= document.getElementById("img_swipe");
+  like_event.classList.add("slide-in-left");
+  like_event1.classList.add("slide-in-left");
 });
 
 document.getElementById("donotlikebtn").addEventListener("click", function(item){
   // item.preventDefault();
-const like_event2 = document.getElementById("movie_name");
-const like_event3 = document.getElementById("img_swipe");
-like_event2.classList.add("slide-in-right");
-like_event3.classList.add("slide-in-right");
+  const like_event2 = document.getElementById("movie_name");
+  const like_event3 = document.getElementById("img_swipe");
+  like_event2.classList.add("slide-in-right");
+  like_event3.classList.add("slide-in-right");
 });
 
 
