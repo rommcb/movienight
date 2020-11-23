@@ -1,29 +1,15 @@
 
- #bg-image{
-  background-image: url(https://assets.nflxext.com/ffe/siteui/vlv3/84b453b4-0d46-4f2c-bd44-81aa6c19c6b5/8be25c2e-056c-4b9f-890f-e669c6b3c682/BE-fr-20201116-popsignuptwoweeks-perspective_alpha_website_large.jpg);
-  /* Add the blur effect */
-
-}
-
-
 .main_div {
   text-align: center;
   color: white;
 }
-
 
 #movie_name {
 margin-bottom: -5px;
 }
 
 .image_div img {
-  width: 20%;
-}
-
-
-
-.really_hidden {
-  display: none;
+  width: 15%;
 }
 
 
@@ -69,23 +55,18 @@ margin-bottom: -5px;
 .info-section{
   text-align: center;
   color: white;
-  //   position: absolute;
   bottom: 0;
   // width: 50%;
-  display: flex;
   justify-content: space-evenly;
   // flex-grow: 1;
 }
 
-remove the items of the list
+.really_hidden {
+  display: none;
+}
+
+// remove the items of the list
   .list-inline {
       list-style: none;
       padding-left: 0px;
   }
-
-// places the footer bottom page, even if there's no content in the page
-// #wrapper {
-//     min-height: 100vh;
-//     position: relative;
-//     padding-bottom: 250px;
-// }
