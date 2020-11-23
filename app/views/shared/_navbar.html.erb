@@ -35,7 +35,7 @@
         </li>-->
 
         <ul class="list-inline members">
-        <li class="list-inline-item">members: </li>
+        <li class="list-inline-item">Contributors: </li>
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
               <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes"><%= user.reviews.count %></span>
