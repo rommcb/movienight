@@ -88,8 +88,8 @@ end
 
 scrape(1)
 
-event_1 = Event.create!({name:"first", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123123"})
-event_3 = Event.create!({name:"second", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123124"})
+event_1 = Event.create!({name:"first", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123123", where:"In my house bitches!"})
+event_3 = Event.create!({name:"second", date_start: DateTime.now, date_end: Date.new(2020,12,12), code: "123124", where:"In the garage!"})
 
 EventSubscription.create!({owner: true, user_id:1, event_id:1})
 EventSubscription.create!({owner: false, user_id:2, event_id:1})

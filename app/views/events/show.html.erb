@@ -2,41 +2,51 @@
 <div class="banner">
   <div class="form-wrapper">
 
-<h1><%= @event.name.capitalize %></h1>
+<div id="div_top">
+  <h1 id="event_name"><%= @event.name.capitalize %></h1>
 
-<% if current_user.id != @event.event_subscriptions.where(owner: true)[0].user.id %>
-  <h2>You have been invited by <strong><%= @event.event_subscriptions.where(owner: true)[0].user.username%></strong>
-  to join his Movie Night event.</h2>
-<%end %>
+  <% if current_user.id != @event.event_subscriptions.where(owner: true)[0].user.id %>
+    <p id="invite_txt">You have been invited by <strong><%= @event.event_subscriptions.where(owner: true)[0].user.username%></strong>
+    to join his Movie Night event.</p>
+  <%end %>
+</div>
+<div class="div_bot">
+  <div class="div_left">
+    <p id="event_description"><%= @event.description %></p>
+  </div>
 
-<p><%= @event.description %></p>
+  <div class="div_right">
+    <h3>When?</h3>
+    <p><%= @event.date_end.day %>/<%= @event.date_end.month %>/<%= @event.date_end.year %> </p>
 
-<h3>When?</h3>
-<p><%= @event.date_end.day %>/<%= @event.date_end.month %>/<%= @event.date_end.year %> </p>
+    <h3>Where?</h3>
+    <% if current_user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
+      <p>At your place.</p>
+    <% else %>
+    <%= @event.event_subscriptions.where(owner: true)[0].user.username%>'s place</p>
+    <% end %>
 
-<h3>Where?</h3>
-<% if current_user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
-  <p>At your place.</p>
-<% else %>
- <%= @event.event_subscriptions.where(owner: true)[0].user.username%>'s place</p>
-<% end %>
+    <h3>Code: <%= @event.code %></h3>
 
-<h3>Code: <%= @event.code %></h3>
+    <h3>Other attendees:</h3>
 
-<h3>Other attendees:</h3>
+    <ul>
+    <% @event.users.each do |user| %>
+        <li>
+        <%= user.username %>
+        <% if user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
+            (owner)
+        <% elsif user.id == current_user.id %>
+            (you)
+          <% end %>
+        </li>
+    <%end%>
+    </ul>
+  </div>
+</div>
 
-<ul>
-<% @event.users.each do |user| %>
-    <li>
-    <%= user.username %>
-    <% if user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
-        (owner)
-    <% elsif user.id == current_user.id %>
-        (you)
-      <% end %>
-    </li>
-<%end%>
-</ul>
+
+
 
 
  <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
