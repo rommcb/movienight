@@ -15,4 +15,6 @@ class User < ApplicationRecord
 
   has_many :preferences_genres
   has_many :genres, through: :preferences_genres
+
+  has_many :reviews
 end

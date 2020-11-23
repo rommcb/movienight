@@ -38,10 +38,10 @@
         <li class="list-inline-item">members: </li>
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
-              <%= user.username[0] %>
+              <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes"><%= user.reviews.count %></span>
             </li>
 
-            <script>
+         <!--  <script>
               document.querySelectorAll(".avatar-letter").forEach((avatar) => {
                 avatar.addEventListener("mouseover", (event) => {
                   avatar.innerHTML = avatar.title;
@@ -59,7 +59,7 @@
 
 
             </script>
-
+-->
           <%end%>
         </ul>
       <%end%>
