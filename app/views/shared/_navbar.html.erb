@@ -5,8 +5,8 @@
 
   <% if @event && @event.name %>
 <!--   <h1><%=@event.name.capitalize%></h1> -->
-  <h1><div class="dropdown">
-  <button class="drop-title"><%= @event.name.capitalize %> <i class="fas fa-chevron-down"></i></button>
+  <div id="event-dropdown" class="dropdown">
+  <h1><button class="drop-title"><%= @event.name.capitalize %> <i class="fas fa-chevron-down"></i></button></h1>
   <div class="dropdown-content">
     <% current_user.event_ids.each  do |event|  %>
     <%= link_to Event.find(event).name, event_path(event)%>
@@ -14,7 +14,7 @@
   </div>
 </div>
 
-</h1>
+
 
 
 
