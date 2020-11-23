@@ -13,16 +13,23 @@
   font-size: 1.2em;
   font-weight: 500;
   margin-right: 0 !important;
-  transition: max-width .8s ease;
-
-  .user-rest {
+  // transition: max-width .2s ease-in;
+  .reviews-counter {
+    max-width: 34px;
+    text-align:center;
+    // transition: max-width .2s ease-in 0s;
+  }
+  .user-rest , .swipes {
     opacity: 0;
-    transition: opacity .1s ease;
+    // transition: opacity .8s ease-in .3s;
   }
   &:hover {
     max-width: 200px;
-    .user-rest {
+    .user-rest, .swipes {
       opacity:1;
+    }
+    .reviews-counter {
+      max-width: 200px;
     }
   }
 
