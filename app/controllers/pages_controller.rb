@@ -99,7 +99,7 @@ class PagesController < ApplicationController
 
     from   event_movies EM
     
-    inner join movies M ON M.id=EM.movie_id
+    left join movies M ON M.id=EM.movie_id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{c_user.id} 
     
     where EM.score > 0 and R.id is null"
@@ -129,6 +129,7 @@ class PagesController < ApplicationController
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
     left join event_movies EM ON EM.movie_id=m.id
+    left join event_movies EM ON EM.movie_id=m.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
     WHERE\n"
 
@@ -216,7 +217,7 @@ class PagesController < ApplicationController
 
   def _no_pref(n, event, c_user)
     "SELECT m.id FROM movies M
-    left join event_movies EM ON EM.movie_id=M.id
+    left join event_movies EM ON EM.movie_id=M.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
     WHERE
     R.id is null

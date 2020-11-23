@@ -107,7 +107,7 @@ EventMovie.create!({movie_id:5, event_id:1, score:0})
 EventMovie.create!({movie_id:6, event_id:1, score:0})
 EventMovie.create!({movie_id:7, event_id:1, score:0})
 
-EventMovie.create!({movie_id:5, event_id:2, score:0})
+EventMovie.create!({movie_id:2, event_id:2, score:0})
 EventMovie.create!({movie_id:6, event_id:2, score:0})
 EventMovie.create!({movie_id:7, event_id:2, score:0})
 
@@ -115,8 +115,8 @@ Review.create!({user_id:1, event_movie_id:1})
 Review.create!({user_id:2, event_movie_id:2})
 Review.create!({user_id:2, event_movie_id:3})
 
-Review.create!({user_id:2, event_movie_id:8})
-Review.create!({user_id:2, event_movie_id:9})
+Review.create!({user_id:1, event_movie_id:8})
+Review.create!({user_id:1, event_movie_id:9})
 Review.create!({user_id:2, event_movie_id:10})
 
 Review.create!({user_id:3, event_movie_id:4})
