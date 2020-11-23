@@ -4,6 +4,11 @@
 //   color: $gray;
 //   }
 // }
+
+a:hover {
+  text-decoration: none;
+}
+
 .cards{
   display: flex;
 }
@@ -24,8 +29,17 @@
   box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 8px;
   border: none;
   color: white;
-     h3 {
+     a h3 {
        font-size: 1.5rem;
+       &:hover {
+         i {
+          opacity: 1;
+         }
+       }
+       i {
+         opacity: 0;
+         font-size: 16px;
+       }
      }
 }
 
