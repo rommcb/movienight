@@ -1,18 +1,18 @@
 function genre(string, ul, val, value){
-  // fetch(`https://mooovienight.herokuapp.com/api/genre/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/genre/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  fetch(`https://mooovienight.herokuapp.com/api/genre/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  // fetch(`http://localhost:3000/api/genre/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
 
 }
 
 function actor(string, ul, val, value){
-  // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  // fetch(`http://localhost:3000/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
 
 }
 
 function director(string, ul, val, value){
-  // fetch(`https://mooovienight.herokuapp.com/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  fetch(`https://mooovienight.herokuapp.com/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  // fetch(`http://localhost:3000/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
 
 }
 
@@ -135,7 +135,7 @@ export function act_event(react, event){
 
 export function movie(user_id, event_id){
   // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
     console.log('hello');
     console.log(json);
     document.getElementById("movie_name").innerHTML = json['title']

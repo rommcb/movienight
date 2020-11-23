@@ -61,6 +61,7 @@ class PagesController < ApplicationController
 
     hash = {}
     hash[0] = "Succes"
+    cors_set_access_control_headers
     render json: hash
   end
 
@@ -91,6 +92,8 @@ class PagesController < ApplicationController
     hash['actors'] = hash['actors'].join(', ')
     hash['synopsis'] = @movie.synopsis
     hash['cover'] = @movie.cover
+
+    cors_set_access_control_headers
     render json: hash
   end
 
@@ -99,7 +102,7 @@ class PagesController < ApplicationController
 
     from   event_movies EM
     
-    left join movies M ON M.id=EM.movie_id AND EM.event_id=#{event.id}
+    join movies M ON M.id=EM.movie_id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{c_user.id} 
     
     where EM.score > 0 and R.id is null"
@@ -220,9 +223,7 @@ class PagesController < ApplicationController
     left join event_movies EM ON EM.movie_id=M.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
     WHERE
-    R.id is null
-    AND
-    EM.score = 0
+    ((R.id is null AND EM.score = 0) OR EM.id is null)
     AND
     m.duration < #{c_user.max_duration_pref}
     GROUP BY m.id
@@ -243,7 +244,22 @@ class PagesController < ApplicationController
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event, c_user)
     movie_arr = arr1 + arr2
-
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp arr1
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp arr2
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     if movie_arr.length == 0
       return 1
     end

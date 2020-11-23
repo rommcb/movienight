@@ -29,8 +29,6 @@ import "bootstrap";
 import { events } from './autocomplete';
 import { act_event } from './autocomplete';
 import {movie} from './autocomplete';
-import {review} from './autocomplete';
-import {poster} from './autocomplete';
 
 
 document.addEventListener('turbolinks:load', () => {
@@ -69,6 +67,7 @@ document.addEventListener('turbolinks:load', () => {
 
   const likebtn = document.getElementById("donotlikebtn")
   likebtn.addEventListener("click", function(item){
+    likebtn.id = "lkbtn"
     item.preventDefault();
     const like_event = document.getElementById("movie_name");
     const like_event1= document.getElementById("img_swipe");
@@ -78,17 +77,23 @@ document.addEventListener('turbolinks:load', () => {
     const user_id = document.getElementById('user_id').innerHTML
     const event_id = document.getElementById('event_id').innerHTML
     const event_movie_id = document.getElementById('event_movie_id').innerHTML
-    review(user_id, event_movie_id, 0)
-    setTimeout(function(){
-      like_event.classList.remove("slide-in-left");
-      like_event1.classList.remove("slide-in-left");
-      }, 600);
-    console.log(user_id);
-    movie(user_id, event_id)
+    const liked = 1
+    fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+      setTimeout(function(){
+        like_event.classList.remove("slide-in-left");
+        like_event1.classList.remove("slide-in-left");
+        likebtn.id = "donotlikebtn"
+        }, 600);
+      
+      setTimeout(function(){
+        movie(user_id, event_id)
+      }, 200)
+    })
   });
   
   const donotlikebtn = document.getElementById("likebtn")
   donotlikebtn.addEventListener("click", function(item){
+    donotlikebtn.id = "dnt"
     item.preventDefault();
     const like_event2 = document.getElementById("movie_name");
     const like_event3 = document.getElementById("img_swipe");
@@ -98,14 +103,20 @@ document.addEventListener('turbolinks:load', () => {
     const user_id = document.getElementById('user_id').innerHTML
     const event_id = document.getElementById('event_id').innerHTML
     const event_movie_id = document.getElementById('event_movie_id').innerHTML
-    review(user_id, event_movie_id, 0)
-    setTimeout(function(){
-      like_event2.classList.remove("slide-in-right");
-      like_event3.classList.remove("slide-in-right");
-      }, 600);
-    
-    console.log(user_id);
-    movie(user_id, event_id)
+    const liked = 1
+    fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+      setTimeout(function(){
+        like_event2.classList.remove("slide-in-right");
+        like_event3.classList.remove("slide-in-right");
+        donotlikebtn.id = "likebtn"
+        }, 600);
+      
+      console.log(user_id);
+      setTimeout(function(){
+        movie(user_id, event_id)
+      }, 300)
+      
+    })
   });
   
   document.addEventListener('keyup', function(event) {
