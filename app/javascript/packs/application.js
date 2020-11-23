@@ -78,7 +78,7 @@ document.addEventListener('turbolinks:load', () => {
     const event_id = document.getElementById('event_id').innerHTML
     const event_movie_id = document.getElementById('event_movie_id').innerHTML
     const liked = 1
-    fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+    fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
       setTimeout(function(){
         like_event.classList.remove("slide-in-left");
         like_event1.classList.remove("slide-in-left");
