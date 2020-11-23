@@ -133,9 +133,16 @@ export function act_event(react, event){
   
 }
 
-function movie(event_id, user_id){
+function movie(user_id, event_id){
   // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
   fetch(`http://localhost:3000/api/actor/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+    console.log(json);
+  })
+}
+
+function review(user_id, event_movie_id, liked){
+  // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
+  fetch(`http://localhost:3000/api/actor/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     console.log(json);
   })
 }

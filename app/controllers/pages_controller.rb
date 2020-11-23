@@ -45,6 +45,25 @@ class PagesController < ApplicationController
     render json: hash
   end
 
+  def review
+    str = params[:string].split(",")
+    user_id = str[0].to_i
+    event_movie_id = str[1].to_i
+    liked = str[2].to_i
+
+    event_movie = EventMovie.find(event_movie_id)
+    if liked == 1
+      event_movie.score += 1
+      event_movie.save!
+    end
+    review = Review.new(event_movie_id: event_movie_id, user_id:user_id)
+    review.save!
+
+    hash = {}
+    hash[0] = "Succes"
+    render json: hash
+  end
+
   def movie
     str = params[:string].split(",")
     user_id = str[0].to_i
