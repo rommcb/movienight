@@ -13,10 +13,10 @@ a:hover {
   display: flex;
 }
 .card {
-  position: relative;
   background-image: 
-  linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
-  url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
+    linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
+    url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
+  position: relative;
   padding: 20px;
   padding-bottom:20px;
   border-radius: 9px;
@@ -31,6 +31,7 @@ a:hover {
   color: white;
      a h3 {
        font-size: 1.5rem;
+      //  position: absolute;
        &:hover {
          i {
           opacity: 1;
@@ -41,6 +42,23 @@ a:hover {
          font-size: 16px;
        }
      }
+     .closed h3, .closed a {
+       position: absolute;
+       z-index: 10;
+     }
+     .closed::before {
+      background-image: 
+      linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
+      url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
+      filter: grayscale(100%);
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      background-size: cover;
+    }
 }
 
 .add-new {
@@ -56,6 +74,16 @@ a:hover {
   position: absolute;
   top: 10px;
   right: 10px;
+}
+
+.restart {
+  top: 15%;
+  right: 50%;
+  i {
+  font-size: 50px;
+  position: absolute;
+  right: -20px;
+  }
 }
 
 .edit {
