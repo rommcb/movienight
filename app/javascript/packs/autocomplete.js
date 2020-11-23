@@ -137,6 +137,12 @@ function movie(user_id, event_id){
   // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
   fetch(`http://localhost:3000/api/actor/${user_id},${event_id}`).then(response => response.json()).then((json) => {
     console.log(json);
+    document.getElementById("movie_title").innerHTML = json['title']
+    document.getElementById("movie_director").innerHTML = json['director']
+    document.getElementById("movie_synopsis").innerHTML = json['synopsis'] 
+    document.getElementById("movie_actors").innerHTML =  json['actors']
+    document.getElementById("movie_cover").innerHTML = json['img']
+    document.getElementById("event_movie_id").innerHTML = json['id']
   })
 }
 

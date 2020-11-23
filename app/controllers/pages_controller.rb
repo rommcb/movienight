@@ -81,7 +81,7 @@ class PagesController < ApplicationController
       @event_movie.save!
     end
     hash = {}
-    hash['id'] = @movie.id
+    hash['id'] = @event_movie.id
     hash['title'] = @movie.title
     hash['director'] = Director.find(@movie.director_id).fullname
     hash['actors'] = []
