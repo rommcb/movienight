@@ -37,7 +37,7 @@
         <% if user.id == @event.event_subscriptions.where(owner: true)[0].user.id %>
             (owner)
         <% elsif user.id == current_user.id %>
-            (you)
+            (you) - <%= link_to "leave this event", self_destroy_path(@event), method: 'post', :data => {:confirm => 'Are you sure you want to leave this event?'} %>
           <% end %>
         </li>
     <%end%>
