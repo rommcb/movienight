@@ -25,20 +25,26 @@
 
   <% @events.each do |event|%>
     <div class="card">
+     <% if event.closed == true %>
+      <div class="top closed">
+     <%else%>
       <div class="top">
+      <%end%>
         <p class="date"><%= event.date_end.day %>/<%= event.date_end.month %>/<%= event.date_end.year %></p>
          <%= link_to event_path(event), class: 'view' do %><h3><%= event.name.capitalize %>  <i class="far fa-eye"></i></h3><%end%>
-        <div class="links">
+        
            <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-            <%= link_to edit_event_path(event), class: 'edit' do %><i class="fas fa-pen"></i><%end%>
             <% if event.closed == true %>
-            <%= link_to restart_path(event), method: 'post', :data => {:confirm => 'Are you sure you want to reset?'}, class: 'edit' do %><i class="fas fa-redo"></i><%end%>
+            <%= link_to edit_event_path(event), method: 'post', :data => {:confirm => 'Are you sure you want to reset?'}, class: 'edit restart' do %><i class="fas fa-redo"></i><%end%>
+            <%else%>
+            <div class="links">
+              <%= link_to edit_event_path(event), class: 'edit' do %><i class="fas fa-pen"></i><%end%>
+            </div>
             <%end%>
           <%end%>
-        </div>
-
-
+        
       </div>
+      
       
       <% if event.closed == true %>
         <%= link_to "View result", result_path(event.id), class: 'btn btn-success btn-bottom' %>
