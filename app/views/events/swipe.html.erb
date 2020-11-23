@@ -2,7 +2,7 @@
 
 
 
-
+<!-- main section for swipping -->
   <div class="main_div">
     <div class="title_div">
       <h1>Happy swiping!</h1>
@@ -12,7 +12,7 @@
         <p id="movie_name"></p>
         <img src="#" alt="image" id="img_swipe" class="image">
       </div>
-      
+
     <div id="user_id" class="really_hidden"><%= @user_id %></div>
     <div id="event_id" class="really_hidden"><%= @event_id %></div>
     <div id="event_movie_id" class="really_hidden"></div>
@@ -31,31 +31,32 @@
   </div>
 
 
-<!-- description bar -->
-<div class="info-section">
+<!-- description section -->
+<div class="info-section really_hidden" >
   <div class="column">
-    <h3>Main information</h3>
-    <ul class="list-inline">
-      <li id="movie_title_small"></li>
-      <li id="movie_actors">Actors</li>
-      <li id="movie_director">Director(s)</li>
-      <%# <li id="movie_duration">duration</li> %>
-      <li id="movie_synopsys">synopsys</li>
-
-    </ul>
+    <h3>More information:</h3>
+      <ul class="list-inline">
+        <li id="movie_title_small">Movie title:</li>
+        <li id="movie_actors">Actors:</li>
+        <li id="movie_director">Director(s):</li>
+      <%# <li id="movie_duration">Duration:</li> %>
+        <li id="movie_synopsys">Synopsys:</li>
+      </ul>
   </div>
-
-
-
 </div>
 
 
+ <script>
+ document.addEventListener('keyup', function(event) {
+  const code = event.keyCode;
+    if (code == '40') {
+        // down
+      const info_hidden = document.getElementsByClassName("info-section")[0];
+      info_hidden.classList.toggle("really_hidden");
+    }
 
-
-
-
-
-
+ })
+</script>
 
 
 
@@ -65,44 +66,3 @@
 <!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
     <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <%end%> -->
-<%# <script>
-
-  //For like click
-
-document.getElementById("likebtn").addEventListener("click", function(item){
-  // item.preventDefault();
-  const like_event = document.getElementById("movie_name");
-  const like_event1= document.getElementById("img_swipe");
-  like_event.classList.add("slide-in-left");
-  like_event1.classList.add("slide-in-left");
-});
-
-document.getElementById("donotlikebtn").addEventListener("click", function(item){
-  // item.preventDefault();
-  const like_event2 = document.getElementById("movie_name");
-  const like_event3 = document.getElementById("img_swipe");
-  like_event2.classList.add("slide-in-right");
-  like_event3.classList.add("slide-in-right");
-});
-
-
- //For the arrow
-   // (code == '38')window.alert("hello up")(code == '40')window.alert("hello down")
-
- document.addEventListener('keyup', function(event) {
-  const code = event.keyCode
-// console.log(event);
-    if (code == '37') {
-        // Left
-      document.getElementById("likebtn").click();
-    }
-     else if (code == '39') {
-        // Right
-        document.getElementById("donotlikebtn").click();
-    }
- })
-</script> %>
-<!--  console.log("like_btn") -->
-
-
-

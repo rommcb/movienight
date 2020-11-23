@@ -19,7 +19,7 @@ function director(string, ul, val, value){
 function edit_values_divs(val,values){
   let arr = values.split(",")
   arr.shift()
-  let lock = document.getElementById(`locked_${val}`) 
+  let lock = document.getElementById(`locked_${val}`)
   lock.innerHTML = ""
   arr.forEach((item) => {
     lock.insertAdjacentHTML("beforeend",`<div class='item_card'> <div class='txt'>${item}</div><div class="x" id="x_${val}_${item}">X</div></div>`)
@@ -33,7 +33,7 @@ function edit_values(val, current_value, sub, add){
   if(sub == null){
     let values = current_value.split(",")
     if(!values.includes(add)){
-      document.getElementById(`${val}_list`).value = `${current_value},${add}` 
+      document.getElementById(`${val}_list`).value = `${current_value},${add}`
     }
     edit_values_divs(val,document.getElementById(`${val}_list`).value)
   } else {
@@ -48,7 +48,7 @@ function edit_values(val, current_value, sub, add){
     document.getElementById(`${val}_list`).value = new_values_str
     edit_values_divs(val, new_values_str)
   }
-  
+
 }
 
 function add_to_list(name, val, value){
@@ -106,11 +106,11 @@ export function events(val, obj){
       if(document.getElementById(`results_${val}`).classList.contains('active')){
         console.log('nope');
       } else {
-        document.getElementById(`results_${val}`).style.display = 'none'; 
+        document.getElementById(`results_${val}`).style.display = 'none';
       }
   }, true);
   obj.addEventListener('focus', () => {
-    document.getElementById(`results_${val}`).style.display = 'block';       
+    document.getElementById(`results_${val}`).style.display = 'block';
   }, true);
   obj.addEventListener('keyup', () => { predict(val, obj) }, false);
 }
@@ -130,7 +130,7 @@ export function act_event(react, event){
     react.innerHTML = "Reactivate event"
     status.value = 'true'
   }
-  
+
 }
 
 export function movie(user_id, event_id){
@@ -147,10 +147,10 @@ export function movie(user_id, event_id){
       console.log(src);
       document.getElementsByClassName('image')[0].src = src
     })
-    
-    document.getElementById("movie_director").innerHTML = json['director']
-    document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
-    document.getElementById("movie_actors").innerHTML =  json['actors']
+
+    document.getElementById("movie_director").innerHTML = `Director(s): ${json['director']}`;
+    document.getElementById("movie_synopsys").innerHTML = `Synopsis: ${json['synopsis']}`;
+    document.getElementById("movie_actors").innerHTML =  `Actor(s): ${json['actors']}`;
   })
 }
 
@@ -163,5 +163,5 @@ export function review(user_id, event_movie_id, liked){
 
 
 function poster(movie){
-  
+
 }
