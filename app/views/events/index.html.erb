@@ -23,12 +23,13 @@
     <div class="card">
       <div class="top">
         <p class="date"><%= event.date_end.day %>/<%= event.date_end.month %>/<%= event.date_end.year %></p>
-        <h3><%= event.name.capitalize %></h3>
+         <%= link_to event_path(event), class: 'view' do %><h3><%= event.name.capitalize %>  <i class="far fa-eye"></i></h3><%end%>
         <div class="links">
-          <%= link_to event_path(event), class: 'view' do %><i class="far fa-eye"></i><%end%>
            <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
             <%= link_to edit_event_path(event), class: 'edit' do %><i class="fas fa-pen"></i><%end%>
+            <% if event.closed == true %>
             <%= link_to restart_path(event), method: 'post', :data => {:confirm => 'Are you sure you want to reset?'}, class: 'edit' do %><i class="fas fa-redo"></i><%end%>
+            <%end%>
           <%end%>
         </div>
 
