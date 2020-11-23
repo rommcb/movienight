@@ -65,16 +65,19 @@ def scrape(start)
       if Genre.where(name: genre).length == 0
         gen = Genre.create!({name: genre})
         GenresAttribution.create!({movie_id: mov.id, genre_id: gen.id})
+      else
+        GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
       end
-      GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
+      
     end
 
     cast.each do |actor|
       if Actor.where(fullname: actor).length == 0
         act =Actor.create!({fullname: actor})
         Casting.create!({movie_id: mov.id, actor_id: act.id})
+      else
+        Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
       end
-      Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
     end
     # name
     # duration

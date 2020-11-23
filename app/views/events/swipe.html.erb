@@ -8,16 +8,17 @@
       <h1>Happy swiping!</h1>
       <p>Swipe until movies get matched.</p>
     </div>
-    <div class="image_div">
-      <p id="movie_name" ><%= @event_movie.movie.title %></p>
-      <img src=<%= @event_movie.movie.cover %> alt="cover" id="img_swipe">
-    </div>
+      <div class="image_div">
+        <p id="movie_name"></p>
+        <img src="#" alt="image" id="img_swipe" class="image">
+      </div>
+      
+    <div id="user_id" class="really_hidden"><%= @user_id %></div>
+    <div id="event_id" class="really_hidden"><%= @event_id %></div>
+    <div id="event_movie_id" class="really_hidden"></div>
     <div class="thumb_div">
-      <%= simple_form_for @event_movie, {url: event_movie_path(@event_movie.id)} do |f| %>
-        <%= f.hidden_field :id %>
-        <%= f.submit "I like", name: "like", id: "likebtn"  %>
-        <%= f.submit "Dislike", name: "dislike", id: "donotlikebtn" %>
-      <% end %>
+      <button id="donotlikebtn"> Dislike</button>
+      <button id="likebtn"> Like</button>
     </div>
     <div class="description_div">
       <div class="cards">
@@ -35,11 +36,11 @@
   <div class="column">
     <h3>Main information</h3>
     <ul class="list-inline">
-      <li>Actors</li>
-      <li>Director(s)</li>
-      <li>duration</li>
-      <li>synopsys</li>
-      <li>duration</li>
+      <li id="movie_title_small"></li>
+      <li id="movie_actors">Actors</li>
+      <li id="movie_director">Director(s)</li>
+      <%# <li id="movie_duration">duration</li> %>
+      <li id="movie_synopsys">synopsys</li>
 
     </ul>
   </div>
@@ -64,7 +65,7 @@
 <!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
     <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <%end%> -->
-<script>
+<%# <script>
 
   //For like click
 
@@ -100,7 +101,7 @@ document.getElementById("donotlikebtn").addEventListener("click", function(item)
         document.getElementById("donotlikebtn").click();
     }
  })
-</script>
+</script> %>
 <!--  console.log("like_btn") -->
 
 
