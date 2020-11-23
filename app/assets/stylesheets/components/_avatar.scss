@@ -4,18 +4,41 @@
 }
 
 .avatar-letter {
-  width: 40px;
-  border-radius: 20px;
+  position: relative;
+  max-width: 40px;
   height: 40px;
-  padding: 7px 15px;
+  border-radius: 20px;
+  padding: 7px 13px;
   background-color: #bebebe ;
   font-size: 1.2em;
   font-weight: 500;
   margin-right: 0 !important;
-  transition: width .5s ease;
-  &:hover {
-    width: 120px;
+  transition: max-width .8s ease;
+
+  .user-rest {
+    opacity: 0;
+    transition: opacity .1s ease;
   }
+  &:hover {
+    max-width: 200px;
+    .user-rest {
+      opacity:1;
+    }
+  }
+
+  .reviews-counter {
+    font-size: 14px;
+    position: absolute;
+    top: -7px;
+    right: -8px;
+    display: inline-block;
+    background-color: $green;
+    border-radius: 10px;
+    min-width: 20px;
+    height: 20px;
+    color: white;
+    padding: 0 6px 3px 6px;
+    }
 }
 
 
