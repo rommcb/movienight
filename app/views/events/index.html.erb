@@ -28,6 +28,7 @@
           <%= link_to event_path(event), class: 'view' do %><i class="far fa-eye"></i><%end%>
            <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
             <%= link_to edit_event_path(event), class: 'edit' do %><i class="fas fa-pen"></i><%end%>
+            <%= link_to restart_path(event), method: 'post', :data => {:confirm => 'Are you sure you want to reset?'}, class: 'edit' do %><i class="fas fa-redo"></i><%end%>
           <%end%>
         </div>
 
