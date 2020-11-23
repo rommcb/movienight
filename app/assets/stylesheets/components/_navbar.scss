@@ -3,6 +3,9 @@
   background: white;
   margin-bottom: 50px;
   color: black !important;
+  .avatar {
+    margin-left:100px;
+  }
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -10,17 +13,18 @@
 }
 
 .navbar-lewagon .navbar-brand { 
-  // padding-left: 20px;
   img {
   width: 40px;
   }
 }
 
-
-.members {
-border-right: 1px solid rgb(211, 211, 211);
+.navbar-lewagon .members {
+border-right: none;
 margin: 0 20px;
 padding: 0 20px;
+position: absolute;
+right: 0;
+top: 100px;
 }
 
 // for drop down btn

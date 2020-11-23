@@ -11,8 +11,10 @@
           <p> - or -</p>
         </div>
           <%= simple_form_for @code_event, url: event_subscriptions_path,  html: { class: "form-inline"} do |f| %>
-            <div class="form-group centered">
+            <div class="form-group centered col-xs-6">
               <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
+            </div> 
+            <div class="form-group centered col-xs-6">  
               <%= f.button :submit, 'join', class: 'btn btn-primary'%>
             </div>
             <p id="errormessage"><%= @error_message%></p>
