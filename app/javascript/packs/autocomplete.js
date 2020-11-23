@@ -133,31 +133,35 @@ export function act_event(react, event){
   
 }
 
-function movie(user_id, event_id){
+export function movie(user_id, event_id){
   // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/actor/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+    console.log('hello');
     console.log(json);
-    document.getElementById("movie_title").innerHTML = json['title']
+    document.getElementById("movie_name").innerHTML = json['title']
+    document.getElementById('event_movie_id').innerHTML = json['id']
+    fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${json['title']}`)
+    .then(response => response.json())
+    .then((json) => {
+      let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
+      console.log(src);
+      document.getElementsByClassName('image')[0].src = src
+    })
+    
     document.getElementById("movie_director").innerHTML = json['director']
-    document.getElementById("movie_synopsis").innerHTML = json['synopsis'] 
+    document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
     document.getElementById("movie_actors").innerHTML =  json['actors']
-    document.getElementById("movie_cover").innerHTML = json['img']
-    document.getElementById("event_movie_id").innerHTML = json['id']
   })
 }
 
-function review(user_id, event_movie_id, liked){
+export function review(user_id, event_movie_id, liked){
   // fetch(`https://mooovienight.herokuapp.com/api/actor/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-  fetch(`http://localhost:3000/api/actor/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     console.log(json);
   })
 }
 
 
 function poster(movie){
-  fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${movie}`)
-  .then(response => response.json())
-  .then((json) => {
-    let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
-  })
+  
 }
