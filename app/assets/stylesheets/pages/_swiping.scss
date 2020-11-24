@@ -16,7 +16,7 @@ margin-bottom: -5px;
 .parent_div {
   position: absolute;
   width: 300px;
-  top: 300px;
+  top: 100px;
   left: 50%;
 }
 
@@ -84,13 +84,17 @@ margin-bottom: -5px;
       list-style: none;
       padding-left: 0px;
   }
+  
+.container {
+  position: relative;
+  height: 80vh;
+}
 
 .swipes-history-wrapper {
   height: 130px; 
-  // width: 100%;
   position: absolute;
   bottom: 0;
-  // left: 20px;
+  // left: 50%;
 }
 
 .swipes-history {
@@ -101,22 +105,41 @@ margin-bottom: -5px;
 }
 
 
+
+
+
 @media (min-width: 576px){
-.swipes-history-wrapper {
+  .swipes-history-wrapper {
     max-width: 540px;
-}}
+  }  
+  .swipes-history {
+    left: -270px;
+  }
+}
 
 @media (min-width: 768px){
   .swipes-history-wrapper {
       max-width: 720px;
-  }}
+  }
+  .swipes-history {
+      left: -360px;
+  }
+}
 
-  @media (min-width: 992px) {
-    .swipes-history-wrapper {
-        max-width: 960px;
-    } }
+@media (min-width: 992px) {
+  .swipes-history-wrapper {
+      max-width: 960px;
+  } 
+  .swipes-history {
+    left: -480px;
+  }
+}
 
-    @media (min-width: 1200px){
-      .swipes-history-wrapper {
-          max-width: 1140px;
-      }}
+@media (min-width: 1200px){
+  .swipes-history-wrapper {
+      max-width: 1140px;
+  }
+  .swipes-history {
+    left: -570px;
+  }
+}

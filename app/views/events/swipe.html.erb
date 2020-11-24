@@ -3,30 +3,35 @@
 
 
 <!-- main section for swipping -->
-  <div class="main_div">
-    <div class="title_div">
-      <h1>Happy swiping!</h1>
-      <p>Swipe until movies get matched.</p>
-    </div>
-    <div class="thumb_div">
-        <button id="donotlikebtn"> Dislike</button>
-        <button id="likebtn"> Like</button>
-      </div>
-    </div>
+<div class="main_div">
+  <div class="title_div">
+    <h1>Happy swiping!</h1>
+    <p>Swipe until movies get matched.</p>
   </div>
-  <div id="parent_div" class="parent_div">
-    <div id="move">
-      <div class="image_div">
-        <p id="movie_name"></p>
-        <img src="#" alt="image" id="img_swipe" class="image">
-      </div>
-
-      <div id="user_id" class="really_hidden"><%= @user_id %></div>
-      <div id="event_id" class="really_hidden"><%= @event_id %></div>
-      <div id="event_movie_id" class="really_hidden"></div>
+  <div class="thumb_div">
+      <button id="donotlikebtn"> Dislike</button>
+      <button id="likebtn"> Like</button>
+  </div>
+</div>
+<div id="parent_div" class="parent_div">
+  <div id="move">
+    <div class="image_div">
+      <p id="movie_name"></p>
+      <img src="#" alt="image" id="img_swipe" class="image">
     </div>
 
+    <div id="user_id" class="really_hidden">
+      <%= @user_id %>
+    </div>
+
+    <div id="event_id" class="really_hidden">
+      <%= @event_id %>
+    </div>
+
+    <div id="event_movie_id" class="really_hidden">
+    </div>
   </div>
+</div>
 <!-- description section -->
 <div class="info-section really_hidden" >
   <div class="column">
@@ -41,6 +46,14 @@
   </div>
 </div>
 
+<div class="swipes-history-wrapper">
+  <p>your swipes:</p>
+  <ul class="list-inline swipes-history"> 
+    <% @event.reviews.where(user_id: current_user.id).each do |review| %>
+      <li class="list-inline-item"> <img src="<%= review.event_movie.movie.cover%>"/> </li>
+    <% end %>
+  </ul>
+</div>
 
  <script>
  document.addEventListener('keyup', function(event) {
@@ -60,11 +73,4 @@
 <!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
     <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <%end%> -->
-<div class="swipes-history-wrapper">
-<p>your swipes:</p>
-  <ul class="list-inline swipes-history"> 
-    <% @event.reviews.where(user_id: current_user.id).each do |review| %>
-      <li class="list-inline-item"> <img src="<%= review.event_movie.movie.cover%>"/> </li>
-    <% end %>
-  </ul>
-</div>
+
