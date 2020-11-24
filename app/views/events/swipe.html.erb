@@ -47,9 +47,9 @@
 </div>
 
 <div class="swipes-history-wrapper">
-  <p>your swipes:</p>
+  <p>your likes:</p>
   <ul class="list-inline swipes-history"> 
-    <% @event.reviews.where(user_id: current_user.id).each do |review| %>
+    <% @event.reviews.where(user_id: current_user.id, movie_liked: true).each do |review| %>
       <li class="list-inline-item"> <img src="<%= review.event_movie.movie.cover%>"/> </li>
     <% end %>
   </ul>
