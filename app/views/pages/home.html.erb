@@ -1,14 +1,12 @@
- <!-- fake div to make appear -->
 <div class="image_wrapper">
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"></div>
-   <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/2/2e/Inception_%282010%29_theatrical_poster.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tenet_movie_poster.jpg/220px-Tenet_movie_poster.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/31/The_Silence_2019_film_poster.jpg/220px-The_Silence_2019_film_poster.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/en/d/d6/Beauty_and_the_Beast_2017_poster.jpg"></div>
-   <div class="image_back really_hidden"> <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Affiche_97_Fatima_Fr.jpg/220px-Affiche_97_Fatima_Fr.jpg"></div>
-    <div class="image_back really_hidden"> <img src="https://i.pinimg.com/originals/4b/41/c4/4b41c492a939739da83cd396c7758638.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/9/9d/Disney_The_Lion_King_2019.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/220px-12_Angry_Men_%281957_film_poster%29.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tenet_movie_poster.jpg/220px-Tenet_movie_poster.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/1/19/Titanic_%28Official_Film_Poster%29.png"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Beauty_and_the_Beast_2017_poster.jpg"></div>
+    <div class="image_back really_hidden fade-in"> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Affiche_97_Fatima_Fr.jpg/220px-Affiche_97_Fatima_Fr.jpg"></div>
 </div>
 
 <div class="banner">
@@ -34,12 +32,12 @@
     <script>
       const myForm = document.querySelectorAll('.image_back');
 
-      let j= 1000
+      let j= 0
       for (let i = 0; i < 8; i++) {
         const myForm = document.querySelectorAll('.image_back');
         // setTimeout(() => {myForm[i].style.display = 'block';}, j)
         setTimeout(() => {myForm[i].classList.toggle("really_hidden");}, j)
-        j = j+250
+        j = j+150
         };
     // const alplha = document.createElement("div")
     </script>
