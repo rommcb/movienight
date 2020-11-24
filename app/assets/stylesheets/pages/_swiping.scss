@@ -16,7 +16,7 @@ margin-bottom: -5px;
 
 .image_div {
   padding: 10px;
-  background-color: rgb(37, 37, 37);
+  background-color: rgb(61, 61, 61);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
   #movie_name {
     margin-bottom: 10px;
@@ -33,32 +33,55 @@ margin-bottom: -5px;
 
 .thumb_div {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 }
 
 #move {
+  z-index: 101;
   position: absolute;
   text-align: center;
   width: 100%;
   left: -150px;
 }
 
-#likebtn, #deactivate {
-  width: 100px;
-  // font-weight: 400;
-  text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
-  // line-height: 1.5;
-  }
+#likebtn, #deactivatel {
+  z-index: 100;
+  display: none;
+  width: 35%;
+  height: 100%;
+  border: 13px solid rgba(136, 136, 136, 0.25);
+  border-radius: 40px;
+  // vertical-align: middle;
+  left: 0%;
+}
 
-#donotlikebtn {
-  width: 100px;
-  // font-weight: 400;
+#donotlikebtn, #deactivaten {
+  z-index: 100;
+  display: none;
+  width: 35%;
+  height: 100%;
+  border: 13px solid rgba(136, 136, 136, 0.25);
+  border-radius: 40px;
+  // vertical-align: middle;
+  left: 20%;
+}
+
+.btn_text {
   text-align: center;
-  vertical-align: middle;
-  border: 1px solid transparent;
+  font-size: 100px;
+  margin: 100px;;
+  color:rgba(136, 136, 136, 0.25);
+}
+
+.nav_buttons {
+  width: 100%;
+  height: 55%;
+  padding: 50px;
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  top: 175px;
 }
 
 

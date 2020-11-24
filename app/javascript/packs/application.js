@@ -32,6 +32,7 @@ import { movie } from './swipe';
 import { dislike } from './swipe';
 import { like } from './swipe';
 import { dragElement } from './swipe';
+import { myMoveLike } from './swipe';
  
 
 document.addEventListener('turbolinks:load', () => {
@@ -43,6 +44,8 @@ document.addEventListener('turbolinks:load', () => {
     const event = document.getElementById('event_id')
     if (event != null){
       let event_id_start = event.innerHTML
+      document.getElementById('likebtn').style.display = "block"
+      document.getElementById('donotlikebtn').style.display = "block"
       movie(user_id_start, event_id_start)
     }
   } 
