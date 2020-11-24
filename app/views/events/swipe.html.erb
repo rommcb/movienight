@@ -25,6 +25,7 @@
       <div id="event_id" class="really_hidden"><%= @event_id %></div>
       <div id="event_movie_id" class="really_hidden"></div>
     </div>
+
   </div>
 <!-- description section -->
 <div class="info-section really_hidden" >
@@ -54,10 +55,16 @@
 </script>
 
 
-
-
 <!-- Nice to have -->
 <!-- should it be there? -->
 <!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
     <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <%end%> -->
+<div class="swipes-history-wrapper">
+<p>your swipes:</p>
+  <ul class="list-inline swipes-history"> 
+    <% @event.reviews.where(user_id: current_user.id).each do |review| %>
+      <li class="list-inline-item"> <img src="<%= review.event_movie.movie.cover%>"/> </li>
+    <% end %>
+  </ul>
+</div>
