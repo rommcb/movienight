@@ -118,7 +118,7 @@ class PagesController < ApplicationController
       em = EventMovie.find(item['id'])
       em.score.times do
         movie_id = em.movie.id
-        liked_movies.push(item['id'])
+        liked_movies.push(movie_id)
       end
     end
     return liked_movies
@@ -204,8 +204,7 @@ class PagesController < ApplicationController
       ORDER BY random()
       LIMIT #{n}"
     end
-
-
+  
     movie_array = []
     query_array = ActiveRecord::Base.connection.execute(sql)
     query_array.each do |item|
