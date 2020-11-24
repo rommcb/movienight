@@ -1,15 +1,15 @@
 export function movie(user_id, event_id){
   // fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
   fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
-    document.getElementById("move").style.top ="0px"; 
-    document.getElementById("move").style.left ="-150px";
-    document.getElementById("move").style.color = "white"; 
-    document.getElementById("movie_name").innerHTML = `Title: ${json['title']}`
+    document.getElementById("movie_name").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${json['title']}`)
     .then(response => response.json())
     .then((json) => {
       let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
+      document.getElementById("move").style.top ="0px"; 
+      document.getElementById("move").style.left ="-150px";
+      document.getElementById("move").style.color = "white"; 
       document.getElementsByClassName('image')[0].src = src
     })
     
@@ -22,10 +22,8 @@ export function movie(user_id, event_id){
 export function dislike(item, donotlikebtn){
   donotlikebtn.id = "deactivate"
   item.preventDefault();
-  const like_event = document.getElementById("movie_name");
-  const like_event1= document.getElementById("img_swipe");
+  const like_event = document.getElementById("move");
   like_event.classList.add("slide-in-left");
-  like_event1.classList.add("slide-in-left");
 
   const user_id = document.getElementById('user_id').innerHTML
   const event_id = document.getElementById('event_id').innerHTML
@@ -35,7 +33,6 @@ export function dislike(item, donotlikebtn){
   fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       like_event.classList.remove("slide-in-left");
-      like_event1.classList.remove("slide-in-left");
       donotlikebtn.id = "donotlikebtn"
       }, 600);
     
@@ -48,10 +45,8 @@ export function dislike(item, donotlikebtn){
 export function like(item, likebtn){
   likebtn.id = "deactivate"
   item.preventDefault();
-  const like_event2 = document.getElementById("movie_name");
-  const like_event3 = document.getElementById("img_swipe");
+  const like_event2 = document.getElementById("move");
   like_event2.classList.add("slide-in-right");
-  like_event3.classList.add("slide-in-right");
 
   const user_id = document.getElementById('user_id').innerHTML
   const event_id = document.getElementById('event_id').innerHTML
@@ -61,7 +56,6 @@ export function like(item, likebtn){
   fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       like_event2.classList.remove("slide-in-right");
-      like_event3.classList.remove("slide-in-right");
       likebtn.id = "likebtn"
       }, 600);
     
