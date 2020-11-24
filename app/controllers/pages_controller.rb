@@ -55,9 +55,12 @@ class PagesController < ApplicationController
     if liked == 1
       event_movie.score += 1
       event_movie.save!
+      review = Review.new(event_movie_id: event_movie.id, user_id:current_user.id, movie_liked: true)
+      review.save!
+    else 
+      review = Review.new(event_movie_id: event_movie.id, user_id:current_user.id, movie_liked: false)
+      review.save! 
     end
-    review = Review.new(event_movie_id: event_movie_id, user_id:user_id)
-    review.save!
 
     hash = {}
     hash[0] = "Succes"

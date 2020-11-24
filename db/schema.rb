@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_17_093237) do
+ActiveRecord::Schema.define(version: 2020_11_24_130223) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,7 +52,6 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
     t.datetime "date_start", null: false
     t.text "description"
     t.string "code"
-    t.string "where"
     t.boolean "closed", default: false
   end
 
@@ -100,6 +99,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_movie_id", null: false
+    t.boolean "movie_liked", default: false
     t.index ["event_movie_id"], name: "index_reviews_on_event_movie_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2020_11_17_093237) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username", default: ""
+    t.string "username"
     t.integer "max_duration_pref", default: 600
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
