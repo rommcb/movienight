@@ -54,7 +54,7 @@ class EventsController < ApplicationController
 
   def result
     @event = Event.find(params[:id])
-    event_movies = EventMovie.where("event_id = #{@event.id} AND score > 0").order({score: :asc})
+    event_movies = EventMovie.where("event_id = #{@event.id} AND score > 0").order({score: :desc})
 
     @movie = Movie.find(event_movies.first.movie.id)
   end
