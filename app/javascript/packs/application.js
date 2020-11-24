@@ -36,6 +36,7 @@ import { dragElement } from './swipe';
 
 document.addEventListener('turbolinks:load', () => {
 
+
   const user = document.getElementById('user_id')
   if (user != null){
     let user_id_start = user.innerHTML
