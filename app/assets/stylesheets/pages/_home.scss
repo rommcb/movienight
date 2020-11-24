@@ -1,6 +1,7 @@
 // Specific CSS for your home-page
 html{
   overflow-y: overlay;
+
 }
 
 .action_home h1 {
@@ -22,11 +23,13 @@ html{
   p {
     opacity: 0.7;
   }
+
 }
 
 body {
   background-color: rgb(19, 19, 19);
   color: white;
+  // text-shadow: black;
 }
 .bg-image{
   height: 100%;
@@ -40,16 +43,17 @@ body {
 }
 
 body.action_home , body.sessions_body, body.registrations_body {
-  background-image: 
-  linear-gradient(to top,rgba(0,0,0,.9) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.9) 90%),
-  url("https://assets.nflxext.com/ffe/siteui/vlv3/84b453b4-0d46-4f2c-bd44-81aa6c19c6b5/8be25c2e-056c-4b9f-890f-e669c6b3c682/BE-fr-20201116-popsignuptwoweeks-perspective_alpha_website_large.jpg");
-  background-size: cover;
-  width: 100%;
-  height: 100%;
+  // background-image:
+  // linear-gradient(to top,rgba(0,0,0,.9) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.9) 90%),
+  // url("https://assets.nflxext.com/ffe/siteui/vlv3/84b453b4-0d46-4f2c-bd44-81aa6c19c6b5/8be25c2e-056c-4b9f-890f-e669c6b3c682/BE-fr-20201116-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+  // background-size: cover;
+  // width: 100%;
+  // height: 100%;
+  // background-color: black;
 }
 
 body.action_show {
-  background-image: 
+  background-image:
   linear-gradient(to top,rgba(0,0,0,.9) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.9) 90%),
   url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
   background-size: cover;
@@ -87,14 +91,39 @@ border-radius: 24px;
 ::-webkit-scrollbar-track {
 
 }
- 
+
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.8); 
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 5px;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #b30000; 
+  background: #b30000;
 }
+
+
+// hidden or not picture
+.image_wrapper{
+  position: absolute;
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: left;
+  align-content: space-around;
+  margin-top: -3.2%;
+
+}
+
+.image_back {
+ padding: 0px 25px 30px 25px;
+
+}
+
+.really_hidden {
+  display: block;
+}
+
+
+
