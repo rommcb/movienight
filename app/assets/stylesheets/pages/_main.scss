@@ -1,0 +1,19 @@
+// Specific CSS for your home-page
+html{
+  overflow-y: overlay;
+}
+
+// Debugging helper
+
+// * {
+//   border: 1px solid #f00 !important;
+// }
+
+button:focus {
+  outline: none;
+}
+
+.container {
+  position: relative;
+  height: 84vh;
+}
