@@ -36,6 +36,8 @@ body {
   top: 0;
   left: 0;
   -webkit-filter: blur(20px);
+  opacity: 0.75;
+  
 }
 
 body.action_home , body.sessions_body, body.registrations_body {
