@@ -7,6 +7,7 @@ export function movie(user_id, event_id){
     .then(response => response.json())
     .then((json) => {
       let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
+      document.getElementById("move").style.opacity = 0
       document.getElementById("move").style.top ="0px"; 
       document.getElementById("move").style.left ="-150px";
       document.getElementById("move").style.color = "white";
@@ -14,10 +15,13 @@ export function movie(user_id, event_id){
       document.getElementById("move").style.width = "280px"; 
       document.getElementById("img").style.padding = "10px"
       document.getElementById("move").style.fontSize = "15px"
+      smooth(document.getElementById("move"), 1)
 
+      // document.getElementsByClassName('bg-image')[0].style.opacity = 0
       document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${src}')`;
       document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
       document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
+      smooth(document.getElementsByClassName('bg-image')[0], 0.75)
 
 
       document.getElementsByClassName('image')[0].src = src
@@ -26,6 +30,7 @@ export function movie(user_id, event_id){
     document.getElementById("movie_director").innerHTML = `Director: ${json['director']}`
     document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
     document.getElementById("movie_actors").innerHTML =  `Actors: ${json['actors']}`
+    document.getElementById("small_img").innerHTML = json['cover']
   })
 }
 
@@ -34,7 +39,7 @@ export function dislike(item, donotlikebtn){
   item.preventDefault();
   const like_event = document.getElementById("move");
   // like_event.classList.add("slide-in-left");
-  myMoveDisLike()
+  myMoveLike(0)
   const user_id = document.getElementById('user_id').innerHTML
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
@@ -53,11 +58,12 @@ export function dislike(item, donotlikebtn){
 }
 
 export function like(item, likebtn){
+  document.getElementsByClassName('swipes-history')[0].insertAdjacentHTML("afterbegin",`<li class="list-inline-item"> <img src="${document.getElementById("small_img").innerHTML}"/> </li>`)
   likebtn.id = "deactivatel"
   item.preventDefault();
   const like_event2 = document.getElementById("move");
   // like_event2.classList.add("slide-in-right");
-  myMoveLike()
+  myMoveLike(1)
   const user_id = document.getElementById('user_id').innerHTML
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
@@ -69,7 +75,6 @@ export function like(item, likebtn){
       likebtn.id = "likebtn"
       }, 600);
     
-    console.log(user_id);
     setTimeout(function(){
       movie(user_id, event_id)
     }, 350)
@@ -80,8 +85,6 @@ export function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   const init_x = elmnt.offsetTop
   const init_y = elmnt.offsetLeft
-  console.log(init_x);
-  console.log(init_y);
   elmnt.onmousedown = dragMouseDown;
   
 
@@ -167,9 +170,32 @@ export function dragElement(elmnt) {
   }
 }
 
-export function myMoveLike() {
-  let final_x = 600
-  let final_y = 200
+function smooth(elem, max) {
+  var id = setInterval(frame, 5);
+  function frame() {
+      let opacity = parseFloat(elem.style.opacity)
+      if(opacity == ""){
+        opacity = 0.0
+      }
+      if (opacity >= max) {
+        clearInterval(id);
+      } else {
+        let n_o = opacity+0.015
+        elem.style.opacity = `${n_o}`
+      }
+    }
+}
+
+export function myMoveLike(val) {
+  let final_x = 0
+  let final_y = 0
+  if(val == 1){
+    final_x = 600
+    final_y = 200
+  } else {
+    final_x = -600
+    final_y = 200
+  }
   var elem = document.getElementById("move");   
   var id = setInterval(frame, 5);
   let x = elem.style.left;
@@ -188,6 +214,15 @@ export function myMoveLike() {
 
       let size_x = elem.style.width
       let size_y = elem.style.height
+
+      let opacity = elem.style.opacity
+      if(opacity == ""){
+        opacity = 1
+      }
+      let opacity_b = document.getElementsByClassName('bg-image')[0].style.opacity
+      if(opacity_b == ""){
+        opacity_b = 0.75
+      }
 
       let padding = document.getElementById("img").style.padding
       if(padding == ""){
@@ -206,7 +241,6 @@ export function myMoveLike() {
       if(size_x == ""){
         size_x = 280
         size_y = 454
-        console.log(size_x);
       } else {
         size_x = parseInt(size_x.substring(0, size_x.length - 2));
         size_y = parseInt(size_y.substring(0, size_y.length - 2));
@@ -235,78 +269,8 @@ export function myMoveLike() {
       elem.style.width = s_y + "px"; 
       document.getElementById('img').style.padding = padding + "px"
       elem.style.fontSize = t_size + "px"
-    }
-    
-  }
-}
-export function myMoveDisLike() {
-  let final_x = -600
-  let final_y = 200
-  var elem = document.getElementById("move");   
-  var id = setInterval(frame, 5);
-  let x = elem.style.left;
-  x = parseInt(x.substring(0, x.length - 2));
-  let y = elem.style.top;
-  y = parseInt(y.substring(0, y.length - 2));
-  function frame() {
-    if (x == final_x && y == final_y) {
-      clearInterval(id);
-    } else {
-      let dist_y = Math.abs(y-final_y)
-      let dist_x = Math.abs(x-final_x)
-
-      let move_x = Math.ceil((dist_x/20))
-      let move_y = Math.ceil((dist_y/20))
-
-      let size_x = elem.style.width
-      let size_y = elem.style.height
-
-      let padding = document.getElementById('img').style.padding
-      if(padding == ""){
-        padding = 10
-      } else {
-        padding = parseInt(padding.substring(0, padding.length -2))
-      }
-      console.log(padding);
-      let t_size = elem.style.fontSize
-      if(t_size == ""){
-        t_size = 15
-      } else {
-        t_size = parseInt(t_size.substring(0, t_size.length -2))
-      }
-
-      if(size_x == ""){
-        size_x = 280
-        size_y = 454
-        console.log(size_x);
-      } else {
-        size_x = parseInt(size_x.substring(0, size_x.length - 2));
-        size_y = parseInt(size_y.substring(0, size_y.length - 2));
-      }
-      let small_x = Math.ceil((size_x/10))
-      let small_y = Math.ceil((size_y/10))
-      
-      if(final_x > x){
-        x += move_x
-      } else if(final_x < x) {
-        x -= move_x
-      }
-      if(final_y> y){
-        y += move_y
-      } else if(final_y < y) {
-        y -= move_y
-      }
-      let s_x = size_x - small_x
-      let s_y = size_y - small_y
-      t_size = t_size - 1
-      padding = padding -1
-
-      elem.style.top = y + "px"; 
-      elem.style.left = x + "px";
-      elem.style.height = s_x + "px"; 
-      elem.style.width = s_y + "px"; 
-      document.getElementById('img').style.padding = padding + "px"
-      elem.style.fontSize = t_size + "px"
+      elem.style.opacity = opacity - 0.02
+      document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.012
     }
     
   }
