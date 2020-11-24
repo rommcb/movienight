@@ -21,15 +21,8 @@
     <div class="thumb_div">
         <button id="donotlikebtn"> Dislike</button>
         <button id="likebtn"> Like</button>
-      </div>
-    <div class="description_div">
-      <div class="cards">
-
-      </div>
-      <div class="cards">
-
-      </div>
     </div>
+ 
   </div>
 
 
@@ -61,10 +54,16 @@
 </script>
 
 
-
-
 <!-- Nice to have -->
 <!-- should it be there? -->
 <!--   <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
     <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <%end%> -->
+<div class="swipes-history-wrapper">
+<p>your swipes:</p>
+  <ul class="list-inline swipes-history"> 
+    <% @event.reviews.where(user_id: current_user.id).each do |review| %>
+      <li class="list-inline-item"> <img src="<%= review.event_movie.movie.cover%>"/> </li>
+    <% end %>
+  </ul>
+</div>

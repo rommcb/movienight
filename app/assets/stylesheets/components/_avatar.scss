@@ -23,8 +23,10 @@
     opacity: 0;
     // transition: opacity .8s ease-in .3s;
   }
+  
   &:hover {
     max-width: 200px;
+    min-width: 80px;
     .user-rest, .swipes {
       opacity:1;
     }
