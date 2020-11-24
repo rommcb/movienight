@@ -1,21 +1,16 @@
 
 
-
-
 <!-- main section for swipping -->
 <div class="main_div">
   <div class="title_div">
     <h1>Happy swiping!</h1>
     <p>Swipe until movies get matched.</p>
   </div>
-  <div class="thumb_div">
-      <button id="donotlikebtn"> Dislike</button>
-      <button id="likebtn"> Like</button>
-  </div>
+
 </div>
 <div id="parent_div" class="parent_div">
   <div id="move">
-    <div class="image_div">
+    <div class="image_div" id="img">
       <p id="movie_name"></p>
       <img src="#" alt="image" id="img_swipe" class="image">
     </div>
@@ -54,7 +49,6 @@
     <% end %>
   </ul>
 </div>
-
  <script>
  document.addEventListener('keyup', function(event) {
   const code = event.keyCode;
