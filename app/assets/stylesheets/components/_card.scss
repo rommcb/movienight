@@ -11,14 +11,13 @@ a:hover {
 
 .cards{
   display: flex;
-  width: 100%;
+  width: 100vw;
   height: 100%;
   overflow: scroll;
   position: absolute;
 }
+
 .card {
-  // overflow-y: scroll;
-  // box-sizing: content-box;
   background-image: 
     linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
     url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
@@ -39,7 +38,6 @@ a:hover {
   color: white;
      a h3 {
        font-size: 1.5rem;
-      //  position: absolute;
        &:hover {
          i {
           opacity: 1;

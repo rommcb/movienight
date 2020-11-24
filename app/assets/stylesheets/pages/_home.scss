@@ -1,4 +1,7 @@
 // Specific CSS for your home-page
+html{
+  overflow-y: overlay;
+}
 
 .action_home h1 {
   margin: 30px 0 10px 0;
@@ -64,3 +67,24 @@ border-radius: 24px;
   }
 }
 
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.8); 
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b30000; 
+}
