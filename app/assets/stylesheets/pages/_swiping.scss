@@ -1,6 +1,7 @@
 
 .main_div {
   text-align: center;
+  position: relative;
   color: white;
 }
 
@@ -9,18 +10,23 @@ margin-bottom: -5px;
 }
 
 .image_div img {
-  width: 15%;
+  width: 100%;
 }
 
 
 .thumb_div {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#likebtn {
+#move {
+  width: 30%;
+  position: absolute;
+  justify-content: center;
+}
+
+#likebtn, #deactivate {
   width: 100px;
   // font-weight: 400;
   text-align: center;
@@ -55,9 +61,10 @@ margin-bottom: -5px;
 .info-section{
   text-align: center;
   color: white;
-  bottom: 0;
+  // bottom: 0;
   // width: 50%;
   justify-content: space-evenly;
+  position: absolute;
   // flex-grow: 1;
 }
 

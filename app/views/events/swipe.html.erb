@@ -8,18 +8,20 @@
       <h1>Happy swiping!</h1>
       <p>Swipe until movies get matched.</p>
     </div>
+    <div id="move">
       <div class="image_div">
         <p id="movie_name"></p>
         <img src="#" alt="image" id="img_swipe" class="image">
       </div>
 
-    <div id="user_id" class="really_hidden"><%= @user_id %></div>
-    <div id="event_id" class="really_hidden"><%= @event_id %></div>
-    <div id="event_movie_id" class="really_hidden"></div>
-    <div class="thumb_div">
-      <button id="donotlikebtn"> Dislike</button>
-      <button id="likebtn"> Like</button>
+      <div id="user_id" class="really_hidden"><%= @user_id %></div>
+      <div id="event_id" class="really_hidden"><%= @event_id %></div>
+      <div id="event_movie_id" class="really_hidden"></div>
     </div>
+    <div class="thumb_div">
+        <button id="donotlikebtn"> Dislike</button>
+        <button id="likebtn"> Like</button>
+      </div>
     <div class="description_div">
       <div class="cards">
 

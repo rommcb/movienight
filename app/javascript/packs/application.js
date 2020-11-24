@@ -28,8 +28,11 @@ import "bootstrap";
 // Internal imports, e.g:
 import { events } from './autocomplete';
 import { act_event } from './autocomplete';
-import {movie} from './autocomplete';
-
+import { movie } from './swipe';
+import { dislike } from './swipe';
+import { like } from './swipe';
+import { dragElement } from './swipe';
+ 
 
 document.addEventListener('turbolinks:load', () => {
 
@@ -65,61 +68,15 @@ document.addEventListener('turbolinks:load', () => {
     react.addEventListener('click', (e) => { act_event(react, e) }, false);
   }
 
-  const likebtn = document.getElementById("donotlikebtn")
-  likebtn.addEventListener("click", function(item){
-    likebtn.id = "lkbtn"
-    item.preventDefault();
-    const like_event = document.getElementById("movie_name");
-    const like_event1= document.getElementById("img_swipe");
-    like_event.classList.add("slide-in-left");
-    like_event1.classList.add("slide-in-left");
+  if(document.getElementById('move')) {
+    dragElement(document.getElementById('move'))
+  }
 
-    const user_id = document.getElementById('user_id').innerHTML
-    const event_id = document.getElementById('event_id').innerHTML
-    const event_movie_id = document.getElementById('event_movie_id').innerHTML
-    const liked = 1
-    fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-    // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-      setTimeout(function(){
-        like_event.classList.remove("slide-in-left");
-        like_event1.classList.remove("slide-in-left");
-        likebtn.id = "donotlikebtn"
-        }, 600);
-      
-      setTimeout(function(){
-        movie(user_id, event_id)
-      }, 200)
-    })
-  });
+  const donotlikebtn = document.getElementById("donotlikebtn")
+  donotlikebtn.addEventListener("click", (item) => dislike(item, donotlikebtn));
   
-  const donotlikebtn = document.getElementById("likebtn")
-  donotlikebtn.addEventListener("click", function(item){
-    donotlikebtn.id = "dnt"
-    item.preventDefault();
-    const like_event2 = document.getElementById("movie_name");
-    const like_event3 = document.getElementById("img_swipe");
-    like_event2.classList.add("slide-in-right");
-    like_event3.classList.add("slide-in-right");
-
-    const user_id = document.getElementById('user_id').innerHTML
-    const event_id = document.getElementById('event_id').innerHTML
-    const event_movie_id = document.getElementById('event_movie_id').innerHTML
-    const liked = 1
-    fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-    // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-      setTimeout(function(){
-        like_event2.classList.remove("slide-in-right");
-        like_event3.classList.remove("slide-in-right");
-        donotlikebtn.id = "likebtn"
-        }, 600);
-      
-      console.log(user_id);
-      setTimeout(function(){
-        movie(user_id, event_id)
-      }, 300)
-      
-    })
-  });
+  const likebtn = document.getElementById("likebtn")
+  likebtn.addEventListener("click", (item) => like(item, likebtn));
   
   document.addEventListener('keyup', function(event) {
     const code = event.keyCode
@@ -129,16 +86,13 @@ document.addEventListener('turbolinks:load', () => {
         if (dntlkbtn != null){
           document.getElementById("donotlikebtn").click();
         }
-      
-      
     }
-      else if (code == '39') {
-        // Right
-        let lkbtn = document.getElementById("likebtn")
-        if (lkbtn != null) {
-          document.getElementById("likebtn").click();
-        }
-        
+    else if (code == '39') {
+      // Right
+      let lkbtn = document.getElementById("likebtn")
+      if (lkbtn != null) {
+        document.getElementById("likebtn").click();
+      }   
     }
   })
 });
