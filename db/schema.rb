@@ -52,6 +52,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_130223) do
     t.datetime "date_start", null: false
     t.text "description"
     t.string "code"
+    t.string "where"
     t.boolean "closed", default: false
   end
 
@@ -99,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_130223) do
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_movie_id", null: false
-    t.boolean "movie_liked", default: false
+    t.boolean "movie_liked"
     t.index ["event_movie_id"], name: "index_reviews_on_event_movie_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
@@ -112,7 +113,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_130223) do
     t.datetime "remember_created_at"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "username"
+    t.string "username", default: ""
     t.integer "max_duration_pref", default: 600
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

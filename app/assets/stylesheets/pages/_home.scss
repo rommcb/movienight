@@ -42,15 +42,18 @@ body {
   -webkit-filter: blur(20px);
 }
 
-body.action_home , body.sessions_body, body.registrations_body {
-  // background-image:
-  // linear-gradient(to top,rgba(0,0,0,.9) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.9) 90%),
-  // url("https://assets.nflxext.com/ffe/siteui/vlv3/84b453b4-0d46-4f2c-bd44-81aa6c19c6b5/8be25c2e-056c-4b9f-890f-e669c6b3c682/BE-fr-20201116-popsignuptwoweeks-perspective_alpha_website_large.jpg");
-  // background-size: cover;
-  // width: 100%;
-  // height: 100%;
-  // background-color: black;
-}
+// CSS that apply for the home page, sign in  and sign up
+// body.action_home , body.sessions_body, body.registrations_body {
+//   // background-image:
+//   // linear-gradient(to top,rgba(0,0,0,.9) 0,rgba(0,0,0,0) 50%,rgba(0,0,0,.9) 90%),
+//   // url("https://assets.nflxext.com/ffe/siteui/vlv3/84b453b4-0d46-4f2c-bd44-81aa6c19c6b5/8be25c2e-056c-4b9f-890f-e669c6b3c682/BE-fr-20201116-popsignuptwoweeks-perspective_alpha_website_large.jpg");
+//   // background-size: cover;
+//   // width: 100%;
+//   // height: 100%;
+//   // background-color: black;
+// }
+
+
 
 body.action_show {
   background-image:
@@ -104,7 +107,7 @@ border-radius: 24px;
 }
 
 
-// hidden or not picture
+// We be used for homepage, sign in and sign out
 .image_wrapper{
   position: absolute;
   z-index: -1;
@@ -114,16 +117,47 @@ border-radius: 24px;
   align-content: space-around;
   margin-top: -3.2%;
 
+
 }
 
+
+  // correct layout for the div
 .image_back {
- padding: 0px 25px 30px 25px;
-
+margin: 0px 25px 30px 25px;
+// border:5px solid white;
+box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 }
 
+.image_cover{
+border-radius: 5px;
+height: 100%;
+width: 100%;
+}
+
+// add a class show for homepage
 .really_hidden {
   display: block;
 }
 
+// fade in  for sign up page
+.fade-in {
+  -webkit-animation: fade-in 5s ease-in-out both;
+          animation: fade-in 5s ease-in-out both;
+}
 
-
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
