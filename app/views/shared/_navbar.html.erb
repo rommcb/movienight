@@ -32,7 +32,7 @@
         <ul class="list-inline members">
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
-              <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes"><%= @event.reviews.where(user_id: user.id).count %> <span class="swipes"> swipes</span></span>
+              <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes"><%= @event.reviews.where(user_id: user.id, movie_liked: true).count %> <span class="swipes"> likes</span></span>
             </li>
 
          <!--  <script>
