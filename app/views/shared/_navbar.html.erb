@@ -37,25 +37,6 @@
               <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes"><%= @event.reviews.where(user_id: user.id, movie_liked: true).count %> <span class="swipes"> likes</span></span>
             </li>
 
-         <!--  <script>
-              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
-                avatar.addEventListener("mouseover", (event) => {
-                  avatar.innerHTML = avatar.title;
-                  avatar.classList.add("fullname");
-                });
-              });
-
-              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
-                avatar.addEventListener("mouseout", (event) => {
-                  console.log(avatar.title);
-                  avatar.innerHTML = avatar.innerHTML.charAt(0);
-                  avatar.classList.remove("fullname");
-                });
-              });
-
-
-            </script>
--->
           <%end%>
         </ul>
       <%end%>
@@ -77,3 +58,23 @@
 </div>
 
 
+
+         <!--  <script>
+              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
+                avatar.addEventListener("mouseover", (event) => {
+                  avatar.innerHTML = avatar.title;
+                  avatar.classList.add("fullname");
+                });
+              });
+
+              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
+                avatar.addEventListener("mouseout", (event) => {
+                  console.log(avatar.title);
+                  avatar.innerHTML = avatar.innerHTML.charAt(0);
+                  avatar.classList.remove("fullname");
+                });
+              });
+
+
+            </script>
+-->

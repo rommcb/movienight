@@ -75,7 +75,7 @@ margin-bottom: -5px;
 }
 
 .nav_buttons {
-  width: 100%;
+  width: 99vw;
   height: 55%;
   padding: 50px;
   position: absolute;
@@ -119,61 +119,63 @@ margin-bottom: -5px;
       padding-left: 0px;
   }
   
-.container {
-  position: relative;
-  height: 80vh;
-}
+
 
 .swipes-history-wrapper {
   height: 130px; 
   position: absolute;
-  bottom: 0;
-  // left: 50%;
+  bottom: 20px;
+  p {
+    margin-bottom: .5rem;
+  }
+  li {
+    margin-bottom: 5px;
+  }
 }
 
-.swipes-history {
-  height: 120px; 
+
+.horizontal-scroll {
   overflow-x: auto; 
   overflow-y: hidden; 
-  white-space: nowrap; 
+  white-space: nowrap;
+  /* width */
+  &::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+  }
+
+  /* Handle on hover */
+  &::-webkit-scrollbar-thumb:hover {
+    background: #b30000;
+  }
 }
-
-
-
 
 
 @media (min-width: 576px){
   .swipes-history-wrapper {
-    max-width: 540px;
+    max-width: 510px;
   }  
-  .swipes-history {
-    left: -270px;
-  }
 }
 
 @media (min-width: 768px){
   .swipes-history-wrapper {
-      max-width: 720px;
-  }
-  .swipes-history {
-      left: -360px;
+      max-width: 690px;
   }
 }
 
 @media (min-width: 992px) {
   .swipes-history-wrapper {
-      max-width: 960px;
+      max-width: 930px;
   } 
-  .swipes-history {
-    left: -480px;
-  }
 }
 
 @media (min-width: 1200px){
   .swipes-history-wrapper {
-      max-width: 1140px;
-  }
-  .swipes-history {
-    left: -570px;
+      max-width: 1110px;
   }
 }
