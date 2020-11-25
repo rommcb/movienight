@@ -150,7 +150,6 @@ class PagesController < ApplicationController
     SELECT m.id FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
-    left join event_movies EM ON EM.movie_id=m.id
     left join event_movies EM ON EM.movie_id=m.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
     WHERE\n"
