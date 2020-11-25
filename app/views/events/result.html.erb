@@ -1,6 +1,25 @@
+
+<!-- Part I -->
+<!-- <div class="image_wrapper">
+    <div class="image_back parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg"></div>
+    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/9/9d/Disney_The_Lion_King_2019.jpg"></div>
+    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"></div>
+    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/220px-12_Angry_Men_%281957_film_poster%29.jpg"></div>
+    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tenet_movie_poster.jpg/220px-Tenet_movie_poster.jpg"></div>
+
+    <div class="image_back  parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/1/19/Titanic_%28Official_Film_Poster%29.png"></div>
+    <div class="image_back parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Beauty_and_the_Beast_2017_poster.jpg"></div>
+    <div class="image_back  parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Affiche_97_Fatima_Fr.jpg/220px-Affiche_97_Fatima_Fr.jpg"></div>
+</div>
+
+
+ -->
+
+
+<!-- Part II -->
 <h1 class="h1_center">And the winner is!</h1>
 <div id="res_title" class="really_hidden"><%= @movie.title %></div>
-<div id="parent_div" class="parent_div">
+<div id="parent_div" class="parent_div really_hidden">
   <div id="move_1">
     <div class="image_div_1" id="img">
       <p id="movie_name"><%= @movie.title %></p>
@@ -11,3 +30,16 @@
 <div class="res_button">
 <%= link_to "Restart Event!", edit_event_path(@event.id), class: :res_link%>
 </div>
+
+<button id="reveal_btn" type="button"> favorites</button>
+
+
+<script>
+const reveal_div = document.getElementById("reveal_btn")
+reveal_div.addEventListener ("click", function(){
+console.log(reveal_div)
+const unhidden = document.getElementsByClassName("parent_div");
+console.log(unhidden)
+unhidden[0].classList.toggle("really_hidden")
+});
+</script>

@@ -1,6 +1,6 @@
 let cardTransitionTime = 500;
 
-export function flipCard () {  
+export function flipCard () {
   document.getElementsByClassName('js-card')[0].classList.toggle('is-switched')
   window.setTimeout(function () {
       document.getElementsByClassName('card__side')[0].classList.toggle("is-active")
@@ -9,8 +9,8 @@ export function flipCard () {
 }
 
 export function movie(user_id, event_id){
-  fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
 
     if(json['closed'] == 1) {
       window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
@@ -32,11 +32,11 @@ export function movie(user_id, event_id){
     .then((json) => {
       let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
       document.getElementById("move").style.opacity = 0
-      document.getElementById("move").style.top ="0px"; 
+      document.getElementById("move").style.top ="0px";
       document.getElementById("move").style.left ="-150px";
       document.getElementById("move").style.color = "white";
-      document.getElementById("move").style.height = "454px"; 
-      document.getElementById("move").style.width = "280px"; 
+      document.getElementById("move").style.height = "454px";
+      document.getElementById("move").style.width = "280px";
       document.getElementById("img").style.padding = "10px";
       document.getElementById("move").style.fontSize = "15px";
 
@@ -50,10 +50,10 @@ export function movie(user_id, event_id){
       } else {
         document.getElementById('deactivaten').style.opacity = 0.3;
       }
-      
 
-      
-      
+
+
+
       smooth(document.getElementById("move"), 1)
 
       // document.getElementsByClassName('bg-image')[0].style.opacity = 0
@@ -65,9 +65,9 @@ export function movie(user_id, event_id){
 
       document.getElementsByClassName('image')[0].src = src
     })
-    
+
     document.getElementById("movie_director").innerHTML = `Director: ${json['director']}`
-    document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
+    document.getElementById("movie_synopsys").innerHTML = json['synopsis']
     document.getElementById("movie_actors").innerHTML =  `Actors: ${json['actors']}`
     document.getElementById("small_img").innerHTML = json['cover']
   })
@@ -94,13 +94,13 @@ function dislike_fn(item, donotlikebtn){
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
   const liked = 0
-  fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+   fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       // like_event.classList.remove("slide-in-left");
       donotlikebtn.id = "donotlikebtn"
       }, 600);
-    
+
     setTimeout(function(){
       movie(user_id, event_id)
     }, 350)
@@ -129,13 +129,13 @@ function like_fn(item, likebtn){
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
   const liked = 1
-  fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+   fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       // like_event2.classList.remove("slide-in-right");
       likebtn.id = "likebtn"
       }, 600);
-    
+
     setTimeout(function(){
       movie(user_id, event_id)
     }, 350)
@@ -147,7 +147,7 @@ export function dragElement(elmnt) {
   const init_x = elmnt.offsetTop
   const init_y = elmnt.offsetLeft
   elmnt.onmousedown = dragMouseDown;
-  
+
 
   function dragMouseDown(e) {
     e = e || window.event;
@@ -192,7 +192,7 @@ export function dragElement(elmnt) {
   }
 
   function myMove(final_x, final_y) {
-    var elem = document.getElementById("move");   
+    var elem = document.getElementById("move");
     var id = setInterval(frame, 5);
     let x = elem.style.left;
     x = parseInt(x.substring(0, x.length - 2));
@@ -205,7 +205,7 @@ export function dragElement(elmnt) {
       } else if (x < -500) {
         clearInterval(id);
         document.getElementById("donotlikebtn").click();
-        
+
       } else {
         elmnt.style.color = 'white';
         if (x == final_x && y == final_y) {
@@ -225,8 +225,8 @@ export function dragElement(elmnt) {
           } else if(final_y < y) {
             y -= move_y
           }
-          elem.style.top = y + "px"; 
-          elem.style.left = x + "px"; 
+          elem.style.top = y + "px";
+          elem.style.left = x + "px";
         }
       }
     }
@@ -259,7 +259,7 @@ export function myMoveLike(val) {
     final_x = -600
     final_y = 200
   }
-  var elem = document.getElementById("move");   
+  var elem = document.getElementById("move");
   var id = setInterval(frame, 5);
   let x = elem.style.left;
   x = parseInt(x.substring(0, x.length - 2));
@@ -293,7 +293,7 @@ export function myMoveLike(val) {
       } else {
         padding = parseInt(padding.substring(0, padding.length -2))
       }
-      
+
 
       let t_size = elem.style.fontSize
       if(t_size == ""){
@@ -310,7 +310,7 @@ export function myMoveLike(val) {
       }
       let small_x = Math.ceil((size_x/20))
       let small_y = Math.ceil((size_y/20))
-      
+
       if(final_x > x){
         x += move_x
       } else if(final_x < x) {
@@ -327,15 +327,15 @@ export function myMoveLike(val) {
       t_size = t_size - 1
       padding = padding - 1
 
-      elem.style.top = y + "px"; 
+      elem.style.top = y + "px";
       elem.style.left = x + "px";
-      elem.style.height = s_y + "px"; 
-      elem.style.width = s_x + "px"; 
+      elem.style.height = s_y + "px";
+      elem.style.width = s_x + "px";
       document.getElementById('img').style.padding = padding + "px"
       elem.style.fontSize = t_size + "px"
       elem.style.opacity = opacity - 0.02
       document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.012
     }
-    
+
   }
 }
