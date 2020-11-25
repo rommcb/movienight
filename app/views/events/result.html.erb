@@ -1,4 +1,13 @@
-<h1>This movie was chosen:</h1>
-<h2><%= @movie.title %></h2>
-
-<%= link_to "restart", edit_event_path(@event.id)%>
+<h1 class="h1_center">And the winner is!</h1>
+<div id="res_title" class="really_hidden"><%= @movie.title %></div>
+<div id="parent_div" class="parent_div">
+  <div id="move_1">
+    <div class="image_div_1" id="img">
+      <p id="movie_name"><%= @movie.title %></p>
+      <img src="#" alt="image" id="img_result" class="image">
+    </div>
+  </div>
+</div>
+<div class="res_button">
+<%= link_to "Restart Event!", edit_event_path(@event.id), class: :res_link%>
+</div>

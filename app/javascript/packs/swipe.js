@@ -24,6 +24,7 @@ export function movie(user_id, event_id){
       document.getElementById(`c_${id}`).innerHTML = count
     });
     document.getElementById("movie_name").innerHTML = `${json['title']}`
+    document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${json['title']}`)
     .then(response => response.json())
@@ -231,7 +232,7 @@ export function dragElement(elmnt) {
   }
 }
 
-function smooth(elem, max) {
+export function smooth(elem, max, time = 200.0) {
   var id = setInterval(frame, 5);
   function frame() {
       let opacity = parseFloat(elem.style.opacity)
@@ -241,7 +242,7 @@ function smooth(elem, max) {
       if (opacity >= max) {
         clearInterval(id);
       } else {
-        let n_o = opacity+0.015
+        let n_o = opacity+(max/time)
         elem.style.opacity = `${n_o}`
       }
     }
