@@ -1,3 +1,25 @@
+.h1_center{
+  text-align: center;
+}
+
+.res_button {
+  padding-top: 10px;
+  text-align: center;  
+}
+.res_link{
+  font-size: larger;
+  padding: 8px;
+  width: 50px;
+  border: 1px solid black;
+  color: black;
+  transition: all 1s ease;
+}
+.res_link:hover{
+  border: 1px solid white;
+  color: white;
+  transition: all 1s ease;
+  opacity: 0.7;
+}
 
 .main_div {
   text-align: center;
@@ -22,10 +44,22 @@ margin-bottom: -5px;
   border-radius: 5px;
 }
 
+.image_div_1 img {
+  width: 100%;
+  border-radius: 5px;
+}
+
 .image_div {
   padding: 10px;
   background-color: rgb(61, 61, 61);
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
+  #movie_name {
+    margin-bottom: 10px;
+  }
+  border-radius: 5px;
+}
+
+.image_div_1 {
   #movie_name {
     margin-bottom: 10px;
   }
@@ -48,8 +82,23 @@ margin-bottom: -5px;
 #move {
   position: absolute;
   text-align: center;
+  border-radius: 5px;
   width: 100%;
   left: -150px;
+  opacity: 1.0;
+}
+
+#move_1{
+  position: absolute;
+  text-align: center;
+  border-radius: 5px;
+  color: black;
+  padding: 10px;
+  background-color: rgb(204, 198, 198);
+  box-shadow: 0px 0px 40px rgb(204, 198, 198);
+  width: 100%;
+  left: -150px;
+  top: 130px;
   opacity: 1.0;
 }
 
