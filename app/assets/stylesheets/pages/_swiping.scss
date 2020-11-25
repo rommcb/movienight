@@ -35,7 +35,7 @@ margin-bottom: -5px;
 .parent_div {
   position: absolute;
   width: 300px;
-  top: 100px;
+  top: 0px;
   left: 50%;
 }
 
@@ -93,12 +93,34 @@ margin-bottom: -5px;
   top: 175px;
 }
 
+#redo_img {
+  position: absolute;
+  left: 240px;
+  top: 400px;
+}
 
+#redo_info{
+  position: absolute;
+  left: 240px;
+  top: 420px;
+}
+
+#redo_img:hover, #redo_info:hover {
+  color: darkgray;
+}
 
 
 // description bar
 
 // display a little bit nicer the collumn
+.card__side--back {
+  width: 280px;
+  height: 454px;
+  margin-left: 25px;
+  padding: 10px;
+  background-color:  rgb(61, 61, 61);
+  border-radius: 5px;
+}
 .column  {
   display: block;
   margin-block-start: 1em;
@@ -111,11 +133,6 @@ margin-bottom: -5px;
 .info-section{
   text-align: center;
   color: white;
-  // bottom: 0;
-  // width: 50%;
-  justify-content: space-evenly;
-  position: absolute;
-  // flex-grow: 1;
 }
 
 .really_hidden {
