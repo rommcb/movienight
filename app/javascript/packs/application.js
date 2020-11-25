@@ -94,11 +94,31 @@ document.addEventListener('turbolinks:load', () => {
     dragElement(document.getElementById('move'))
   }
 
+  let dnt_pushed = false
   const donotlikebtn = document.getElementById("donotlikebtn")
-  donotlikebtn.addEventListener("click", (item) => dislike(item, donotlikebtn));
-  
+  donotlikebtn.addEventListener("click", (item) => {
+    if(dnt_pushed == true){
+      return false;
+    }
+    dnt_pushed = true
+    dislike(item, donotlikebtn)
+    setTimeout(function(){
+      dnt_pushed = false
+    }, 800)
+  });
+  let lk_pushed = false
   const likebtn = document.getElementById("likebtn")
-  likebtn.addEventListener("click", (item) => like(item, likebtn));
+  likebtn.addEventListener("click", (item) => {
+    if(lk_pushed == true){
+      return false
+    }
+    lk_pushed = true
+    like(item, likebtn)
+    setTimeout(function(){
+      lk_pushed = false
+    }, 800)
+    
+  } );
   
   document.addEventListener('keyup', function(event) {
     const code = event.keyCode

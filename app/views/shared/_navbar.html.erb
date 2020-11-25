@@ -27,7 +27,7 @@
       <% if @event && @event.name %>
 
         <ul class="list-inline members">
-          <li class="list-inline-item" title="matches" style="color:yellow; font-size: 35px;">
+          <li class="list-inline-item" title="matches" id='matches' style="color:yellow; font-size: 35px;">
             <% count = @event.event_movies.where(score: @event.users.count ).count %>
             <%= count %><i class="fas fa-star"></i>
           </li>
