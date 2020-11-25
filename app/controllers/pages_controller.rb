@@ -110,7 +110,7 @@ class PagesController < ApplicationController
       c_arr.push([u_id, count])
     end
     hash['count'] = c_arr
-    
+    hash['matches'] = event.event_movies.where(score: event.users.count ).count
 
     cors_set_access_control_headers
     render json: hash
