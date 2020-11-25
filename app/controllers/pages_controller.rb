@@ -96,6 +96,22 @@ class PagesController < ApplicationController
     hash['synopsis'] = @movie.synopsis
     hash['cover'] = @movie.cover
 
+    event = Event.find(event_id)
+    if(event.closed == true)
+      hash['closed'] = 1
+    else 
+      hash['closed'] = 0
+    end
+    c_arr = []
+    users = event.users
+    users.each do |user|
+      u_id = user.id
+      count = event.reviews.where(user_id: u_id, movie_liked: true).count
+      c_arr.push([u_id, count])
+    end
+    hash['count'] = c_arr
+    
+
     cors_set_access_control_headers
     render json: hash
   end
