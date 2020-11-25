@@ -40,7 +40,6 @@ export function movie(user_id, event_id){
         document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
         smooth(document.getElementsByClassName('bg-image')[0], 0.75)
 
-
         document.getElementById("move").style.opacity = 0
         document.getElementById("move").style.top ="0px"; 
         document.getElementById("move").style.left ="-150px";
