@@ -3,10 +3,11 @@
   padding: 0;
   margin: 0;
   position:absolute;
-  width: 650px;
+  width: 100%;
   display: block;
   overflow: hidden; overflow-y:scroll;
   z-index: 100;
+  background-color: white;
 }
 
 .drop-title {
@@ -43,7 +44,7 @@
 }
 
 .pref_text {
-  width: 650px;
+  // width: 650px;
 }
 
 #locked_actor, #locked_genre, #locked_director {
@@ -52,17 +53,17 @@
 
 
 .item_card{
+  margin: 0.3rem .2rem 0 0;
   position: relative;
-  background-color: lightskyblue;
+  background-color: $green;
   display: inline-block;
-  padding: 5px 20px 5px 5px;
-  font-size: 10px;
-  font-weight: bold;
+  padding: 6px 25px 5px 10px;
+  font-size: 14px;
+  // font-weight: bold;
   white-space: nowrap;
-  color: black;
-  border-radius: 10px;
+  color: white;
+  border-radius: 16px;
   overflow: hidden;
-  margin-right: 10px;
 }
 
 .txt {
@@ -74,7 +75,9 @@
 
 .x {
   display: inline;
-  color: red;
-  position:absolute;
-  right: 5px;
+  color: #13131345;
+  position: absolute;
+  right: 11px;
+  font-weight: bold;
+  cursor: pointer;
 }

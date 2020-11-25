@@ -1,45 +1,68 @@
-<h1>Hey</h1>
 
-<form action="/preferences/save" method='POST' autocomplete="off">
+<div class="banner">
+  <div class="form-wrapper">
+
+
+<h1>Your movie preferences</h1>
+
+<form action="/preferences/save" method='POST' autocomplete="off" class="simple_form">
   <input name="authenticity_token" type="hidden" value=<%= @token %> />
 
-  <div class="container">
-    <div id="locked_actor">
-    </div>
-    <div>
-      <input type="text" name="actor_pref" id="actor_pref" class="pref_text" placeholder="Actor fullname">
-      <ul id="results_actor" class="results">
-      </ul>
-      <input type="hidden" name="actor_list" id="actor_list" value="<%=@actor_str %>">
-    </div>
-  </div>
 
-  <div class="container">
-    <div id="locked_genre">
+    
+    <div class="form-group string optional">
+      <label for="actor_pref">Favorite actors:</label>
+      
+      <input type="text" name="actor_pref" id="actor_pref" class="pref_text form-control string optional" placeholder="Add an actor">
+      
+      <ul id="results_actor" class="results"></ul>
+      <div id="locked_actor"></div>
+      <input type="hidden"  name="actor_list" id="actor_list" value="<%=@actor_str %>">
     </div>
-    <div>
-      <input type="text" name="genre_pref" id="genre_pref" class="pref_text" placeholder="Genre name">
-      <ul id="results_genre" class="results">
-      </ul>
+ 
+
+
+    
+    <div class="form-group string optional">
+      <label for="genre_pref">Favorite genres:</label>
+      <input type="text" name="genre_pref" id="genre_pref" class="pref_text form-control string optional" placeholder="Add a genre">
+      <ul id="results_genre" class="results"></ul>
+      <div id="locked_genre"></div>
       <input type="hidden" name="genre_list" id="genre_list" value="<%= @genre_str %>">
     </div>
-  </div>
+ 
 
-  <div class="container">
-    <div id="locked_director">
-    </div>
-    <div>
-      <input type="text" name="director_pref" id="director_pref" class="pref_text" placeholder="Director fullname">
-      <ul id="results_director" class="results">
-      </ul>
+
+    
+    <div class="form-group string optional">
+      <label for="director_pref" class="text optional">Favorite directors:</label>
+      <input type="text" name="director_pref" id="director_pref" class="pref_text form-control string optional" placeholder="Add a director">
+      <ul id="results_director" class="results"></ul>
+      <div id="locked_director"></div>
       <input type="hidden" name="director_list" id="director_list"value="<%= @director_str %>">
     </div>
-  </div>
+ 
 
-   <div id="container">
-    <label for="duration">Max_time</label>
-    <input type="text" name="duration" id="duration">
-  </div>
 
-  <input type="submit"> 
+    <div class="form-group string optional">
+      <label for="duration">Maximum duration: <span id="textInput">
+        <% if current_user.max_duration_pref != 600 %>
+          <%= current_user.max_duration_pref %>
+        <%else%>
+          no limit
+        <%end%>
+      </span> min.</label>
+      <input type="range" min="20" max="600" name="duration" id="duration" class="form-control string optional" onchange="updateTextInput(this.value);">
+    </div>
+
+  <input type="submit" class="btn btn-primary" value="Save preferences"> 
 </form>
+
+  </div>
+</div>
+
+    <script>
+        function updateTextInput(val) {
+          document.getElementById('textInput').innerText=val; 
+        }
+    </script>

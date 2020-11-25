@@ -11,11 +11,11 @@ export function flipCard () {
 export function movie(user_id, event_id){
   fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
   // fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+
     if(json['closed'] == 1) {
       window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
       // window.location.replace(`http://localhost:3000/event/result/${event_id}`);
     }
-
 
     let c_arr = json['count']
     c_arr.forEach((item) => {
@@ -23,6 +23,7 @@ export function movie(user_id, event_id){
       let count = item[1]
       document.getElementById(`c_${id}`).innerHTML = count
     });
+
     document.getElementById("movie_name").innerHTML = `${json['title']}`
     document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
