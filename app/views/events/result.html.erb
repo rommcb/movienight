@@ -19,30 +19,26 @@
 
 
 
-<h1 class="h1_center">And the winner is!</h1>
-<div id="res_title" class="really_hidden"><%= @movie.title %></div>
-<div id="parent_div" class="parent_div really_hidden">
-  <div id="move_1">
-    <div class="image_div_1" id="img">
-      <p id="movie_name"><%= @movie.title %></p>
-      <img src="#" alt="image" id="img_result" class="image">
+<h1 id="winner"  class="h1_center">And the winner is!</h1>
+<% @movies.each do |movie| %>
+<div class="movie really_hidden">
+  <div class="res_title really_hidden"><%= movie.title %></div>
+  <div class="parent_div parent_div">
+    <div class="move_1">
+      <div class="image_div_1" id="img">
+        <p id="movie_name"><%= movie.title %></p>
+        <img src="#" alt="image" id="img_result" class="image<%= movie.id%>">
+      </div>
     </div>
   </div>
 </div>
+<% end %>
+ <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
 <div class="res_button">
 <%= link_to "Restart Event!", edit_event_path(@event.id), class: :res_link%>
 </div>
+<% end %>
 
 
-<button id="reveal_btn" type="button"> favorites</button>
+<button id="reveal_btn" type="button"> I dont like that one</button>
 
-
-<script>
-const reveal_div = document.getElementById("reveal_btn")
-reveal_div.addEventListener ("click", function(){
-console.log(reveal_div)
-const unhidden = document.getElementsByClassName("parent_div");
-console.log(unhidden)
-unhidden[0].classList.toggle("really_hidden")
-});
-</script>
