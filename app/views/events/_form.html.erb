@@ -1,7 +1,7 @@
 <%= simple_form_for @event do |f| %>
   <%= f.input :name %>
   <%= f.input :description %>
-  <%= f.input :date_end %>
+  <%= f.input :date_end, label: "When will it take place?"     %>
 
   <%= f.button :submit, class: 'btn btn-primary' %>
 <% end %>
