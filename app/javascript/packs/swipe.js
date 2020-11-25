@@ -17,7 +17,6 @@ export function movie(user_id, event_id){
       // window.location.replace(`http://localhost:3000/event/result/${event_id}`);
     }
 
-
     let c_arr = json['count']
     c_arr.forEach((item) => {
       let id = item[0]
