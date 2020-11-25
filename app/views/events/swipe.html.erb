@@ -8,37 +8,43 @@
   </div>
 
 </div>
-<div id="parent_div" class="parent_div">
-  <div id="move">
-    <div class="image_div" id="img">
-      <p id="movie_name"></p>
-      <img src="#" alt="image" id="img_swipe" class="image">
-    </div>
-
-    <div id="user_id" class="really_hidden">
-      <%= @user_id %>
-    </div>
-    <div id="small_img" class="really_hidden"></div>
-
-    <div id="event_id" class="really_hidden">
-      <%= @event_id %>
-    </div>
-
-    <div id="event_movie_id" class="really_hidden">
-    </div>
-  </div>
-</div>
 <!-- description section -->
-<div class="info-section really_hidden" >
-  <div class="column">
-    <h3>More information:</h3>
-      <ul class="list-inline">
-        <li id="movie_title_small">Movie title:</li>
-        <li id="movie_actors">Actors:</li>
-        <li id="movie_director">Director(s):</li>
-      <%# <li id="movie_duration">Duration:</li> %>
-        <li id="movie_synopsys">Synopsys:</li>
-      </ul>
+<div class="card_flip js-card">
+  <div class="card__wrappers">
+    <div class="card__side is-active">
+      <div id="parent_div" class="parent_div">
+        <div id="move">
+          <div class="image_div" id="img">
+            <p id="movie_name"></p>
+            <img src="#" alt="image" id="img_swipe" class="image">
+            <i class="fas fa-redo" id="redo_img"></i>
+          </div>
+
+          <div id="user_id" class="really_hidden">
+            <%= @user_id %>
+          </div>
+          <div id="small_img" class="really_hidden"></div>
+
+          <div id="event_id" class="really_hidden">
+            <%= @event_id %>
+          </div>
+
+          <div id="event_movie_id" class="really_hidden">
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card__side card__side--back">
+        <h3>More information:</h3>
+        <ul class="list-inline">
+          <li id="movie_title_small">Movie title:</li>
+          <li id="movie_actors">Actors:</li>
+          <li id="movie_director">Director(s):</li>
+        <%# <li id="movie_duration">Duration:</li> %>
+          <li id="movie_synopsys">Synopsys:</li>
+        </ul>
+        <i class="fas fa-redo" id="redo_info"></i>
+    </div>
   </div>
 </div>
 
@@ -50,18 +56,6 @@
     <% end %>
   </ul>
 </div>
- <script>
- document.addEventListener('keyup', function(event) {
-  const code = event.keyCode;
-    if (code == '40') {
-        // down
-      const info_hidden = document.getElementsByClassName("info-section")[0];
-      info_hidden.classList.toggle("really_hidden");
-    }
-
- })
-</script>
-
 
 <!-- Nice to have -->
 <!-- should it be there? -->

@@ -33,6 +33,7 @@ import { dislike } from './swipe';
 import { like } from './swipe';
 import { dragElement } from './swipe';
 import { myMoveLike } from './swipe';
+import { flipCard } from './swipe';
  
 
 document.addEventListener('turbolinks:load', () => {
@@ -72,6 +73,7 @@ document.addEventListener('turbolinks:load', () => {
     react.addEventListener('click', (e) => { act_event(react, e) }, false);
   }
 
+  
   if(document.getElementById('move')) {
     dragElement(document.getElementById('move'))
   }
@@ -99,4 +101,54 @@ document.addEventListener('turbolinks:load', () => {
       }   
     }
   })
+
+  let switching = false
+  const img2 = document.getElementById('redo_info')
+  if(img2 != null){
+    img2.addEventListener('click', () => {
+      if(document.getElementsByClassName('card__wrappers')[0] != undefined ){
+        document.getElementsByClassName('card__wrappers')[0].className = 'card__wrapper'
+      }
+      if (switching) {
+        return false
+      }
+      console.log('hey');
+      switching = true
+      flipCard()
+      switching = false
+    })
+  }
+  const img = document.getElementById('redo_img')
+  if(img != null){
+    img.addEventListener('click', () => {
+      if(document.getElementsByClassName('card__wrappers')[0] != undefined ){
+        document.getElementsByClassName('card__wrappers')[0].className = 'card__wrapper'
+      }
+      if (switching) {
+        return false
+      }
+      console.log('hey');
+      switching = true
+      flipCard()
+      switching = false
+    })
+  }
+
+  document.addEventListener('keyup', function(event) {
+    const code = event.keyCode;
+      if (code == '40') {
+          // down
+        // const info_hidden = document.getElementsByClassName("info-section")[0];
+        // info_hidden.classList.toggle("really_hidden");
+        if(document.getElementsByClassName('card__wrappers')[0] != undefined ){
+          document.getElementsByClassName('card__wrappers')[0].className = 'card__wrapper'
+        }
+        if (switching) {
+          return false
+        }
+        switching = true
+        flipCard()
+        switching = false
+      }
+   })
 });
