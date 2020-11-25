@@ -46,7 +46,6 @@ margin-bottom: -5px;
 }
 
 #move {
-  z-index: 101;
   position: absolute;
   text-align: center;
   width: 100%;
@@ -55,23 +54,27 @@ margin-bottom: -5px;
 }
 
 #likebtn, #deactivatel {
-  z-index: 100;
+  z-index: 1;
   display: none;
   width: 35%;
   height: 100%;
-  border: 13px solid rgba(136, 136, 136, 0.25);
+  border: 13px solid rgb(136, 136, 136);
+  color:rgb(136, 136, 136);
   border-radius: 40px;
+  opacity: 0.3;
   // vertical-align: middle;
   left: 0%;
 }
 
 #donotlikebtn, #deactivaten {
-  z-index: 100;
+  z-index: 1;
   display: none;
   width: 35%;
   height: 100%;
-  border: 13px solid rgba(136, 136, 136, 0.25);
+  border: 13px solid rgb(136, 136, 136);
+  color:rgb(136, 136, 136);
   border-radius: 40px;
+  opacity: 0.3;
   // vertical-align: middle;
   left: 20%;
 }
@@ -80,7 +83,6 @@ margin-bottom: -5px;
   text-align: center;
   font-size: 100px;
   margin: 100px;;
-  color:rgba(136, 136, 136, 0.25);
 }
 
 .nav_buttons {

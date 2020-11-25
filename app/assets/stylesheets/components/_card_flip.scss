@@ -1,6 +1,7 @@
 $card-transition-time: 0.5s;
 
 .card_flip {
+    z-index: 10000;
    perspective: 600px;
    position: relative;
    
