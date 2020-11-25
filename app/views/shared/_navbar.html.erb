@@ -9,7 +9,7 @@
       <div class="dropdown-content">
         <% current_user.event_ids.each  do |event|  %>
           <% if @event.name != Event.find(event).name %>
-            <%= link_to Event.find(event).name, event_path(event)%>
+            <%= link_to Event.find(event).name, swipe_path(event)%>
           <% end %>
         <% end %>
       </div>
