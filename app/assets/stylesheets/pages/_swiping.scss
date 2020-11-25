@@ -102,6 +102,20 @@ margin-bottom: -5px;
   opacity: 1.0;
 }
 
+.move_1{
+  position: absolute;
+  text-align: center;
+  border-radius: 5px;
+  color: black;
+  padding: 10px;
+  background-color: rgb(204, 198, 198);
+  box-shadow: 0px 0px 40px rgb(204, 198, 198);
+  width: 100%;
+  left: -150px;
+  top: 130px;
+  opacity: 1.0;
+}
+
 #likebtn, #deactivatel {
   z-index: 1;
   display: none;
