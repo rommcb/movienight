@@ -46,9 +46,13 @@ class EventsController < ApplicationController
   def stop
     event = Event.find(params[:id])
     if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id
-      event.closed = true
-      event.save!
-      redirect_to(result_path(event.id))
+      if event_movies = EventMovie.where("event_id = #{event.id} AND score > 0").length == 0
+        redirect_to(swipe_path(event.id))
+      else
+        redirect_to(result_path(event.id))
+        event.closed = true
+        event.save!
+      end
     end
   end
 
@@ -59,7 +63,7 @@ class EventsController < ApplicationController
     @movie = Movie.find(event_movies.first.movie.id)
   end
 
-  def restart
+  def restart                                                                             
     raise
   end
 
