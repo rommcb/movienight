@@ -11,7 +11,22 @@ export function flipCard () {
 export function movie(user_id, event_id){
   fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
   // fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+
+    if(json['closed'] == 1) {
+      window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
+      // window.location.replace(`http://localhost:3000/event/result/${event_id}`);
+    }
+
+
+    let c_arr = json['count']
+    c_arr.forEach((item) => {
+      let id = item[0]
+      let count = item[1]
+      document.getElementById(`c_${id}`).innerHTML = count
+    });
+
     document.getElementById("movie_name").innerHTML = `${json['title']}`
+    document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
     fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${json['title']}`)
     .then(response => response.json())
@@ -23,8 +38,23 @@ export function movie(user_id, event_id){
       document.getElementById("move").style.color = "white";
       document.getElementById("move").style.height = "454px"; 
       document.getElementById("move").style.width = "280px"; 
-      document.getElementById("img").style.padding = "10px"
-      document.getElementById("move").style.fontSize = "15px"
+      document.getElementById("img").style.padding = "10px";
+      document.getElementById("move").style.fontSize = "15px";
+
+      if(document.getElementById('likebtn')){
+        document.getElementById('likebtn').style.opacity = 0.3;
+      } else {
+        document.getElementById('deactivatel').style.opacity = 0.3;
+      }
+      if (document.getElementById('donotlikebtn')){
+        document.getElementById('donotlikebtn').style.opacity = 0.3;
+      } else {
+        document.getElementById('deactivaten').style.opacity = 0.3;
+      }
+      
+
+      
+      
       smooth(document.getElementById("move"), 1)
 
       // document.getElementsByClassName('bg-image')[0].style.opacity = 0
@@ -144,10 +174,12 @@ export function dragElement(elmnt) {
     elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
     let x = elmnt.style.left
     if(parseInt(x.substring(0, x.length - 2)) > 200){
-      elmnt.style.color = 'green';
+      document.getElementById('likebtn').style.opacity = 1
     } else if (parseInt(x.substring(0, x.length - 2)) < -500) {
-      elmnt.style.color = 'red';
+      document.getElementById('donotlikebtn').style.opacity = 1
     } else {
+      document.getElementById('likebtn').style.opacity = 0.3
+      document.getElementById('donotlikebtn').style.opacity = 0.3
       elmnt.style.color = 'white';
     }
   }
@@ -202,7 +234,7 @@ export function dragElement(elmnt) {
   }
 }
 
-function smooth(elem, max) {
+export function smooth(elem, max, time = 200.0) {
   var id = setInterval(frame, 5);
   function frame() {
       let opacity = parseFloat(elem.style.opacity)
@@ -212,7 +244,7 @@ function smooth(elem, max) {
       if (opacity >= max) {
         clearInterval(id);
       } else {
-        let n_o = opacity+0.015
+        let n_o = opacity+(max/time)
         elem.style.opacity = `${n_o}`
       }
     }
