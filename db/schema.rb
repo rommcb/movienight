@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_130223) do
   create_table "reviews", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "event_movie_id", null: false
-    t.boolean "movie_liked"
+    t.boolean "movie_liked", default: false
     t.index ["event_movie_id"], name: "index_reviews_on_event_movie_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
   end
