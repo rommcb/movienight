@@ -5,7 +5,7 @@ export function show(){
   const winner_s = document.getElementById('winner_s')
   winner.style.position = "absolute"
   winner.style.left = "-70px"
-  winner.style.zIndex = 100000000000000000
+  winner.style.zIndex = 100
   winner.classList.remove('really_hidden')
   winner.style.left = (winner_s.offsetLeft) +"px" // postion start
   winner.style.top = (winner_s.offsetTop)+"px"  // postion start
@@ -37,6 +37,7 @@ function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 29
 
   function frame() {
     if (x == final_x && y == final_y) {
+      i_h = 0.5
       clearInterval(id);
     } else {
       let dist_y = Math.abs(y-final_y)
