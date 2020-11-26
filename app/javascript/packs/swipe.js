@@ -23,59 +23,43 @@ export function movie(user_id, event_id){
       let count = item[1]
       document.getElementById(`c_${id}`).innerHTML = count
     });
+    if(document.getElementById('likebtn')){
+      document.getElementById('likebtn').style.opacity = 0.3;
+    } else {
+      document.getElementById('deactivatel').style.opacity = 0.3;
+    }
+    if (document.getElementById('donotlikebtn')){
+      document.getElementById('donotlikebtn').style.opacity = 0.3;
+    } else {
+      document.getElementById('deactivaten').style.opacity = 0.3;
+    }  
     document.getElementById('matches').innerHTML = `${json['matches']}<i class="fas fa-star">`
     document.getElementById("movie_name").innerHTML = `${json['title']}`
     document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
-    fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${json['title']}`)
-    .then(response => response.json())
-    .then((json1) => {
-      if(json1["results"][0]['poster_path'] == null){
-        console.log("saved!!");
-        movie(user_id, event_id)
-      } else {
-        let src = `http://image.tmdb.org/t/p/w500/${json1["results"][0]['poster_path']}`
-        document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${src}')`;
-        document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
-        document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
-        smooth(document.getElementsByClassName('bg-image')[0], 0.75)
+    let src = json['poster']
+    document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${src}')`;
+    document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
+    document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
+    smooth(document.getElementsByClassName('bg-image')[0], 0.75, 400)
 
-        document.getElementById("move").style.opacity = 0
-        document.getElementById("move").style.top ="0px"; 
-        document.getElementById("move").style.left ="-150px";
-        document.getElementById("move").style.color = "white";
-        document.getElementById("move").style.height = "454px"; 
-        document.getElementById("move").style.width = "280px"; 
-        document.getElementById("img").style.padding = "10px";
-        document.getElementById("move").style.fontSize = "15px";
+    document.getElementById("move").style.top ="0px"; 
+    document.getElementById("move").style.left ="-150px";
+    document.getElementById("move").style.color = "white";
+    document.getElementById("move").style.height = "454px"; 
+    document.getElementById("move").style.width = "280px"; 
+    document.getElementById("img").style.padding = "10px";
+    document.getElementById("move").style.fontSize = "15px";
+    smooth(document.getElementById("move"), 1)
+
+    // document.getElementsByClassName('bg-image')[0].style.opacity = 0
+
+    document.getElementsByClassName('image')[0].src = src
   
-        if(document.getElementById('likebtn')){
-          document.getElementById('likebtn').style.opacity = 0.3;
-        } else {
-          document.getElementById('deactivatel').style.opacity = 0.3;
-        }
-        if (document.getElementById('donotlikebtn')){
-          document.getElementById('donotlikebtn').style.opacity = 0.3;
-        } else {
-          document.getElementById('deactivaten').style.opacity = 0.3;
-        }
-        
-  
-        
-        
-        smooth(document.getElementById("move"), 1)
-  
-        // document.getElementsByClassName('bg-image')[0].style.opacity = 0
-        
-  
-  
-        document.getElementsByClassName('image')[0].src = src
-      }
-      document.getElementById("movie_director").innerHTML = `Director: ${json['director']}`
-      document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
-      document.getElementById("movie_actors").innerHTML =  `Actors: ${json['actors']}`
-      document.getElementById("small_img").innerHTML = json['cover']
-    })
+    document.getElementById("movie_director").innerHTML = `Director: ${json['director']}`
+    document.getElementById("movie_synopsys").innerHTML = json['synopsis'] 
+    document.getElementById("movie_actors").innerHTML =  `Actors: ${json['actors']}`
+    document.getElementById("small_img").innerHTML = json['cover']
   })
 }
 
@@ -272,7 +256,9 @@ export function myMoveLike(val) {
   let y = elem.style.top;
   y = parseInt(y.substring(0, y.length - 2));
   function frame() {
-    if (x == final_x && y == final_y) {
+    if (elem.style.opacity <= 0 && document.getElementsByClassName('bg-image')[0].style.opacity < 0) {
+      document.getElementsByClassName('bg-image')[0].style.opacity = 0
+      elem.style.opacity = 0
       clearInterval(id);
     } else {
       let dist_y = Math.abs(y-final_y)

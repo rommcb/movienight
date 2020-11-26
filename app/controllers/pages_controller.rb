@@ -111,7 +111,8 @@ class PagesController < ApplicationController
     end
     hash['count'] = c_arr
     hash['matches'] = event.event_movies.where(score: event.users.count ).count
-
+    hash['poster'] = @movie.poster
+    
     cors_set_access_control_headers
     render json: hash
   end
