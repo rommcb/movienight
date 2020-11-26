@@ -26,7 +26,7 @@ export function movie(user_id, event_id){
       if(el == null){
         document.getElementsByClassName("list-inline members")[0].insertAdjacentHTML(`
         <li class='list-inline-item avatar-letter' title='${name}'>
-              <span class='user-first-letter'>${name.charAt(0)}</span><span class='user-rest'>${names.substring(1)}</span> <span class='reviews-counter' title='swipes' id='c_${id}'>${count} <span class='swipes'> likes</span></span>
+              <span class='user-first-letter'>${name.charAt(0)}</span><span class='user-rest'>${name.substring(1)}</span> <span class='reviews-counter' title='swipes' id='c_${id}'>${count} <span class='swipes'> likes</span></span>
         </li>
         `)
       } else {
