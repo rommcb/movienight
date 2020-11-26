@@ -46,37 +46,41 @@ def scrape(start)
     element.search('p')[2].children.search("a")[1..].each do |item|
       cast.push(item.text)
     end
+    url = "https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=#{name.encode('ASCII', 'binary', invalid: :replace, undef: :replace, replace: '')}"
+    res = JSON.parse(open(url).read)
+    if (res["results"].length != 0 && res["results"][0]['poster_path'] != nil)
+      poster = "http://image.tmdb.org/t/p/w500/#{res["results"][0]['poster_path']}"
+      dir = Director.where(fullname: director)
 
-
-    dir = Director.where(fullname: director)
-
-    if dir.length == 0
-      dir = Director.create!({fullname: director})
-    else
-      dir = dir[0]
-    end
-    mov = Movie.where(title: name)
-    if mov.length == 0
-      mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration, cover:immage})
-    else
-      mov = mov[0]
-    end
-    genres.each do |genre|
-      if Genre.where(name: genre).length == 0
-        gen = Genre.create!({name: genre})
-        GenresAttribution.create!({movie_id: mov.id, genre_id: gen.id})
+      if dir.length == 0
+        dir = Director.create!({fullname: director})
       else
-        GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
+        dir = dir[0]
       end
-      
-    end
-
-    cast.each do |actor|
-      if Actor.where(fullname: actor).length == 0
-        act =Actor.create!({fullname: actor})
-        Casting.create!({movie_id: mov.id, actor_id: act.id})
+      mov = Movie.where(title: name)
+      if mov.length == 0
+        mov = Movie.create!({director_id: dir.id, title: name, synopsis: description, duration: duration, cover:immage, poster:poster})
+        mov.poster = poster
       else
-        Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
+        mov = mov[0]
+      end
+      genres.each do |genre|
+        if Genre.where(name: genre).length == 0
+          gen = Genre.create!({name: genre})
+          GenresAttribution.create!({movie_id: mov.id, genre_id: gen.id})
+        else
+          GenresAttribution.create!({movie_id: mov.id, genre_id: Genre.where(name: genre)[0].id})
+        end
+        
+      end
+
+      cast.each do |actor|
+        if Actor.where(fullname: actor).length == 0
+          act =Actor.create!({fullname: actor})
+          Casting.create!({movie_id: mov.id, actor_id: act.id})
+        else
+          Casting.create!({movie_id: mov.id, actor_id: Actor.where(fullname: actor)[0].id})
+        end
       end
     end
     # name

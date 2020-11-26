@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 2020_11_24_130223) do
     t.text "synopsis", null: false
     t.integer "duration", null: false
     t.string "cover"
+    t.string "poster"
     t.index ["director_id"], name: "index_movies_on_director_id"
   end
 
