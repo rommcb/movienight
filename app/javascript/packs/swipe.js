@@ -33,7 +33,18 @@ export function movie(user_id, event_id){
     } else {
       document.getElementById('deactivaten').style.opacity = 0.3;
     }  
+
+    if (json['matches'] == 0){
+      document.getElementById('matches').className = "list-inline-item"
+    } else if (json['matches'] <= 9){
+      document.getElementById('matches').className = "list-inline-item success"
+    } else {
+      document.getElementById('matches').className = "list-inline-item success big"
+    }
     document.getElementById('mcount').innerHTML = `${json['matches']}`
+
+
+
     document.getElementById("movie_name").innerHTML = `${json['title']}`
     document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
