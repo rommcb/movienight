@@ -77,6 +77,9 @@ document.addEventListener('turbolinks:load', () => {
       let event_id_start = event.innerHTML
       document.getElementById('likebtn').style.display = "block"
       document.getElementById('donotlikebtn').style.display = "block"
+      
+      document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
+      document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
       movie(user_id_start, event_id_start)
     }
   } 
