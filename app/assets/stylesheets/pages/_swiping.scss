@@ -8,17 +8,19 @@
 }
 .res_link{
   font-size: larger;
-  padding: 8px;
+  padding: 8px 18px 8px 18px;
   width: 50px;
   border: 1px solid black;
   color: black;
-  transition: all 1s ease;
+  opacity: .7;
+  transition: all .5s ease;
+  border-radius: 20px;
+  margin-left: 10px;
 }
 .res_link:hover{
-  border: 1px solid white;
-  color: white;
-  transition: all 1s ease;
-  opacity: 0.7;
+  color: black;
+  opacity: 1;
+  transition: all .5s ease;
 }
 
 .main_div {
