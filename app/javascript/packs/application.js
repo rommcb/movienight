@@ -36,14 +36,16 @@ import { myMoveLike } from './swipe';
 import { flipCard } from './swipe';
 import { smooth } from './swipe'
 import { nextMovie } from './next'
- 
+
 
 document.addEventListener('turbolinks:load', () => {
 
   const res_title = document.getElementById('winner')
   if(res_title != null){
-    document.getElementsByClassName("movie")[0].classList.remove('really_hidden')
+
     document.getElementById("reveal_btn").addEventListener("click", () => {
+      // the line below what above  the event listener line but I put it below to make it work in the same time as the lick on the btn
+      document.getElementsByClassName("movie")[0].classList.remove('really_hidden')
       nextMovie()
     }, false)
     let arr = document.getElementsByClassName("movie")
@@ -79,8 +81,8 @@ document.addEventListener('turbolinks:load', () => {
       document.getElementById('donotlikebtn').style.display = "block"
       movie(user_id_start, event_id_start)
     }
-  } 
-  
+  }
+
   // Call your functions here, e.g:
   // initSelect2();
   const genre = document.getElementById("genre_pref")
@@ -103,7 +105,7 @@ document.addEventListener('turbolinks:load', () => {
     react.addEventListener('click', (e) => { act_event(react, e) }, false);
   }
 
-  
+
   if(document.getElementById('move')) {
     dragElement(document.getElementById('move'))
   }
@@ -131,9 +133,9 @@ document.addEventListener('turbolinks:load', () => {
     setTimeout(function(){
       lk_pushed = false
     }, 800)
-    
+
   } );
-  
+
   document.addEventListener('keyup', function(event) {
     const code = event.keyCode
     if (code == '37') {
@@ -148,7 +150,7 @@ document.addEventListener('turbolinks:load', () => {
       let lkbtn = document.getElementById("likebtn")
       if (lkbtn != null) {
         document.getElementById("likebtn").click();
-      }   
+      }
     }
   })
 
