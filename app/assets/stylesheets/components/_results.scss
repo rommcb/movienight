@@ -3,6 +3,7 @@
 }
 
 .res_card{
+  opacity: .5;
   height: 100px;
   width: 70px;
 }
@@ -20,4 +21,8 @@
   background-color: rgb(204, 198, 198);
   box-shadow: 0px 0px 40px rgb(204, 198, 198);
   border: 1px solid black;
+}
+
+.res_button {
+  transition: opacity ease-in-out 5s 2s;
 }
