@@ -32,7 +32,7 @@
     <h2>Today</h2>
 
 
-    <% @events.order('date_end ASC').each do |event|%>
+    <% @events.order('date_end ASC').reverse().each do |event|%>
       <% if (event.date_end.day == DateTime.now().day) && (event.date_end.month == DateTime.now().month) && (event.date_end.year == DateTime.now().year) %>
       
         <%# insert card %>
