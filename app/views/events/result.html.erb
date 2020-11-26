@@ -10,7 +10,7 @@
   <% (0...97).to_a.each do |i| %>
     <% if i == @winner_pos %>
       <div id="winner_div">
-        <img src="<%= @winner.cover %>" class="res_card" id="winner_s" alt="">
+        <img src="<%= @winner.poster %>" class="res_card" id="winner_s" alt="">
         <img src="<%= @winner.poster %>" class="res_card_ really_hidden" id="winner" alt="">
       </div>
     <% end %>
