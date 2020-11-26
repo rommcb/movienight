@@ -9,8 +9,8 @@ export function flipCard () {
 }
 
 export function movie(user_id, event_id){
-  fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
 
     if(json['closed'] == 1) {
       // window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
@@ -33,7 +33,7 @@ export function movie(user_id, event_id){
     } else {
       document.getElementById('deactivaten').style.opacity = 0.3;
     }  
-    document.getElementById('matches').innerHTML = `<span class="count">${json['matches']}</span><i class="fas fa-star">`
+    document.getElementById('mcount').innerHTML = `${json['matches']}`
     document.getElementById("movie_name").innerHTML = `${json['title']}`
     document.getElementById("movie_title_small").innerHTML = `${json['title']}`
     document.getElementById('event_movie_id').innerHTML = json['id']
@@ -104,8 +104,8 @@ function dislike_fn(item, donotlikebtn){
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
   const liked = 0
-  fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       // like_event.classList.remove("slide-in-left");
       donotlikebtn.id = "donotlikebtn"
@@ -135,8 +135,8 @@ function like_fn(item, likebtn){
   const event_id = document.getElementById('event_id').innerHTML
   const event_movie_id = document.getElementById('event_movie_id').innerHTML
   const liked = 1
-  fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
-  // fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  // fetch(`https://mooovienight.herokuapp.com/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
+  fetch(`http://localhost:3000/api/review/${user_id},${event_movie_id},${liked}`).then(response => response.json()).then((json) => {
     setTimeout(function(){
       // like_event2.classList.remove("slide-in-right");
       likebtn.id = "likebtn"

@@ -19,7 +19,7 @@
 #matches {
   color:#bebebe; 
   font-size: 35px;
-  .count {
+  #mcount {
   color: rgb(110, 110, 110);
   position: absolute;
   top: 14px;
@@ -29,14 +29,14 @@
 }
 
 #matches.success {
-  color:$success; 
-  .count {
+  color: $success; 
+  #mcount {
     color: white;
   }
 }
 
 #matches.success.big {
-  .count {
+  #mcount {
     left: 8px;
   }
 }

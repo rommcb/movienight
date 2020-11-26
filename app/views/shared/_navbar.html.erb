@@ -35,12 +35,12 @@
             <% if count == 0 %>
               <li class="list-inline-item" title="matches" id='matches'>
             <%elsif count <= 9 %>
-              <li class="list-inline-item" title="matches" id='matches' class="success">
+              <li class="list-inline-item success" title="matches" id='matches'>
             <%else%>
-              <li class="list-inline-item" title="matches" id='matches' class="success big">
+              <li class="list-inline-item success big" title="matches" id='matches'>
             <%end%>
 
-                <span class="count"><%= count %></span><i class="fas fa-star"></i>
+                <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
               </li>
               
           <%@event.users.each do |user| %>
