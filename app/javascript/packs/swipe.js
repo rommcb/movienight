@@ -39,8 +39,6 @@ export function movie(user_id, event_id){
     document.getElementById('event_movie_id').innerHTML = json['id']
     let src = json['poster']
     document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${src}')`;
-    document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
-    document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
     smooth(document.getElementsByClassName('bg-image')[0], 0.75, 400)
 
     document.getElementById("move").style.top ="0px"; 
@@ -61,6 +59,28 @@ export function movie(user_id, event_id){
     document.getElementById("movie_actors").innerHTML =  `Actors: ${json['actors']}`
     document.getElementById("small_img").innerHTML = json['cover']
   })
+}
+
+export function smooth_list(elem1, elem2, max1, max2, time = 200.0) {
+  var id = setInterval(frame, 5);
+  function frame() {
+      let opacity1 = parseFloat(elem1.style.opacity)
+      let opacity2 = parseFloat(elem2.style.opacity)
+      if(opacity1 == ""){
+        opacity1 = 0.0
+      }
+      if(opacity2 == ""){
+        opacity2 = 0.0
+      }
+      if (opacity1 >= max1) {
+        clearInterval(id);
+      } else {
+        let n_o1 = opacity1+(max1/time)
+        let n_o2 = opacity2+(max2/time)
+        elem1.style.opacity = `${n_o1}`
+        elem2.style.opacity = `${n_o2}`
+      }
+    }
 }
 
 export function dislike(item, donotlikebtn){
@@ -90,10 +110,6 @@ function dislike_fn(item, donotlikebtn){
       // like_event.classList.remove("slide-in-left");
       donotlikebtn.id = "donotlikebtn"
       }, 600);
-    
-    setTimeout(function(){
-      movie(user_id, event_id)
-    }, 350)
   })
 }
 
@@ -125,10 +141,6 @@ function like_fn(item, likebtn){
       // like_event2.classList.remove("slide-in-right");
       likebtn.id = "likebtn"
       }, 600);
-    
-    setTimeout(function(){
-      movie(user_id, event_id)
-    }, 350)
   })
 }
 
@@ -260,6 +272,9 @@ export function myMoveLike(val) {
       document.getElementsByClassName('bg-image')[0].style.opacity = 0
       elem.style.opacity = 0
       clearInterval(id);
+      const user_id = document.getElementById('user_id').innerHTML
+      const event_id = document.getElementById('event_id').innerHTML
+      movie(user_id, event_id)
     } else {
       let dist_y = Math.abs(y-final_y)
       let dist_x = Math.abs(x-final_x)
@@ -278,6 +293,7 @@ export function myMoveLike(val) {
       if(opacity_b == ""){
         opacity_b = 0.75
       }
+      console.log(opacity_b);
 
       let padding = document.getElementById("img").style.padding
       if(padding == ""){
@@ -325,7 +341,10 @@ export function myMoveLike(val) {
       document.getElementById('img').style.padding = padding + "px"
       elem.style.fontSize = t_size + "px"
       elem.style.opacity = opacity - 0.02
-      document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.012
+      
+      if(opacity_b-0.015 >= 0){
+        document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.015
+      }
     }
     
   }
