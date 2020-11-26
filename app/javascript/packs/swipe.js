@@ -341,10 +341,9 @@ export function myMoveLike(val) {
       document.getElementById('img').style.padding = padding + "px"
       elem.style.fontSize = t_size + "px"
       elem.style.opacity = opacity - 0.02
+  
+      document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.015
       
-      if(opacity_b-0.015 >= 0){
-        document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.015
-      }
     }
     
   }
