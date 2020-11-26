@@ -2,18 +2,16 @@
 .cards-wrapper {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
 
 
 .cards{
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  // background-color: rgba($color: white, $alpha: .1);
-  padding: 20px 20px 20px 0;
-  // border-left: 1px solid rgb(59, 59, 59);
-  // border-right: 1px solid rgb(59, 59, 59);
+  min-width: 270px;
+  width: calc(33.3% - 20px);
+  // padding: 20px 20px 20px 0;
   h2 {
     border-bottom: 2px solid white;
     margin-bottom: 30px;
@@ -24,14 +22,8 @@
     height: 260px;
     min-height: 260px;
   }
-  .card.add-new {
-
-    height: 260px;
-    min-height: 260px;
-    border-radius: 0 ;
-  }
 }
-
 .card-content > .btn {
 margin-bottom: 1rem;
 }
+
