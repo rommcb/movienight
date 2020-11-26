@@ -1,5 +1,5 @@
 let cardTransitionTime = 500;
-
+//s
 export function flipCard () {  
   document.getElementsByClassName('js-card')[0].classList.toggle('is-switched')
   window.setTimeout(function () {
