@@ -86,11 +86,7 @@ a:hover {
 }
 
 
-.links {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-}
+
 
 .restart {
   top: 15%;
@@ -111,6 +107,18 @@ a:hover {
     opacity: 1;
     color: white;
   }
+}
+
+.links {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.form-wrapper .edit.links {
+  font-size: 1rem;
+  top: 10px;
+  right: 10px;
 }
 
 .view {
