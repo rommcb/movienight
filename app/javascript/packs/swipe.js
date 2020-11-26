@@ -343,7 +343,6 @@ export function myMoveLike(val) {
       elem.style.opacity = opacity - 0.02
   
       document.getElementsByClassName('bg-image')[0].style.opacity = opacity_b-0.015
-      
     }
     
   }
