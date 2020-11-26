@@ -14,7 +14,7 @@ class EventSubscriptionsController < ApplicationController
         event_sub = EventSubscription.new(owner: false, user_id: current_user.id, event_id: event.id)
         event_sub.save!
       end
-      redirect_to("/events/#{event.id}") 
+      redirect_to events_path
     end
   end
 
