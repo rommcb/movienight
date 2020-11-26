@@ -1,17 +1,36 @@
 // app/assets/stylesheets/components/_counter.scss
 
-.flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+// .flex-center {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .counter {
+//   width: 56px;
+//   border-radius: 50%;
+//   color: white;
+//   text-align: center;
+//   padding: 1rem;
+//   background-color: #7e73ff;
+//   margin-right: 2rem;
+// }
+
+#matches {
+  color:#bebebe; 
+  font-size: 35px;
+  .count {
+  color: rgb(110, 110, 110);
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  font-size: 1.2rem;
+  }
 }
 
-.counter {
-  width: 56px;
-  border-radius: 50%;
-  color: white;
-  text-align: center;
-  padding: 1rem;
-  background-color: #7e73ff;
-  margin-right: 2rem;
+#matches.success {
+  color:$success; 
+  .count {
+    color: white;
+  }
 }

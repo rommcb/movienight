@@ -5,7 +5,11 @@
 
   <% if @event && @event.name %>
     <div id="event-dropdown" class="dropdown">
-      <h1><button class="drop-title"><%= @event.name.capitalize %> <i class="fas fa-chevron-down"></i></button></h1>
+      <h1><button class="drop-title"><%= @event.name.capitalize %> 
+      <% if current_user.events.count >= 2 %>
+        <i class="fas fa-chevron-down"></i>
+      <% end %>
+      </button></h1>
       <div class="dropdown-content">
         <% current_user.event_ids.each  do |event|  %>
           <% if @event.name != Event.find(event).name %>
@@ -27,10 +31,16 @@
       <% if @event && @event.name %>
 
         <ul class="list-inline members">
-          <li class="list-inline-item" title="matches" id='matches' style="color:yellow; font-size: 35px;">
-            <% count = @event.event_movies.where(score: @event.users.count ).count %>
-            <%= count %><i class="fas fa-star"></i>
-          </li>
+          <% count = @event.event_movies.where(score: @event.users.count ).count %>
+            <% if count == 0 %>
+              <li class="list-inline-item" title="matches" id='matches'>
+            <%else%>
+              <li class="list-inline-item" title="matches" id='matches' class="success">
+            <%end%>
+
+                <span class="count"><%= count %></span><i class="fas fa-star"></i>
+              </li>
+              
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
               <span class="user-first-letter"><%= user.username[0] %></span><span class="user-rest"><%= user.username[1..-1] %></span> <span class="reviews-counter" title="swipes" id="c_<%=user.id%>"><%= @event.reviews.where(user_id: user.id, movie_liked: true).count %> <span class="swipes"> likes</span></span>

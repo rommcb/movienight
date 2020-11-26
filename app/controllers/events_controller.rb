@@ -26,7 +26,7 @@ class EventsController < ApplicationController
     if @event.save
       @event.code = "#{@event.id}123"
       @event.save
-      subscription = EventSubscription.new(owner: true, user_id: current_user.id, event_id: @event.id )
+      subscription = EventSubscription.new(owner: true, user_id: current_user.id, event_id: @event.id)
       subscription.save
       redirect_to events_path
     else
@@ -65,7 +65,7 @@ class EventsController < ApplicationController
     @winner_pos = rand(1..97)
   end
 
-  def restart                                                                             
+  def restart
     raise
   end
 
@@ -78,7 +78,7 @@ class EventsController < ApplicationController
   def swipe
     # @movie = Movie.find(_get_next(@event))
     # @event_movie = EventMovie.where("movie_id = #{@movie.id} AND event_id = #{@event.id}").first
-  
+
     # if @event_movie.nil?
     #   @event_movie = EventMovie.new(movie_id: @movie.id, event_id:@event.id, score:0)
     #   @event_movie.save!

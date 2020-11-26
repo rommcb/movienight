@@ -63,8 +63,8 @@ document.addEventListener('turbolinks:load', () => {
       document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
       movie(user_id_start, event_id_start)
     }
-  } 
-  
+  }
+
   // Call your functions here, e.g:
   // initSelect2();
   const genre = document.getElementById("genre_pref")
@@ -87,7 +87,7 @@ document.addEventListener('turbolinks:load', () => {
     react.addEventListener('click', (e) => { act_event(react, e) }, false);
   }
 
-  
+
   if(document.getElementById('move')) {
     dragElement(document.getElementById('move'))
   }
@@ -115,9 +115,9 @@ document.addEventListener('turbolinks:load', () => {
     setTimeout(function(){
       lk_pushed = false
     }, 800)
-    
+
   } );
-  
+
   document.addEventListener('keyup', function(event) {
     const code = event.keyCode
     if (code == '37') {
@@ -132,7 +132,7 @@ document.addEventListener('turbolinks:load', () => {
       let lkbtn = document.getElementById("likebtn")
       if (lkbtn != null) {
         document.getElementById("likebtn").click();
-      }   
+      }
     }
   })
 

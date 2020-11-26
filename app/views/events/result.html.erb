@@ -1,3 +1,4 @@
+
 <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
 <div class="res_button">
 <%= link_to "Restart Event!", edit_event_path(@event.id), class: :res_link%>
@@ -16,4 +17,3 @@
       <img src="<%= @fill[i].cover %>" class="res_card" alt="">
   <% end %>
 </div>
-
