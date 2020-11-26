@@ -1,44 +1,19 @@
-
-<!-- Part I -->
-<!-- <div class="image_wrapper">
-    <div class="image_back parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/8/83/Dark_knight_rises_poster.jpg"></div>
-    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/9/9d/Disney_The_Lion_King_2019.jpg"></div>
-    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/df/Arrival%2C_Movie_Poster.jpg"></div>
-    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/12_Angry_Men_%281957_film_poster%29.jpg/220px-12_Angry_Men_%281957_film_poster%29.jpg"></div>
-    <div class="image_back fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/thumb/1/14/Tenet_movie_poster.jpg/220px-Tenet_movie_poster.jpg"></div>
-
-    <div class="image_back  parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/1/19/Titanic_%28Official_Film_Poster%29.png"></div>
-    <div class="image_back parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/en/d/d6/Beauty_and_the_Beast_2017_poster.jpg"></div>
-    <div class="image_back  parent_div fade-in "> <img class ="image_cover" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Affiche_97_Fatima_Fr.jpg/220px-Affiche_97_Fatima_Fr.jpg"></div>
-</div>
-
-
- -->
-
-
-
-
-
-<h1 id="winner"  class="h1_center">And the winner is!</h1>
-<% @movies.each do |movie| %>
-<div class="movie really_hidden">
-  <div class="res_title really_hidden"><%= movie.title %></div>
-  <div class="parent_div parent_div">
-    <div class="move_1">
-      <div class="image_div_1" id="img">
-        <p id="movie_name"><%= movie.title %></p>
-        <img src="#" alt="image" id="img_result" class="image<%= movie.id%>">
-      </div>
-    </div>
-  </div>
-</div>
-<% end %>
- <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+<% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
 <div class="res_button">
 <%= link_to "Restart Event!", edit_event_path(@event.id), class: :res_link%>
+<button id="reveal_btn" type="button"> Reveal</button>
 </div>
 <% end %>
 
-
-<button id="reveal_btn" type="button"> I dont like that one</button>
+<div class="res_array">
+  <% (0...97).to_a.each do |i| %>
+    <% if i == @winner_pos %>
+      <div id="winner_div">
+        <img src="<%= @winner.cover %>" class="res_card" id="winner_s" alt="">
+        <img src="<%= @winner.poster %>" class="res_card_ really_hidden" id="winner" alt="">
+      </div>
+    <% end %>
+      <img src="<%= @fill[i].cover %>" class="res_card" alt="">
+  <% end %>
+</div>
 
