@@ -107,7 +107,7 @@ class PagesController < ApplicationController
     users.each do |user|
       u_id = user.id
       count = event.reviews.where(user_id: u_id, movie_liked: true).count
-      c_arr.push([u_id, count])
+      c_arr.push([u_id, count, user.username])
     end
     hash['count'] = c_arr
     hash['matches'] = event.event_movies.where(score: event.users.count ).count
