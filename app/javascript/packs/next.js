@@ -3,8 +3,6 @@ import { smooth } from './swipe'
 export function show(){
   const winner = document.getElementById('winner')
   const winner_s = document.getElementById('winner_s')
-  console.log(winner_s.offsetLeft);
-  console.log(winner_s.offsetTop);
   winner.style.position = "absolute"
   winner.style.left = "-70px"
   winner.style.zIndex = 100000000000000000
@@ -96,7 +94,6 @@ function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 29
         let opa = elems.style.opacity
         if(opa == ""){
           opa = 1
-          console.log('hey');
         } else {
           opa = parseFloat(opa)
         }

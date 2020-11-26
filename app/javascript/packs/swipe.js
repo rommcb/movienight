@@ -24,7 +24,7 @@ export function movie(user_id, event_id){
       let name = item[2]
       let el = document.getElementById(`c_${id}`)
       if(el == null){
-        document.getElementsByClassName("list-inline members")[0].insertAdjacentHTML(`
+        document.getElementsByClassName("list-inline members")[0].insertAdjacentHTML("beforeend",`
         <li class='list-inline-item avatar-letter' title='${name}'>
               <span class='user-first-letter'>${name.charAt(0)}</span><span class='user-rest'>${name.substring(1)}</span> <span class='reviews-counter' title='swipes' id='c_${id}'>${count} <span class='swipes'> likes</span></span>
         </li>
@@ -315,7 +315,6 @@ export function myMoveLike(val) {
       if(opacity_b == ""){
         opacity_b = 0.75
       }
-      console.log(opacity_b);
 
       let padding = document.getElementById("img").style.padding
       if(padding == ""){
