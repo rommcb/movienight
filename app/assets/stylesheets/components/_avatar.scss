@@ -21,18 +21,6 @@
     display: none;
     opacity: 0;
   }
-  
-  &:hover {
-    max-width: 200px;
-    min-width: 80px;
-    .user-rest, .swipes {
-      display: inline;
-      opacity:1;
-    }
-    .reviews-counter {
-      max-width: 200px;
-    }
-  }
 
   .reviews-counter {
     font-size: 14px;
@@ -48,6 +36,22 @@
     padding: 0 6px 3px 6px;
     }
 }
+
+
+.navbar-nav .avatar-letter {
+  &:hover {
+    max-width: 200px;
+    min-width: 80px;
+    .user-rest, .swipes {
+      display: inline;
+      opacity:1;
+    }
+    .reviews-counter {
+      max-width: 200px;
+    }
+  }
+}
+
 
 
 

@@ -9,9 +9,7 @@ a:hover {
   text-decoration: none;
 }
 
-.cards{
-  display: flex;
-}
+
 
 .card {
   white-space: normal;
@@ -22,15 +20,12 @@ a:hover {
   padding: 20px;
   padding-bottom:20px;
   border-radius: 9px;
-  margin: 20px 30px 20px 0;
-  min-width: 200px;
-  height: 260px;
-  width: 200px;
-  min-height: 260px;
+  margin: 0px 0px 20px 0;
   overflow: hidden;
   display: flex;
   justify-content: center;
-  box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 8px;
+  box-shadow: 0 2px 10px black;
+  // box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 8px;
   border: none;
   color: white;
      a h3 {
@@ -136,17 +131,26 @@ a:hover {
   }
 }
 
-.card-content .form-inline {
+.card-content {
+  .form-inline {
     .form-control {
-      width: 100px !important;
-      border-radius: 4px 0 0 4px;
+      width: 150px !important;
+      border-radius: 19px 0 0 19px;
       border: none;
       font-size: 14px;
       height: 38px;
+      padding-left: 20px;
     }
     .btn 
     {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 19px 19px 0;
+      width: 68px;
+    }
+  }
+  .btn 
+    {
+      width: 218px;
+      border-radius: 19px;
     }
 }
 
