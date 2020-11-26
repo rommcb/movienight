@@ -8,6 +8,9 @@ html{
 // * {
 //   border: 1px solid #f00 !important;
 // }
+h3 {
+font-size: 1.6rem;
+}
 
 button:focus {
   outline: none;
@@ -16,4 +19,5 @@ button:focus {
 .container {
   position: relative;
   height: 84vh;
+  padding-right: 35px;
 }

@@ -1,77 +1,75 @@
 
 <h1>My Events</h1>
 
-<div class="cards horizontal-scroll">
-  <div class="card add-new">
-      <div class="card-content">
-        <div>
-          <%= link_to "Create an event", new_event_path, class: 'btn btn-primary' %>
-        </div>
-        <div>
-          <p> - or -</p>
-        </div>
-          <%= simple_form_for @code_event, url: event_subscriptions_path,  html: { class: "form-inline"} do |f| %>
-            <div class="form-group centered col-xs-6">
-              <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
-            </div> 
-            <div class="form-group centered col-xs-6">  
-              <%= f.button :submit, 'join', class: 'btn btn-primary'%>
-            </div>
-            <p id="errormessage"><%= @error_message%></p>
-          <% end %>
-          <div>
-            <p>Join an event</p>
+<%# horizontal-scroll %>
+
+
+  
+<div class="card add-new">
+    <div class="card-content">
+        <%= link_to "Create an event", new_event_path, class: 'btn btn-primary' %>
+        <p> - or -</p>
+        <%= simple_form_for @code_event, url: event_subscriptions_path,  html: { class: "form-inline"} do |f| %>
+          <div class="form-group centered col-xs-6">
+            <%= f.input :code, class: 'form-control', placeholder: 'Enter code', label: false  %>
+          </div> 
+          <div class="form-group centered col-xs-6">  
+            <%= f.button :submit, 'join', class: 'btn btn-primary'%>
           </div>
-      </div>
+          <p id="errormessage"><%= @error_message%></p>
+        <% end %>
+        <div>
+          <p>Join an event</p>
+        </div>
+    </div>
+</div>
+  
+
+
+<div class="cards-wrapper">  
+  
+  <div class="cards">
+    <h2>Today</h2>
+
+
+    <% @events.order('date_end ASC').each do |event|%>
+      <% if (event.date_end.day == DateTime.now().day) && (event.date_end.month == DateTime.now().month) && (event.date_end.year == DateTime.now().year) %>
+      
+        <%# insert card %>
+        <%= render '/events/card', event: event %>
+
+      <% end %>
+    <% end %>
+
+    <div class="card empty"></div>
+  </div>
+  
+  <div class="cards">
+    <h2>This month</h2>
+    <% @events.order('date_end ASC').each do |event|%>
+      <% if (event.date_end.month == DateTime.now().month) && (event.date_end.year == DateTime.now().year) && (event.date_end.day != DateTime.now().day) %>
+
+        <%# insert card %>
+        <%= render '/events/card', event: event %>
+
+      <% end %>
+    <% end %>
+    <div class="card empty"></div>
   </div>
 
-  <% @events.each do |event|%>
-    <div class="card">
+  <div class="cards">
+    <h2>Later events</h2>
+    <% @events.order('date_end ASC').each do |event|%>
+      <% if (event.date_end.month != DateTime.now().month) || (event.date_end.year != DateTime.now().year) %>
 
-      <% if event.closed == true %>
-        <div class="top closed">
-        
-          <p class="date"><%= event.date_end.day %>/<%= event.date_end.month %>/<%= event.date_end.year %></p>
-          <h3><%= event.name.capitalize %></h3>
-            
-          <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-            <%= link_to edit_event_path(event), title: 'Reactivate', class: 'edit restart' do %><i class="fas fa-redo"></i><%end%>
-          <%end%>
-      
-      <%else%>
+        <%# insert card %>
+        <%= render '/events/card', event: event %>
 
-        <div class="top">
-        
-          <p class="date"><%= event.date_end.day %>/<%= event.date_end.month %>/<%= event.date_end.year %></p>
-          <%= link_to event_path(event), class: 'view' do %>
-            <h3><%= event.name.capitalize %>  <i class="far fa-eye"></i></h3>
-          <%end%>
-          
-            <% if event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-              <% if event.closed == true %>
-              <%= link_to edit_event_path(event), method: 'post', :data => {:confirm => 'Are you sure you want to reset?'}, class: 'edit restart' do %><i class="fas fa-redo"></i><%end%>
-              <%else%>
-              <div class="links">
-                <%= link_to edit_event_path(event), class: 'edit' do %><i class="fas fa-pen"></i><%end%>
-              </div>
-              <%end%>
-            <%end%>
-        <%end%>
+      <% end %>
+    <% end %>
+    <div class="card empty"></div>
+  </div>
 
-      </div>
-      
-      
-      <% if event.closed == true %>
-        <%= link_to "View result", result_path(event.id), class: 'btn btn-success btn-bottom' %>
-      <% else %>
-        <%= link_to "Start swiping", swipe_path(event.id), class: 'btn btn-primary btn-bottom' %>
-      <%end%>
-
-       <!-- <% if current_user.id == event.event_subscriptions.where(owner: true)[0].user.id %>
-          <%= link_to "| End this event early", stop_path(event.id), method: :post %>
-        <% end %> -->
-
-    </div>
-  <% end %>
 </div>
+
 

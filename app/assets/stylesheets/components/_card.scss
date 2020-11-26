@@ -9,43 +9,40 @@ a:hover {
   text-decoration: none;
 }
 
-.cards{
-  display: flex;
-}
+
 
 .card {
   white-space: normal;
-  background-image: 
-    linear-gradient(rgba(0,0,0,0.5) 90%,rgba(0,0,0,1) 90%),
-    url("https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg");
+  background-image: linear-gradient(rgba(255, 255, 255, 0) 0%, rgba(0, 0, 0, .6) 50%), url(https://us.123rf.com/450wm/evgenyatamanenko/evgenyatamanenko1909/evgenyatamanenko190900138/130187064-family-mother-father-and-children-watching-projector-tv-movies-with-popcorn-in-the-evening-at-home.jpg);
+  background-size: cover;
   position: relative;
   padding: 20px;
   padding-bottom:20px;
   border-radius: 9px;
-  margin: 20px 30px 20px 0;
-  min-width: 200px;
-  height: 260px;
-  width: 200px;
-  min-height: 260px;
+  margin: 0px 0px 20px 0;
   overflow: hidden;
   display: flex;
   justify-content: center;
-  box-shadow: inset rgba(0, 0, 0, 1) 0px 0px 8px;
+  box-shadow: 0 2px 10px black;
   border: none;
   color: white;
      a h3 {
-       font-size: 1.5rem;
        &:hover {
          i {
           opacity: 1;
+          display:inline;
          }
        }
        i {
          opacity: 0;
+         display:none;
          font-size: 16px;
        }
      }
-     .closed h3, .closed a {
+     .closed h3 {
+      position: relative;
+     }
+     .closed a {
        position: absolute;
        z-index: 10;
      }
@@ -67,11 +64,27 @@ a:hover {
 .add-new {
   box-shadow: none;
   align-items: center;
-  justify-content: center;
+  // justify-content: center;
   background-color: transparent !important;
-  border: 1px solid rgba($color: white, $alpha: .5);
+  border: 2px solid #1a1a1a;
+  // border: 1px solid rgba($color: white, $alpha: .5);
   background-image: none;
+  // height: 260px;
+  // min-height: 260px;
+  // border-radius: 0 ;
+  margin: 20px 0 50px 0;
+  .card-content{
+    display: flex;
+    text-align: center;
+    flex-direction: column-reverse;
+    p {
+      color: rgba($color: white, $alpha: .9);
+      margin-top: 0.8rem;
+      margin-bottom: 1rem;
+    }
+  }
 }
+
 
 .links {
   position: absolute;
@@ -125,28 +138,28 @@ a:hover {
   margin-bottom: 0;
 }
 
-.add-new .card-content{
-  display: flex;
-  text-align: center;
-  flex-direction: column-reverse;
-  p {
-    color: rgba($color: white, $alpha: .5);
-    margin-top: 0.8rem;
-    margin-bottom: 1rem;
-  }
-}
 
-.card-content .form-inline {
+
+.card-content {
+  .form-inline {
     .form-control {
-      width: 100px !important;
-      border-radius: 4px 0 0 4px;
+      width: 150px !important;
+      border-radius: 19px 0 0 19px;
       border: none;
       font-size: 14px;
       height: 38px;
+      padding-left: 20px;
     }
     .btn 
     {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 19px 19px 0;
+      width: 68px;
+    }
+  }
+  .btn 
+    {
+      width: 218px;
+      border-radius: 19px;
     }
 }
 
@@ -158,4 +171,11 @@ a:hover {
 // to fix form-inline on small screens
 .form-group {
   margin-bottom: 0;
+}
+
+.card.empty {
+  background-image: none;
+  background-color: transparent;
+  box-shadow: none;
+  border: 2px solid #1a1a1a;
 }
