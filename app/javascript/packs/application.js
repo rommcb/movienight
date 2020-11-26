@@ -35,41 +35,20 @@ import { dragElement } from './swipe';
 import { myMoveLike } from './swipe';
 import { flipCard } from './swipe';
 import { smooth } from './swipe'
-import { nextMovie } from './next'
-
+import { show } from './next'
+ 
 
 document.addEventListener('turbolinks:load', () => {
 
-  const res_title = document.getElementById('winner')
-  if(res_title != null){
-
-    document.getElementById("reveal_btn").addEventListener("click", () => {
-      // the line below what above  the event listener line but I put it below to make it work in the same time as the lick on the btn
-      document.getElementsByClassName("movie")[0].classList.remove('really_hidden')
-      nextMovie()
-    }, false)
-    let arr = document.getElementsByClassName("movie")
-    for(let i = 0; i < arr.length; i++){
-      let movie = arr[i]
-      let item = movie.children[1].children[0].children[0].children[1]
-      let parent_div = movie.children[1]
-      fetch(`https://api.themoviedb.org/3/search/movie?api_key=15d2ea6d0dc1d476efbca3eba2b9bbfb&query=${movie.children[0].innerHTML}`)
-        .then(response => response.json())
-        .then((json) => {
-        let src = `http://image.tmdb.org/t/p/w500/${json["results"][0]['poster_path']}`
-        parent_div.style.opacity = 0
-        item.src = src
-        smooth(parent_div, 1, 800)
-        if(i == 0) {
-          document.getElementsByClassName('bg-image')[0].style.opacity = 0
-          document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${src}')`;
-          document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
-          document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
-          smooth(document.getElementsByClassName('bg-image')[0], 0.75, 800)
-        }
-      })
-    };
+  const winner = document.getElementById('winner')
+  if(winner != null){
+    document.getElementsByClassName('bg-image')[0].style.opacity = 0.0
+    document.getElementsByClassName('bg-image')[0].style.backgroundSize = "cover";
+    document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
+    document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${document.getElementById('winner').src}')`;
+    document.getElementById('reveal_btn').addEventListener('click', () => show(), false)
   }
+  
 
   const user = document.getElementById('user_id')
   if (user != null){

@@ -59,26 +59,10 @@ class EventsController < ApplicationController
   def result
     @event = Event.find(params[:id])
     event_movies = EventMovie.where("event_id = #{@event.id} AND score > 0").order({score: :desc})
-    @movies = []
-    @movie0 = Movie.find(event_movies.first.movie.id)
-    @movies.push(@movie0)
-    # To add more movies to the result.
-    # if event_movies.length > 1
-    #   @movie1 = Movie.find(event_movies[1].movie.id)
-    #   @movies.push(@movie1)
-    # end
-    # if event_movies.length > 2
-    #   @movie2 = Movie.find(event_movies[2].movie.id)
-    #   @movies.push(@movie2)
-    # end
-    # if event_movies.length > 3
-    #   @movie3 = Movie.find(event_movies[3].movie.id)
-    #   @movies.push(@movie3)
-    # end
-    # if event_movies.length > 4
-    #   @movie4 = Movie.find(event_movies[4].movie.id)
-    #   @movies.push(@movie4)
-    # end
+    @winner = Movie.find(event_movies.first.movie_id)
+    @fill = Movie.where('id > 0').order("RANDOM()")[0..98]
+    # @fill = Movie.all[0..98]
+    @winner_pos = rand(1..97)
   end
 
   def restart
