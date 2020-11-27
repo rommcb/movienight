@@ -86,6 +86,8 @@ border-radius: 24px;
 // We be used for homepage, sign in and sign out
 .image_wrapper{
   position: absolute;
+  top: 80px;
+  opacity: 0.5;
   z-index: -1;
   display: flex;
   flex-wrap: wrap;
