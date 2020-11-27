@@ -32,12 +32,12 @@ background: linear-gradient(90deg, #1EDD88 0%, #1EDD88 100%);
 button#reveal_btn::before {
 content: '';
   border-radius: 0px;
-  min-width: calc(300px + 10px);
-  min-height: calc(550px + 12px);
+  min-width: calc(390px + 10px);
+  min-height: calc(585px + 12px);
   border: 6px solid #1EDD88;
   box-shadow: 0 0 60px rgba(0,255,203,.64);
   position: absolute;
-  top: 50%;
+  top: calc(50% - 25px);
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
