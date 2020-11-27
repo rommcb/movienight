@@ -37,13 +37,15 @@ background: linear-gradient(90deg, #1EDD88 0%, #1EDD88 100%);
     letter-spacing: 1.3px;
     font-weight: 700;
     background: #bdbdbd1c;
-    background: linear-gradient(90deg, rgb(43, 43, 43) 0%, #313131 100%);
     border: none;
     border-radius: 1000px;
     box-shadow: 12px 12px 24px#3a3a3aa2;
     outline: none;
     position: relative;
     padding: 10px;
+    text-align: center;
+    color: #929292;
+    background: linear-gradient(90deg, #565656 0%, #484848 100%);
     }
 
 button#reveal_btn::before {
@@ -101,10 +103,10 @@ button#reveal_btn:hover::after, button:focus::after {
   }
 }
 
-.action_result .hidden {
+.hidden {
   opacity: 0;
 }
 
-.action_result .wrap.hidden {
+.wrap.hidden {
   display: none;
 }
