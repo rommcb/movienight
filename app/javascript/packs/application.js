@@ -47,6 +47,19 @@ document.addEventListener('turbolinks:load', () => {
     document.getElementsByClassName('bg-image')[0].style.backgroundPosition = "0% 50%";
     document.getElementsByClassName('bg-image')[0].style.backgroundImage =`url('${document.getElementById('winner').src}')`;
     document.getElementById('reveal_btn').addEventListener('click', () => show(), false)
+    const wrap = document.querySelector(".wrap");
+    const btnWinner = document.getElementById("reveal_btn");
+    const btnReset = document.querySelector(".res_button");
+  
+    console.log(wrap);
+    console.log(btnWinner);
+  
+    if(btnWinner != null){
+        btnWinner.addEventListener("click", () => {
+        // wrap.classList.add("hidden");
+        btnReset.classList.remove("hidden");
+    });
+    }
   }
   
 

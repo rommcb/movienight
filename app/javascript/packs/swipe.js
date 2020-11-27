@@ -46,7 +46,7 @@ export function movie(user_id, event_id){
     }  
 
     if (json['matches'] == 0){
-      document.getElementById('matches').className = "list-inline-item"
+      console.log('rien');
     } else if (json['matches'] <= 9){
       document.getElementById('matches').className = "list-inline-item success"
     } else {
