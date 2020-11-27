@@ -32,16 +32,24 @@
 
         <ul class="list-inline members">
           <% count = @event.event_movies.where(score: @event.users.count ).count %>
-           <button type="button" data-toggle="modal" data-target="#exampleModal" title="reveal">
+
+           <!--<button type="button" data-toggle="modal" data-target="#exampleModal" title="reveal">-->
+
+           <%=link_to result_path(@event) do %> 
             <% if count == 0 %>
-              <li class="list-inline-item" title="matches" id='matches'>
+              <!--<li class="list-inline-item" title="matches" id='matches'>-->
             <%elsif count <= 9 %>
               <li class="list-inline-item success" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
             <%else%>
               <li class="list-inline-item success big" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
             <%end%>
-                <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
-              </li> </button>
+             
+            <%end%>
+           <!-- </button> -->
               
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
