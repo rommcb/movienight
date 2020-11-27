@@ -40,6 +40,25 @@ import { show } from './next'
 
 document.addEventListener('turbolinks:load', () => {
 
+  if(document.getElementsByTagName('body')[0].classList.contains("action_index")){
+    const array = document.getElementsByClassName('btn-member')
+    for (let i = 0; i < array.length; i++) {
+      const elem = array[i];
+      elem.addEventListener("click", (e) => {
+        const code = elem.id
+        document.getElementById("code-div").innerHTML = `Invite members by sharing your event code: <strong>${code}</strong>`
+      },false)
+      // $('#myModal').on('shown.bs.modal', function () {
+      //   $('#myInput').trigger('focus')
+      // })  
+    }
+  }
+
+
+
+
+
+
   const winner = document.getElementById('winner')
   if(winner != null){
     document.getElementsByClassName('bg-image')[0].style.opacity = 0.0
