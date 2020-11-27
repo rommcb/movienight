@@ -39,8 +39,12 @@ class EventsController < ApplicationController
 
   def update
     @event.update(event_params)
+    if @event.save
     @event.save!
     redirect_to event_path(@event)
+    else
+      render :edit
+    end
   end
 
   def stop
