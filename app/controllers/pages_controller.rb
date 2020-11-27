@@ -155,7 +155,7 @@ class PagesController < ApplicationController
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
     WHERE
     ((R.id is null AND EM.score = 0) OR EM.id is null)
-    AND"
+    AND "
 
     str_genres = ""
     pref_genres.each_with_index do |genre, i|
