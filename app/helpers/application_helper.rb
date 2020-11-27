@@ -3,8 +3,8 @@ module ApplicationHelper
     :user
   end
 
-  def resource_class 
-     User 
+  def resource_class
+    User
   end
 
   def resource

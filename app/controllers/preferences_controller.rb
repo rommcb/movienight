@@ -19,10 +19,7 @@ class PreferencesController < ApplicationController
     current_user.directors.each do |director|
       @director_str = "#{@director_str},#{director.fullname}"
     end
-
   end
-
-
 
   def save
     actors = params[:actor_list].split(",")
@@ -31,7 +28,7 @@ class PreferencesController < ApplicationController
       actors = actors[1..]
       actors.each do |actor_name|
         actor_id = Actor.where(fullname: actor_name).first.id
-        pa = PreferencesActor.new(user_id: current_user.id, actor_id:actor_id)
+        pa = PreferencesActor.new(user_id: current_user.id, actor_id: actor_id)
         pa.save!
       end
     else
@@ -44,7 +41,7 @@ class PreferencesController < ApplicationController
       genres = genres[1..]
       genres.each do |genre_name|
         genre_id = Genre.where(name: genre_name).first.id
-        pg = PreferencesGenre.new(user_id: current_user.id, genre_id:genre_id)
+        pg = PreferencesGenre.new(user_id: current_user.id, genre_id: genre_id)
         pg.save!
       end
     else
@@ -57,7 +54,7 @@ class PreferencesController < ApplicationController
       directors = directors[1..]
       directors.each do |director_name|
         director_id = Director.where(fullname: director_name).first.id
-        pd = PreferencesDirector.new(user_id: current_user.id, director_id:director_id)
+        pd = PreferencesDirector.new(user_id: current_user.id, director_id: director_id)
         pd.save!
       end
     else
@@ -65,16 +62,14 @@ class PreferencesController < ApplicationController
     end
     duration = params[:duration].to_i
 
-
     if duration == 0
-       current_user.max_duration_pref = 600
-       current_user.save!
+      current_user.max_duration_pref = 600
+      current_user.save!
     else
       current_user.max_duration_pref = duration
       current_user.save!
     end
 
     redirect_to(events_path)
-
   end
 end

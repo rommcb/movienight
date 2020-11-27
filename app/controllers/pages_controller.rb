@@ -55,11 +55,11 @@ class PagesController < ApplicationController
     if liked == 1
       event_movie.score += 1
       event_movie.save!
-      review = Review.new(event_movie_id: event_movie.id, user_id:current_user.id, movie_liked: true)
+      review = Review.new(event_movie_id: event_movie.id, user_id: current_user.id, movie_liked: true)
       review.save!
-    else 
-      review = Review.new(event_movie_id: event_movie.id, user_id:current_user.id, movie_liked: false)
-      review.save! 
+    else
+      review = Review.new(event_movie_id: event_movie.id, user_id: current_user.id, movie_liked: false)
+      review.save!
     end
 
     hash = {}
@@ -77,11 +77,10 @@ class PagesController < ApplicationController
     mov = _get_next(event, c_user)
     @movie = Movie.find(mov)
 
-
     @event_movie = EventMovie.where("movie_id = #{@movie.id} AND event_id = #{event.id}").first
-  
+
     if @event_movie.nil?
-      @event_movie = EventMovie.new(movie_id: @movie.id, event_id:event.id, score:0)
+      @event_movie = EventMovie.new(movie_id: @movie.id, event_id: event.id, score: 0)
       @event_movie.save!
     end
     hash = {}
@@ -97,9 +96,9 @@ class PagesController < ApplicationController
     hash['cover'] = @movie.cover
 
     event = Event.find(event_id)
-    if(event.closed == true)
+    if event.closed == true
       hash['closed'] = 1
-    else 
+    else
       hash['closed'] = 0
     end
     c_arr = []
@@ -110,9 +109,9 @@ class PagesController < ApplicationController
       c_arr.push([u_id, count, user.username])
     end
     hash['count'] = c_arr
-    hash['matches'] = event.event_movies.where(score: event.users.count ).count
+    hash['matches'] = event.event_movies.where(score: event.users.count).count
     hash['poster'] = @movie.poster
-    
+
     cors_set_access_control_headers
     render json: hash
   end
@@ -121,10 +120,10 @@ class PagesController < ApplicationController
     sql = "select EM.id
 
     from   event_movies EM
-    
+
     join movies M ON M.id=EM.movie_id AND EM.event_id=#{event.id}
-    left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{c_user.id} 
-    
+    left join reviews R ON R.event_movie_id = EM.id AND R.user_id=#{c_user.id}
+
     where EM.score > 0 and R.id is null"
 
     query_array = ActiveRecord::Base.connection.execute(sql)
@@ -182,9 +181,7 @@ class PagesController < ApplicationController
         end
       end
     end
-    if pref_actors.length == 0
-      str_actors = str_genres
-    end
+    str_actors = str_genres if pref_actors.length == 0
 
     str_directors = ""
     pref_directors.each_with_index do |director, i|
@@ -204,9 +201,7 @@ class PagesController < ApplicationController
         end
       end
     end
-    if str_directors == ""
-      str_directors = str_actors
-    end
+    str_directors = str_actors if str_directors == ""
     if str_directors == ""
       sql = _no_pref(n, event, c_user)
     else
@@ -220,7 +215,7 @@ class PagesController < ApplicationController
       ORDER BY random()
       LIMIT #{n}"
     end
-  
+
     movie_array = []
     query_array = ActiveRecord::Base.connection.execute(sql)
     query_array.each do |item|
@@ -251,8 +246,8 @@ class PagesController < ApplicationController
 
   def _get_next(event, c_user)
     start_time = DateTime.now
-    total_time = (event.date_end - event.date_start)/60
-    time_remaining = (event.date_end - DateTime.now)/60.0
+    total_time = (event.date_end - event.date_start) / 60
+    time_remaining = (event.date_end - DateTime.now) / 60.0
     ## number of liked movies in event_movies and not in review
     # x_values = EventMovie.joins(:reviews).where("score > 0 AND user_id = #{c_user.id} AND event_id = #{event.id}")
     arr1 = _find_movie_like(event, c_user)
@@ -278,24 +273,19 @@ class PagesController < ApplicationController
     # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    if movie_arr.length == 0
-      return 1
-    end
+    return 1 if movie_arr.length == 0
+
     return movie_arr.sample
   end
 
   def _number_of_randoms(x, t, total_t, n, b = 1, a = 1)
-    if x == 0
-      x = 1.0
-    end
+    x = 1.0 if x == 0
     x.to_f
 
-    val1 = x*t*b/total_t
-    val2 = ((30.0-n)*a)/30.0
+    val1 = x * t * b / total_t
+    val2 = ((30.0 - n) * a) / 30.0
 
     val3 = val1 * val2
     return val3.ceil
   end
-
-  
 end
