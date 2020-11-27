@@ -131,7 +131,7 @@ function dislike_fn(item, donotlikebtn){
     setTimeout(function(){
       // like_event.classList.remove("slide-in-left");
       donotlikebtn.id = "donotlikebtn"
-      }, 600);
+      }, 800);
   })
 }
 
@@ -162,7 +162,7 @@ function like_fn(item, likebtn){
     setTimeout(function(){
       // like_event2.classList.remove("slide-in-right");
       likebtn.id = "likebtn"
-      }, 600);
+      }, 800);
   })
 }
 
