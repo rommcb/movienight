@@ -24,7 +24,10 @@
 }
 
 .res_button {
-  transition: opacity ease-in-out 5s 2s;
+}
+
+.res_button .hidden {
+  opacity: 0;
 }
 
 .not_reveal_msg {

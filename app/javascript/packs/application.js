@@ -71,7 +71,10 @@ document.addEventListener('turbolinks:load', () => {
     if(btnWinner != null){
         btnWinner.addEventListener("click", () => {
         // wrap.classList.add("hidden");
-        btnReset.classList.remove("hidden");
+        setTimeout(function(){
+          btnReset.classList.remove("hidden");
+        }, 2000)
+        
     });
     }
   }

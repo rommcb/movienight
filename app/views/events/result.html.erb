@@ -2,15 +2,16 @@
 
 
 
-<% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+
 <div class="res_button hidden">
-  <%= link_to "Restart this event!", edit_event_path(@event.id), class: :res_link %>
+  <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+    <%= link_to "Restart this event!", edit_event_path(@event.id), class: :res_link %>
+  <% end %>
+  <%= link_to "Back to your events", events_path, class: :res_link %>
 </div>
-<% end %>
+
 <div class="really_hidden" id="event_id"><%= @event.id %></div>
-<div class="res_button">
-  <%= link_to "Back your events", events_path, class: :res_link %>
-</div>
+
 <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id || @event.closed == true%>
   <div class="wrap">
     <button id="reveal_btn" type="button" class="button"> Reveal</button>
