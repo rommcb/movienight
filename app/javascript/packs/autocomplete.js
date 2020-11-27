@@ -13,7 +13,7 @@ function actor(string, ul, val, value){
 function director(string, ul, val, value){
   fetch(`https://mooovienight.herokuapp.com/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
   // fetch(`http://localhost:3000/api/director/${string}`).then(response => response.json()).then((json) => {create(Object.values(json), ul, val, value)})
-
+  //
 }
 
 function edit_values_divs(val,values){
