@@ -6,7 +6,7 @@ html, body {
 .wrap {
   position: absolute;
   left: calc(50% - 150px);
-  top: 50%;
+  top: calc(50%);
   z-index: 90;
 }
 
@@ -37,7 +37,7 @@ content: '';
   border: 6px solid #1EDD88;
   box-shadow: 0 0 60px rgba(0,255,203,.64);
   position: absolute;
-  top: calc(50% - 25px);
+  top: calc(50%);
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0;
