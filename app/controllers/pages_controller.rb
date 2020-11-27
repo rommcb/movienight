@@ -151,9 +151,11 @@ class PagesController < ApplicationController
     SELECT m.id FROM movies m
     JOIN castings c ON c.movie_id = m.id
     JOIN genres_attributions g ON g.movie_id = m.id
-    left join event_movies EM ON EM.movie_id=m.id AND EM.event_id=#{event.id}
+    left join event_movies EM ON EM.movie_id=M.id AND EM.event_id=#{event.id}
     left join reviews R ON R.event_movie_id = EM.id AND user_id=#{c_user.id}
-    WHERE\n"
+    WHERE
+    ((R.id is null AND EM.score = 0) OR EM.id is null)
+    AND"
 
     str_genres = ""
     pref_genres.each_with_index do |genre, i|
@@ -211,10 +213,6 @@ class PagesController < ApplicationController
       sql = _no_pref(n, event, c_user)
     else
       sql = "#{sql_header}#{str_directors}\n AND
-      R.id is null
-      AND
-      EM.score = 0
-      AND
       m.duration < #{c_user.max_duration_pref}
       GROUP BY m.id
       ORDER BY random()
@@ -262,22 +260,27 @@ class PagesController < ApplicationController
     r =  _number_of_randoms(x, time_remaining, total_time, n)
     arr2 = _find_pref_movies(r, event, c_user)
     movie_arr = arr1 + arr2
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp arr1
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp arr2
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    # pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp arr1
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    arr2.each do |movie|
+      pp "======================="
+      pp movie
+      pp Movie.find(movie).title
+      pp "======================="
+    end
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
+    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     if movie_arr.length == 0
       return 1
     end
