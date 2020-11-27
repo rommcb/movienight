@@ -32,9 +32,9 @@
 
         <!-- checking if current user is the owner to pass to javascript -->
         <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
-          <div id="is-owner">1</div>
+          <div id="is-owner" class="really_hidden">1</div>
         <%else%>
-          <div id="is-owner">0</div>
+          <div id="is-owner" class="really_hidden">0</div>
         <% end %>
         <!-- end -->
 
@@ -43,7 +43,11 @@
 
 
           <%=link_to result_path(@event) do %> 
-            <%if count > 0 && count <= 9 %>
+            <% if count == 0 %>
+                <li class="list-inline-item really_hidden" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
+            <%elsif count > 0 && count <= 9 %>
               <li class="list-inline-item success" title="matches" id='matches'>
                  <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
               </li> 
