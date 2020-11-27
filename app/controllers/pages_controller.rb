@@ -158,61 +158,37 @@ class PagesController < ApplicationController
     AND "
 
     str_genres = ""
-    pref_genres.each_with_index do |genre, i|
-      if i == pref_genres.length - 1
-        str_genres = "#{str_genres}g.genre_id = #{genre.id}"
-      else
-        str_genres = "#{str_genres}g.genre_id = #{genre.id} OR "
-      end
+    pref_genres.each do |genre|
+      str_genres = "#{str_genres}g.genre_id = #{genre.id} OR "
+    end
+    if str_genres != ""
+      3.times do str_genres.chop! end
     end
 
     str_actors = ""
-    pref_actors.each_with_index do |actor, i|
-      if i == pref_actors.length - 1
-        str_actors = "#{str_actors}(c.actor_id = #{actor.id}"
-        if str_genres != ""
-          str_actors = "#{str_actors} AND (#{str_genres}))"
-        else
-          str_actors = "#{str_actors})"
-        end
-      else
-        str_actors = "#{str_actors}(c.actor_id = #{actor.id}"
-        if str_genres != ""
-          str_actors = "#{str_actors} AND (#{str_genres}))\nOR"
-        else
-          str_actors = "#{str_actors})\n OR"
-        end
-      end
+    pref_actors.each do |actor|
+      str_actors = "#{str_actors}c.actor_id = #{actor.id} OR "
     end
-    if pref_actors.length == 0
-      str_actors = str_genres
+    if str_actors != ""
+      3.times do str_actors.chop! end
     end
 
     str_directors = ""
-    pref_directors.each_with_index do |director, i|
-      if i == pref_directors.length - 1
-        str_directors = "(\n#{str_directors} m.director_id = #{director.id}"
-        if str_actors != ""
-          str_directors = "#{str_directors} AND (\n #{str_actors}\n))"
-        else
-          str_directors = "#{str_directors})"
-        end
-      else
-        str_directors = "#{str_directors} m.director_id = #{director.id}"
-        if str_actors != ""
-          str_directors = "#{str_directors} AND (\n #{str_actors}\n)) \n OR(\n"
-        else
-          str_directors = "#{str_directors}) \n OR(\n"
-        end
-      end
+    pref_directors.each do |director|
+      str_directors = "#{str_directors}m.director_id = #{director.id} OR "
     end
-    if str_directors == ""
-      str_directors = str_actors
+    if str_directors != ""
+      3.times do str_directors.chop! end
     end
-    if str_directors == ""
+    
+    if str_directors == "" && str_actors == "" && str_genres == ""
       sql = _no_pref(n, event, c_user)
     else
-      sql = "#{sql_header}#{str_directors}\n AND
+      str = ""
+      strs = [str_directors, str_actors, str_genres]
+      strs.delete("")
+      str = strs.join("OR ")
+      sql = "#{sql_header} #{str}\n AND
       m.duration < #{c_user.max_duration_pref}
       GROUP BY m.id
       ORDER BY random()
@@ -266,13 +242,8 @@ class PagesController < ApplicationController
     pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
-    pp arr1
-    pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     arr2.each do |movie|
-      pp "======================="
-      pp movie
-      pp Movie.find(movie).title
-      pp "======================="
+      pp Movie.find(movie).genres
     end
     pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
     pp "++++++++++++++++++++++++++++++++++++++++++++++++++++"
@@ -293,7 +264,7 @@ class PagesController < ApplicationController
     end
     x.to_f
 
-    val1 = x*t*b/total_t
+    val1 = x*b
     val2 = ((30.0-n)*a)/30.0
 
     val3 = val1 * val2
