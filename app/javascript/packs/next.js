@@ -5,7 +5,7 @@ export function show(){
   const winner_s = document.getElementById('winner_s')
   winner.style.position = "absolute"
   winner.style.left = "-70px"
-  winner.style.zIndex = 100
+  winner.style.zIndex = 100000000000000000
   winner.classList.remove('really_hidden')
   winner.style.left = (winner_s.offsetLeft) +"px" // postion start
   winner.style.top = (winner_s.offsetTop)+"px"  // postion start
@@ -14,16 +14,25 @@ export function show(){
   let y = winner.style.left;
   x = parseInt(x.substring(0, x.length - 2));
   y = parseInt(y.substring(0, y.length - 2));
-  const end_left = Math.ceil(((window.innerHeight/2)-30)) // postion end
-  const end_top = Math.ceil((window.innerHeight/5)) // postion end
+  // const end_left = Math.ceil(((window.innerHeight/2))) // postion end
+  // const end_top = Math.ceil((window.innerHeight/2) - 585/2) // postion end
   winner.style.opacity = 0;
   winner.style.height = "100px"
   winner.style.width = "70px"
-  move(end_top, end_left, winner, Math.abs(x-end_top), Math.abs(y-end_left), 390, 260) 
+
+  const end_left = Math.ceil((document.getElementsByClassName('wrap')[0].offsetLeft) - 45)
+  const end_top = Math.ceil((document.getElementsByClassName('wrap')[0].offsetTop) - 300)
+
+  // winner.style.opacity = 1
+  // winner.style.height = 585 + "px"
+  // winner.style.width = 390 + "px"
+  // winner.style.left = (document.getElementsByClassName('wrap')[0].offsetLeft) - 45 +"px" // postion start
+  // winner.style.top = (document.getElementsByClassName('wrap')[0].offsetTop) - 300 +"px"
+  move(end_top, end_left, winner, Math.abs(x-end_top), Math.abs(y-end_left), 585, 390) 
 }
 
 let i_h = 0.5
-function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 290, tot_w = 190) { 
+function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 485, tot_w = 320) { 
   var id = setInterval(frame, 10);
   let x= elem.style.top;
   let y = elem.style.left;
@@ -37,7 +46,6 @@ function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 29
 
   function frame() {
     if (x == final_x && y == final_y) {
-      i_h = 0.5
       clearInterval(id);
     } else {
       let dist_y = Math.abs(y-final_y)

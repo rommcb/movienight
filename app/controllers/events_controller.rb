@@ -60,8 +60,7 @@ class EventsController < ApplicationController
     @event = Event.find(params[:id])
     event_movies = EventMovie.where("event_id = #{@event.id} AND score > 0").order({score: :desc})
     @winner = Movie.find(event_movies.first.movie_id)
-    @fill = Movie.where('id > 0').order("RANDOM()")[0..98]
-    # @fill = Movie.all[0..98]
+    @fill = Movie.where("id != #{@winner.id}").order("RANDOM()")[0..98]
     @winner_pos = rand(1..97)
   end
 
