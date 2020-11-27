@@ -26,7 +26,7 @@ export function show(){
   winner.style.width = "70px"
 
   const end_left = Math.ceil((document.getElementsByClassName('wrap')[0].offsetLeft) - 45)
-  const end_top = Math.ceil((document.getElementsByClassName('wrap')[0].offsetTop) - 300)
+  const end_top = Math.ceil((document.getElementsByClassName('wrap')[0].offsetTop) - 280)
 
   // winner.style.opacity = 1
   // winner.style.height = 585 + "px"
