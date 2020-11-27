@@ -3,7 +3,7 @@
   <div class="form-wrapper">
 <h2>Edit your event</h2>
 <% if @event.closed == true %>
-    <button id="reactivate" class="btn btn-primary">Re-active event</button>
+    <button id="reactivate" class="btn btn-secondary">Reset event</button>
   <% else %>
       <%= link_to "End this event early", stop_path(@event.id), method: :post, class: 'btn btn-danger' %>
   <% end %>

@@ -40,7 +40,7 @@
 
 .navbar-nav .avatar-letter {
   &:hover {
-    max-width: 200px;
+    width: fit-content;
     min-width: 80px;
     .user-rest, .swipes {
       display: inline;
