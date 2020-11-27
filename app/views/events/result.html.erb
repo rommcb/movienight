@@ -1,14 +1,24 @@
 
+
+
+
 <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
 <div class="res_button hidden">
   <%= link_to "Restart this event!", edit_event_path(@event.id), class: :res_link %>
-  <%= link_to "Back your events", events_path, class: :res_link %>
 </div>
 <% end %>
-
-<div class="wrap">
-<button id="reveal_btn" type="button" class="button"> Reveal</button>
+<div class="res_button">
+  <%= link_to "Back your events", events_path, class: :res_link %>
 </div>
+<% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id || @event.closed == true%>
+  <div class="wrap">
+    <button id="reveal_btn" type="button" class="button"> Reveal</button>
+  </div>
+<% else %>
+  <div class="wrap">
+    <div id="not_reveal_btn" type="button" class="button"> Reveal</div>
+  </div>
+<% end %> 
 
 <%# <div class="wrap">
   <button class="button">Reveal</button>
@@ -26,22 +36,3 @@
   <% end %>
 </div>
 
-
-
-
-
-<script>
-
-  const wrap = document.querySelector(".wrap");
-  const btnWinner = document.getElementById("reveal_btn");
-  const btnReset = document.querySelector(".res_button");
-
-  console.log(wrap);
-  console.log(btnWinner);
-
-  btnWinner.addEventListener("click", () => {
-      // wrap.classList.add("hidden");
-      btnReset.classList.remove("hidden");
-  });
-
-</script>
