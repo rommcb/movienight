@@ -13,8 +13,8 @@ export function movie(user_id, event_id){
   // fetch(`http://localhost:3000/api/movie/${user_id},${event_id}`).then(response => response.json()).then((json) => {
 
     if(json['closed'] == 1) {
-      // window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
-      window.location.replace(`http://localhost:3000/event/result/${event_id}`);
+      window.location.replace(`https://mooovienight.herokuapp.com/event/result/${event_id}`);
+      // window.location.replace(`http://localhost:3000/event/result/${event_id}`);
     }
 
     let c_arr = json['count']

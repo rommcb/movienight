@@ -1,6 +1,11 @@
 import { smooth } from './swipe'
 
 export function show(){
+  const id = document.getElementById("event_id").innerHTML
+  fetch(`https://mooovienight.herokuapp.com/api/end_event/${id}`).then(response => response.json()).then((json) => {
+  // fetch(`http://localhost:3000/api/end_event/${id}`).then(response => response.json()).then((json) => {
+    console.log(json);
+  });
   const winner = document.getElementById('winner')
   const winner_s = document.getElementById('winner_s')
   winner.style.position = "absolute"
@@ -46,6 +51,7 @@ function move(final_x, final_y, elem, tot_x, tot_y, final_h, final_w, tot_h = 48
 
   function frame() {
     if (x == final_x && y == final_y) {
+      i_h = 0.5
       clearInterval(id);
     } else {
       let dist_y = Math.abs(y-final_y)
