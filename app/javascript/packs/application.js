@@ -54,11 +54,6 @@ document.addEventListener('turbolinks:load', () => {
     }
   }
 
-
-
-
-
-
   const winner = document.getElementById('winner')
   if(winner != null){
     document.getElementsByClassName('bg-image')[0].style.opacity = 0.0
@@ -69,7 +64,7 @@ document.addEventListener('turbolinks:load', () => {
     const wrap = document.querySelector(".wrap");
     const btnWinner = document.getElementById("reveal_btn");
     const btnReset = document.querySelector(".res_button");
-  
+
     console.log(wrap);
     console.log(btnWinner);
   

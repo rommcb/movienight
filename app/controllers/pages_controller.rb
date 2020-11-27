@@ -45,6 +45,15 @@ class PagesController < ApplicationController
     render json: hash
   end
 
+  def end_event
+    str = params[:id]
+    event = Event.find(str)
+    event.update(closed: true)
+    event.save
+    cors_set_access_control_headers
+    render json: {yes: 'hello'}
+  end
+
   def review
     str = params[:string].split(",")
     user_id = str[0].to_i

@@ -7,6 +7,7 @@
   <%= link_to "Restart this event!", edit_event_path(@event.id), class: :res_link %>
 </div>
 <% end %>
+<div class="really_hidden" id="event_id"><%= @event.id %></div>
 <div class="res_button">
   <%= link_to "Back your events", events_path, class: :res_link %>
 </div>
