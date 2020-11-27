@@ -32,6 +32,7 @@
 
         <ul class="list-inline members">
           <% count = @event.event_movies.where(score: @event.users.count ).count %>
+           <button type="button" data-toggle="modal" data-target="#exampleModal" title="reveal">
             <% if count == 0 %>
               <li class="list-inline-item" title="matches" id='matches'>
             <%elsif count <= 9 %>
@@ -40,7 +41,7 @@
               <li class="list-inline-item success big" title="matches" id='matches'>
             <%end%>
                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
-              </li>
+              </li> </button>
               
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
@@ -89,3 +90,38 @@
 
             </script>
 -->
+
+
+      <!-- Modal -->
+   <% if @event %>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" style="color:black;">
+        You have <strong><%= count %> matche(s)</strong>
+        
+      <% if count > 0 %>
+          <%=link_to "Go to reveal page", result_path(@event), class: 'btn btn-primary'%> 
+        <%end%>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+$('#myModal').on('shown.bs.modal', function () {
+  $('#myInput').trigger('focus')
+})
+</script>
+
+  <% end%>
