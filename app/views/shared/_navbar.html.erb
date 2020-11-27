@@ -30,18 +30,33 @@
     <% if user_signed_in? %>
       <% if @event && @event.name %>
 
+        <!-- checking if current user is the owner to pass to javascript -->
+        <% if @event.event_subscriptions.where(owner: true)[0].user.id == current_user.id %>
+          <div id="is-owner" class="really_hidden">1</div>
+        <%else%>
+          <div id="is-owner" class="really_hidden">0</div>
+        <% end %>
+        <!-- end -->
+
         <ul class="list-inline members">
           <% count = @event.event_movies.where(score: @event.users.count ).count %>
-           <button type="button" data-toggle="modal" data-target="#exampleModal" title="reveal">
+
+
+          <%=link_to result_path(@event) do %> 
             <% if count == 0 %>
-              <li class="list-inline-item" title="matches" id='matches'>
-            <%elsif count <= 9 %>
+                <li class="list-inline-item really_hidden" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
+            <%elsif count > 0 && count <= 9 %>
               <li class="list-inline-item success" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
             <%else%>
               <li class="list-inline-item success big" title="matches" id='matches'>
+                 <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
+              </li> 
             <%end%>
-                <span id="mcount"><%= count %></span><i class="fas fa-star"></i>
-              </li> </button>
+          <%end%>
               
           <%@event.users.each do |user| %>
             <li class="list-inline-item avatar-letter" title="<%= user.username %>">
@@ -69,59 +84,3 @@
   </div>
 </div>
 
-
-
-         <!--  <script>
-              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
-                avatar.addEventListener("mouseover", (event) => {
-                  avatar.innerHTML = avatar.title;
-                  avatar.classList.add("fullname");
-                });
-              });
-
-              document.querySelectorAll(".avatar-letter").forEach((avatar) => {
-                avatar.addEventListener("mouseout", (event) => {
-                  console.log(avatar.title);
-                  avatar.innerHTML = avatar.innerHTML.charAt(0);
-                  avatar.classList.remove("fullname");
-                });
-              });
-
-
-            </script>
--->
-
-
-      <!-- Modal -->
-<% if @event && @event.name %>
-
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body" style="color:black;">
-          You have <strong><%= count %> matche(s)</strong>
-          
-        <% if count > 0 %>
-            <%=link_to "Go to reveal page", result_path(@event), class: 'btn btn-primary'%> 
-          <%end%>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <%# <script>
-  $('#myModal').on('shown.bs.modal', function () {
-    $('#myInput').trigger('focus')
-  })
-  </script> %>
-
-<% end%>
